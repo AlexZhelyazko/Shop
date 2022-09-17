@@ -1,12 +1,10 @@
-import React from 'react';
-import './App.css';
+import MainPage from './Layouts/MainPage';
+import './App.scss';
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   return (
     <div>
-    
+      <MainPage />
     </div>
-  )
-}
-
-export default App;
+  );
+};
