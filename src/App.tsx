@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import MainPage from './Layouts/MainPage';
+import MainPage from './Layouts/MainPage/MainPage';
 import './App.scss';
 import Catalog from './components/Catalog/Catalog';
 
