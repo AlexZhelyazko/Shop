@@ -1,17 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
 import MainPage from './Layouts/MainPage/MainPage';
 import './App.scss';
-import Catalog from './components/Catalog/Catalog';
+import Products from './Layouts/ProductsPage/Products';
 
 export const App: React.FC = () => {
   return (
-    <div>
       <Routes>
         <Route path='/' element={<MainPage/>}/>
-        <Route path='/man' element={<Catalog/>}/>
-        <Route path='/woman' element={<Catalog/>}/>
-        <Route path='/children' element={<Catalog/>}/>
+        <Route path='/man' element={<Products/>}/>
+        <Route path='/woman' element={<Products/>}/>
+        <Route path='/children' element={<Products/>}/>
       </Routes>
-    </div>
   );
 };

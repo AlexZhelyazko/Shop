@@ -1,8 +1,12 @@
+import Catalog from "../../components/Catalog/Catalog"
+import Header from "../../components/Header/Header"
+import '../../App.scss'
+
 const Products: React.FC = () => {
     return (
-        <div>
-            <h1>Header</h1>
-            <h1>Catalog</h1>
+        <div className="container">
+            <Header/>
+            <Catalog/>
         </div>
     )
 }
