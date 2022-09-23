@@ -1,0 +1,21 @@
+.catalog__section-product {
+    display: flex;
+    flex-direction: column;
+    margin: 2em;
+    position: relative;
+}
+
+.catalog__section-product-info{
+    position: absolute;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.catalog__section-image{
+    z-index: 2;
+    &:hover{
+        z-index: 0;
+        opacity: 0.5;
+        transition: 1s;
+    }
+}
