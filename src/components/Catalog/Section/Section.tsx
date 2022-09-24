@@ -1,11 +1,11 @@
 import './section.scss';
 
-const Section: React.FC<any> = ({ items }) => {
+const Section: React.FC<any> = ({ items, filterItems }) => {
   return (
     <section
       className="catalog__section"
       style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-      {items.map((item: any) => {
+      {(filterItems || items).map((item: any) => {
         return (
           <div className="catalog__section-product">
             <img

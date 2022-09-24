@@ -2,7 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchCatalogItems } from './asyncActions';
 
 const initialState = {
-    items: []
+    items: [],
+    filterItem: [],
+    startPrice: 0,
+    finalPrice: 1500,
 };
 
 const catalogSlice = createSlice({
@@ -11,6 +14,12 @@ const catalogSlice = createSlice({
     reducers: {
         setItems(state, action) {
             state.items = action.payload
+        },
+        sortItemsByPrice(state, action) {
+            let filterItems = state.items.filter(
+                (item) => Number(item.price.substring(0, item.price.length - 1)) >= Number(action.payload.startPrice),
+            );
+            state.filterItem = filterItems
         }
     },
     extraReducers: (builder) => {
@@ -26,5 +35,5 @@ const catalogSlice = createSlice({
     }
 })
 
-export const {setItems} = catalogSlice.actions;
+export const { setItems, sortItemsByPrice } = catalogSlice.actions;
 export default catalogSlice.reducer;
