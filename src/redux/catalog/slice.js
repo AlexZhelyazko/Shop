@@ -21,7 +21,6 @@ const catalogSlice = createSlice({
             let filterItems = state.items.filter(
                 (item) => Number(item.price.substring(0, item.price.length - 1)) >= Number(action.payload[0]) && Number(item.price.substring(0, item.price.length - 1)) <= Number(action.payload[1]),
             );
-            console.log(filterItems);
             state.filterItem = filterItems
         },
         sortItemsByColor(state, action) {
@@ -29,7 +28,6 @@ const catalogSlice = createSlice({
                 let filterItems = state.items.filter(
                     (item) => action.payload.includes(item.color)
                 )
-                console.log(filterItems);
                 state.filterItem = filterItems
             } else {
                 let filterItems = state.items.filter(
