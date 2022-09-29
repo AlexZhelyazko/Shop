@@ -19,6 +19,7 @@ const Sidebar = ({ items }) => {
   const [activeColors, setActiveColors] = useState([]);
   const handleClick = (color) => {
     color ? setActiveColors([...activeColors, color]) : setActiveColors();
+    //console.log(activeColors);
     dispatch(sortItemsByColor(activeColors));
   };
   return (
