@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchCatalogItems } from './asyncActions';
 
 const initialState = {
+    filters: false,
     items: [],
     filterItem: [],
     startPrice: 0,
@@ -16,6 +17,7 @@ const catalogSlice = createSlice({
             state.items = action.payload
         },
         sortItemsByPrice(state, action) {
+            state.filters = true
             let filterItems = state.items.filter(
                 (item) => Number(item.price.substring(0, item.price.length - 1)) >= Number(action.payload[0]),
             );
