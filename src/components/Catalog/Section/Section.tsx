@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 import './section.scss';
 
 const Section: React.FC<any> = ({ items, filterItems }) => {
-  console.log(items);
-  console.log(filterItems);
+  console.log('items', items);
+  console.log('filteritems', filterItems);
 
   return (
     <section
       className="catalog__section"
       style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-      {items.map((item: any) => {
+      {(filterItems || items).map((item: any) => {
         return (
           <div className="catalog__section-product">
             <img

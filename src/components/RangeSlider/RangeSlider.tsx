@@ -1,20 +1,23 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import { useAppDispatch } from '../../redux/store';
+import { sortItemsByPrice } from '../../redux/catalog/slice';
 
 function valuetext(value: number) {
   return `${value}$`;
 }
 
 export default function RangeSlider() {
-  const [value, setValue] = React.useState<number[]>([20, 37]);
-
+  const [value, setValue] = React.useState<number[]>([200, 1000]);
+  const dispatch = useAppDispatch();
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
   };
 
   const handleChangeForInputs = (newValue: number | number[]) => {
     setValue(newValue as number[]);
+    dispatch(sortItemsByPrice(newValue));
   };
 
   return (

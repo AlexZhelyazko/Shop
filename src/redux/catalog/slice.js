@@ -17,7 +17,7 @@ const catalogSlice = createSlice({
         },
         sortItemsByPrice(state, action) {
             let filterItems = state.items.filter(
-                (item) => Number(item.price.substring(0, item.price.length - 1)) >= Number(action.payload.startPrice),
+                (item) => Number(item.price.substring(0, item.price.length - 1)) >= Number(action.payload[0]),
             );
             state.filterItem = filterItems
         }
