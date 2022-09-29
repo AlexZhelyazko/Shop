@@ -1,8 +1,5 @@
 import './sidebar.scss';
-import { useEffect, useState } from 'react';
-import { fetchCatalogItems } from '../../../redux/catalog/asyncActions';
-import { setItems, sortItemsByPrice } from '../../../redux/catalog/slice';
-import { useAppDispatch } from '../../../redux/store';
+import { useState } from 'react';
 
 const colorsData = [
   { Blue: 'blue123' },
@@ -12,22 +9,13 @@ const colorsData = [
   { Tan: 'tan' },
 ];
 
+const sizeData = [{ 42: 42 }, { 44: 44 }, { 46: 46 }, { 48: 48 }, { 50: 50 }, { 52: 52 }];
+
 const Sidebar = ({ items }) => {
   const [startPrice, setStartPrice] = useState(0);
   const [finalPrice, setFinalPrice] = useState(1000);
   const [activeColors, setActiveColors] = useState('');
-  const dispatch = useAppDispatch();
 
-  const setFilters = (color) => {
-    const colors = color.toString();
-    setActiveColors(colors);
-    dispatch(fetchCatalogItems(colors));
-  };
-
-  useEffect(() => {
-    // dispatch(fetchCatalogItems());
-    // dispatch(sortItemsByPrice({ startPrice, finalPrice }));
-  }, [startPrice, finalPrice, activeColors]);
   return (
     <aside>
       <div className="filter__price">
@@ -37,18 +25,11 @@ const Sidebar = ({ items }) => {
 
       <div className="filter__color">
         {colorsData.map((el) => {
-          return <div onClick={() => setFilters(Object.values(el))}>{Object.keys(el)}</div>;
+          return <div>{Object.keys(el)}</div>;
         })}
       </div>
 
-      <div className="filter__size">
-        <div>42</div>
-        <div>44</div>
-        <div>46</div>
-        <div>48</div>
-        <div>50</div>
-        <div>52</div>
-      </div>
+      <div className="filter__size"></div>
     </aside>
   );
 };
