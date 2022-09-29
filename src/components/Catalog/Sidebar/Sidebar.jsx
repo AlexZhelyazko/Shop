@@ -13,8 +13,10 @@ const colorsData = [
 const sizeData = [{ 42: 42 }, { 44: 44 }, { 46: 46 }, { 48: 48 }, { 50: 50 }, { 52: 52 }];
 
 const Sidebar = ({ items }) => {
-  const [activeColors, setActiveColors] = useState('');
-
+  const [activeColors, setActiveColors] = useState([]);
+  const handleClick = (color) => {
+    color ? setActiveColors([...activeColors, color]) : setActiveColors();
+  };
   return (
     <aside>
       <div className="filter__price">
@@ -22,7 +24,7 @@ const Sidebar = ({ items }) => {
       </div>
       <div className="filter__color">
         {colorsData.map((el) => {
-          return <div>{Object.keys(el)}</div>;
+          return <div onClick={() => handleClick(Object.values(el)[0])}>{Object.keys(el)}</div>;
         })}
       </div>
       <div className="filter__size"></div>
