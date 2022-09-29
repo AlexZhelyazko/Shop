@@ -13,6 +13,7 @@ export default function RangeSlider() {
   const dispatch = useAppDispatch();
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
+    dispatch(sortItemsByPrice(newValue));
   };
 
   const handleChangeForInputs = (newValue: number | number[]) => {
