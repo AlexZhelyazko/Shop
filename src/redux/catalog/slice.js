@@ -18,11 +18,23 @@ const catalogSlice = createSlice({
         },
         sortItemsByPrice(state, action) {
             state.filters = true
-            console.log(action.payload);
             let filterItems = state.items.filter(
                 (item) => Number(item.price.substring(0, item.price.length - 1)) >= Number(action.payload[0]) && Number(item.price.substring(0, item.price.length - 1)) <= Number(action.payload[1]),
             );
             state.filterItem = filterItems
+        },
+        sortItemsByColor(state, action) {
+            if (state.filterItem) {
+                let filterItems = state.items.filter(
+                    (item) => action.payload.includes(item.color)
+                )
+                state.filterItem = filterItems
+            } else {
+                let filterItems = state.items.filter(
+                    (item) => action.payload.includes(item.color)
+                )
+                state.filterItem = filterItems
+            }
         }
     },
     extraReducers: (builder) => {
@@ -38,5 +50,5 @@ const catalogSlice = createSlice({
     }
 })
 
-export const { setItems, sortItemsByPrice } = catalogSlice.actions;
+export const { setItems, sortItemsByPrice, sortItemsByColor } = catalogSlice.actions;
 export default catalogSlice.reducer;

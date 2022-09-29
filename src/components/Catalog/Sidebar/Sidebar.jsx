@@ -1,6 +1,8 @@
 import './sidebar.scss';
 import { useState } from 'react';
 import RangeSlider from '../../RangeSlider/RangeSlider';
+import { useAppDispatch } from '../../../redux/store';
+import { sortItemsByColor } from '../../../redux/catalog/slice';
 
 const colorsData = [
   { Blue: 'blue123' },
@@ -13,9 +15,11 @@ const colorsData = [
 const sizeData = [{ 42: 42 }, { 44: 44 }, { 46: 46 }, { 48: 48 }, { 50: 50 }, { 52: 52 }];
 
 const Sidebar = ({ items }) => {
+  const dispatch = useAppDispatch();
   const [activeColors, setActiveColors] = useState([]);
   const handleClick = (color) => {
     color ? setActiveColors([...activeColors, color]) : setActiveColors();
+    dispatch(sortItemsByColor(activeColors));
   };
   return (
     <aside>
