@@ -21,13 +21,12 @@ const Sidebar = ({ items }) => {
     activeColors.includes(color)
       ? setActiveColors([...activeColors.filter((el) => el !== color)])
       : setActiveColors([...activeColors, color]);
-    // setActiveColors([...activeColors, color]);
   };
 
-  console.log(activeColors);
   useEffect(() => {
     dispatch(sortItemsByColor(activeColors));
   }, [activeColors]);
+
   return (
     <aside>
       <div className="filter__price">

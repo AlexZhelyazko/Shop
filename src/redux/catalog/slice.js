@@ -24,13 +24,13 @@ const catalogSlice = createSlice({
             state.filterItem = filterItems
         },
         sortItemsByColor(state, action) {
-            if (state.filterItem) {
+            if (state.filterItem.length === 0) {
                 let filterItems = state.items.filter(
                     (item) => action.payload.includes(item.color)
                 )
                 state.filterItem = filterItems
             } else {
-                let filterItems = state.items.filter(
+                let filterItems = state.filterItem.filter(
                     (item) => action.payload.includes(item.color)
                 )
                 state.filterItem = filterItems
