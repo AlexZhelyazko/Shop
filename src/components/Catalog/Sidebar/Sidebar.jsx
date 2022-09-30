@@ -18,9 +18,13 @@ const Sidebar = ({ items }) => {
   const dispatch = useAppDispatch();
   const [activeColors, setActiveColors] = useState([]);
   const handleClick = (color) => {
-    setActiveColors([...activeColors, color]);
+    activeColors.includes(color)
+      ? setActiveColors([...activeColors.filter((el) => el !== color)])
+      : setActiveColors([...activeColors, color]);
+    // setActiveColors([...activeColors, color]);
   };
 
+  console.log(activeColors);
   useEffect(() => {
     dispatch(sortItemsByColor(activeColors));
   }, [activeColors]);
