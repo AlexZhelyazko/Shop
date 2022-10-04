@@ -11,6 +11,14 @@ function valuetext(value: number) {
 export default function RangeSlider() {
   const [value, setValue] = React.useState<number[]>([100, 2000]);
   const dispatch = useAppDispatch();
+  sortItemsByPrice(state, action) {
+    state.filters = true
+    let filterItems = state.items.filter(
+        (item) => Number(item.price.substring(0, item.price.length - 1)) >= Number(action.payload[0]) && Number(item.price.substring(0, item.price.length - 1)) <= Number(action.payload[1]),
+    );
+    state.filterItemByPrice = filterItems
+    store.dispatch(this.setFilters())
+},
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
     dispatch(sortItemsByPrice(newValue));

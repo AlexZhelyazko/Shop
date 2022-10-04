@@ -1,10 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { store } from '../store';
 import { fetchCatalogItems } from './asyncActions';
 
 const initialState = {
     filters: false,
     items: [],
     filterItem: [],
+    filterItemByPrice: [],
+    filterItemByColor: [],
     startPrice: 0,
     finalPrice: 1500,
 };
@@ -16,24 +19,24 @@ const catalogSlice = createSlice({
         setItems(state, action) {
             state.items = action.payload
         },
+        setFilterItemsByPrice(state, action) {
+            state.filterItemByColor = action.payload
+        },
         sortItemsByPrice(state, action) {
             state.filters = true
             let filterItems = state.items.filter(
                 (item) => Number(item.price.substring(0, item.price.length - 1)) >= Number(action.payload[0]) && Number(item.price.substring(0, item.price.length - 1)) <= Number(action.payload[1]),
             );
-            state.filterItem = filterItems
+            state.filterItemByPrice = filterItems
+            store.dispatch(this.setFilters())
         },
-        sortItemsByColor(state, action) {
-            if (state.filterItem.length === 0) {
-                let filterItems = state.items.filter(
-                    (item) => action.payload.includes(item.color)
-                )
-                state.filterItem = filterItems
+        setFilters(state, action) {
+            if (state.filterItemByPrice.length === 0) {
+                state.filterItem = [...state.filterItemByColor]
+            } else if (state.filterItemByColor === 0) {
+                state.filterItem = [...state.filterItemByPrice]
             } else {
-                let filterItems = state.filterItem.filter(
-                    (item) => action.payload.includes(item.color)
-                )
-                state.filterItem = filterItems
+                state.filterItem = state.filterItemByPrice.filter(el => state.filterItemByColor.some(el2 => el.title === el2.title))
             }
         }
     },
@@ -50,5 +53,5 @@ const catalogSlice = createSlice({
     }
 })
 
-export const { setItems, sortItemsByPrice, sortItemsByColor } = catalogSlice.actions;
+export const { setItems, setFilterItemsByColor, setFilterItemsByPrice, setFilters } = catalogSlice.actions;
 export default catalogSlice.reducer;
