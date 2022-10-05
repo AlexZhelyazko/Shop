@@ -31,7 +31,7 @@ const Sidebar = ({ items }) => {
   return (
     <aside>
       <div className="filter__price">
-        <RangeSlider />
+        <RangeSlider items={items} />
       </div>
       <div className="filter__color">
         {colorsData.map((el) => {

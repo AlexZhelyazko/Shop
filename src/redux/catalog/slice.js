@@ -23,7 +23,7 @@ const catalogSlice = createSlice({
             state.filterItemByColor = action.payload
         },
         setFilterItemsByPrice(state, action) {
-            state.filterItemByColor = action.payload
+            state.filterItemByPrice = action.payload
         },
         setFilters(state, action) {
             if (state.filterItemByPrice.length === 0) {

@@ -24,12 +24,14 @@ export default function RangeSlider({ items }: any) {
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
-    dispatch(setFilterItemsByPrice(newValue));
+    filterItemsByPrice();
+    // dispatch(setFilterItemsByPrice(newValue));
   };
 
   const handleChangeForInputs = (newValue: number | number[]) => {
     setValue(newValue as number[]);
-    dispatch(setFilterItemsByPrice(newValue));
+    filterItemsByPrice();
+    // dispatch(setFilterItemsByPrice(newValue));
   };
 
   return (
