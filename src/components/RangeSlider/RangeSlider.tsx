@@ -2,7 +2,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useAppDispatch } from '../../redux/store';
-import { setFilterItemsByPrice } from '../../redux/catalog/slice';
+import { setFilterItemsByPrice, setFilters } from '../../redux/catalog/slice';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 function valuetext(value: number) {
   return `${value}$`;
@@ -11,7 +13,7 @@ function valuetext(value: number) {
 export default function RangeSlider({ items }: any) {
   const [value, setValue] = React.useState<number[]>([100, 2000]);
   const dispatch = useAppDispatch();
-
+  let filterItemsByPriceArr = useSelector((state: any) => state.catalog.filterItemByPrice);
   const filterItemsByPrice = () => {
     //state.filters = true
     let filterItems = items.filter(
@@ -33,6 +35,10 @@ export default function RangeSlider({ items }: any) {
     filterItemsByPrice();
     // dispatch(setFilterItemsByPrice(newValue));
   };
+
+  useEffect(() => {
+    dispatch(setFilters(filterItemsByPriceArr));
+  }, [filterItemsByPriceArr]);
 
   return (
     <Box sx={{ width: 300 }}>

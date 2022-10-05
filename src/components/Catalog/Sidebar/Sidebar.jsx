@@ -2,7 +2,8 @@ import './sidebar.scss';
 import { useEffect, useState } from 'react';
 import RangeSlider from '../../RangeSlider/RangeSlider';
 import { useAppDispatch } from '../../../redux/store';
-import { setFilterItemsByColor } from '../../../redux/catalog/slice';
+import { setFilterItemsByColor, setFilters } from '../../../redux/catalog/slice';
+import { useSelector } from 'react-redux';
 
 const colorsData = [
   { Blue: 'blue123' },
@@ -15,6 +16,7 @@ const colorsData = [
 const sizeData = [{ 42: 42 }, { 44: 44 }, { 46: 46 }, { 48: 48 }, { 50: 50 }, { 52: 52 }];
 
 const Sidebar = ({ items }) => {
+  let filterItemsByColor = useSelector((state) => state.catalog.filterItemByColor);
   const dispatch = useAppDispatch();
   const [activeColors, setActiveColors] = useState([]);
   const handleClick = (color) => {
@@ -27,6 +29,11 @@ const Sidebar = ({ items }) => {
     let filterItems = items.filter((item) => activeColors.includes(item.color));
     dispatch(setFilterItemsByColor(filterItems));
   }, [activeColors]);
+  console.log(filterItemsByColor);
+  useEffect(() => {
+    console.log(filterItemsByColor + 'useEffect');
+    dispatch(setFilters());
+  }, [filterItemsByColor]);
 
   return (
     <aside>

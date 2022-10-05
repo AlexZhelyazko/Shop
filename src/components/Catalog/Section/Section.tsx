@@ -25,6 +25,7 @@ const Section: React.FC<any> = ({ items, filterItems }) => {
               />
               <div className="catalog__section-product-info">
                 <span>{item.title}</span>
+                <div></div>
                 <span>{item.price}</span>
               </div>
             </div>
