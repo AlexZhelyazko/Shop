@@ -19,16 +19,11 @@ const catalogSlice = createSlice({
         setItems(state, action) {
             state.items = action.payload
         },
-        setFilterItemsByPrice(state, action) {
+        setFilterItemsByColor(state, action) {
             state.filterItemByColor = action.payload
         },
-        sortItemsByPrice(state, action) {
-            state.filters = true
-            let filterItems = state.items.filter(
-                (item) => Number(item.price.substring(0, item.price.length - 1)) >= Number(action.payload[0]) && Number(item.price.substring(0, item.price.length - 1)) <= Number(action.payload[1]),
-            );
-            state.filterItemByPrice = filterItems
-            store.dispatch(this.setFilters())
+        setFilterItemsByPrice(state, action) {
+            state.filterItemByColor = action.payload
         },
         setFilters(state, action) {
             if (state.filterItemByPrice.length === 0) {

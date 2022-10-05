@@ -2,31 +2,34 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useAppDispatch } from '../../redux/store';
-import { sortItemsByPrice } from '../../redux/catalog/slice';
+import { setFilterItemsByPrice } from '../../redux/catalog/slice';
 
 function valuetext(value: number) {
   return `${value}$`;
 }
 
-export default function RangeSlider() {
+export default function RangeSlider({ items }: any) {
   const [value, setValue] = React.useState<number[]>([100, 2000]);
   const dispatch = useAppDispatch();
-  sortItemsByPrice(state, action) {
-    state.filters = true
-    let filterItems = state.items.filter(
-        (item) => Number(item.price.substring(0, item.price.length - 1)) >= Number(action.payload[0]) && Number(item.price.substring(0, item.price.length - 1)) <= Number(action.payload[1]),
+
+  const filterItemsByPrice = () => {
+    //state.filters = true
+    let filterItems = items.filter(
+      (item: any) =>
+        Number(item.price.substring(0, item.price.length - 1)) >= Number(value[0]) &&
+        Number(item.price.substring(0, item.price.length - 1)) <= Number(value[1]),
     );
-    state.filterItemByPrice = filterItems
-    store.dispatch(this.setFilters())
-},
+    dispatch(setFilterItemsByPrice(filterItems));
+  };
+
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
-    dispatch(sortItemsByPrice(newValue));
+    dispatch(setFilterItemsByPrice(newValue));
   };
 
   const handleChangeForInputs = (newValue: number | number[]) => {
     setValue(newValue as number[]);
-    dispatch(sortItemsByPrice(newValue));
+    dispatch(setFilterItemsByPrice(newValue));
   };
 
   return (
