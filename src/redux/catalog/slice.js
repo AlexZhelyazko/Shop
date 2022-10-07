@@ -30,7 +30,7 @@ const catalogSlice = createSlice({
         setFilters(state, action) {
             if (state.filterItemByPrice.length === 0) {
                 state.filterItem = [...state.filterItemByColor]
-            } else if (state.filterItemByColor === 0) {
+            } else if (state.filterItemByColor.length === 0) {
                 state.filterItem = [...state.filterItemByPrice]
             } else {
                 state.filterItem = state.filterItemByPrice.filter(el => state.filterItemByColor.some(el2 => el.title === el2.title))

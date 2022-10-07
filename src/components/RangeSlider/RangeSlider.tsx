@@ -14,29 +14,44 @@ export default function RangeSlider({ items }: any) {
   const [value, setValue] = React.useState<number[]>([100, 2000]);
   const dispatch = useAppDispatch();
   let filterItemsByPriceArr = useSelector((state: any) => state.catalog.filterItemByPrice);
-  const filterItemsByPrice = () => {
-    //state.filters = true
+
+  useEffect(() => {
+    console.log(value);
+
     let filterItems = items.filter(
       (item: any) =>
         Number(item.price.substring(0, item.price.length - 1)) >= Number(value[0]) &&
         Number(item.price.substring(0, item.price.length - 1)) <= Number(value[1]),
     );
     dispatch(setFilterItemsByPrice(filterItems));
-  };
+  }, [value]);
+
+  // const filterItemsByPrice = () => {
+  //   //state.filters = true
+  //   console.log(value);
+
+  //   let filterItems = items.filter(
+  //     (item: any) =>
+  //       Number(item.price.substring(0, item.price.length - 1)) >= Number(value[0]) &&
+  //       Number(item.price.substring(0, item.price.length - 1)) <= Number(value[1]),
+  //   );
+  //   dispatch(setFilterItemsByPrice(filterItems));
+  // };
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
-    filterItemsByPrice();
+    // filterItemsByPrice();
     // dispatch(setFilterItemsByPrice(newValue));
   };
 
   const handleChangeForInputs = (newValue: number | number[]) => {
     setValue(newValue as number[]);
-    filterItemsByPrice();
+    //filterItemsByPrice();
     // dispatch(setFilterItemsByPrice(newValue));
   };
 
   useEffect(() => {
+    console.log(filterItemsByPriceArr);
     dispatch(setFilters(filterItemsByPriceArr));
   }, [filterItemsByPriceArr]);
 
@@ -44,12 +59,12 @@ export default function RangeSlider({ items }: any) {
     <Box sx={{ width: 300 }}>
       <div className="filter__price-input_wrapper">
         <input
-          onChange={(e) => handleChangeForInputs([Number(e.target.value), value[1]])}
+          onChange={(e) => handleChangeForInputs([Number(e.currentTarget.value), value[1]])}
           value={value[0]}
           type="text"
         />
         <input
-          onChange={(e) => handleChangeForInputs([value[0], Number(e.target.value)])}
+          onChange={(e) => handleChangeForInputs([value[0], Number(e.currentTarget.value)])}
           value={value[1]}
           type="text"
         />
