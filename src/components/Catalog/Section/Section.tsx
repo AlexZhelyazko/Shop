@@ -28,6 +28,7 @@ const Section: React.FC<any> = ({ items, filterItems }) => {
                 <div></div>
                 <span>{item.price}</span>
               </div>
+              <button>Add</button>
             </div>
           );
         },
