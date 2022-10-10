@@ -11,7 +11,7 @@ function valuetext(value: number) {
 }
 
 export default function RangeSlider({ items }: any) {
-  const [value, setValue] = React.useState<number[]>([100, 2000]);
+  const [value, setValue] = React.useState<number[]>([0, 2000]);
   const dispatch = useAppDispatch();
   let filterItemsByPriceArr = useSelector((state: any) => state.catalog.filterItemByPrice);
 
@@ -26,28 +26,12 @@ export default function RangeSlider({ items }: any) {
     dispatch(setFilterItemsByPrice(filterItems));
   }, [value]);
 
-  // const filterItemsByPrice = () => {
-  //   //state.filters = true
-  //   console.log(value);
-
-  //   let filterItems = items.filter(
-  //     (item: any) =>
-  //       Number(item.price.substring(0, item.price.length - 1)) >= Number(value[0]) &&
-  //       Number(item.price.substring(0, item.price.length - 1)) <= Number(value[1]),
-  //   );
-  //   dispatch(setFilterItemsByPrice(filterItems));
-  // };
-
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
-    // filterItemsByPrice();
-    // dispatch(setFilterItemsByPrice(newValue));
   };
 
   const handleChangeForInputs = (newValue: number | number[]) => {
     setValue(newValue as number[]);
-    //filterItemsByPrice();
-    // dispatch(setFilterItemsByPrice(newValue));
   };
 
   useEffect(() => {
@@ -70,9 +54,9 @@ export default function RangeSlider({ items }: any) {
         />
       </div>
       <Slider
-        min={100}
+        min={0}
         max={2000}
-        defaultValue={[100, 2000]}
+        defaultValue={[0, 2000]}
         step={10}
         getAriaLabel={() => 'Price'}
         value={value}
