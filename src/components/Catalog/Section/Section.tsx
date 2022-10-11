@@ -1,12 +1,13 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
+import { RootState, useAppDispatch } from '../../../redux/store';
+import { setCartItems } from '../../../redux/cart/cartSlice';
 import './section.scss';
 
 const Section: React.FC<any> = ({ items, filterItems }) => {
   const isFilterActive = useSelector((state: RootState) => state.catalog.filters);
-  // console.log('items', items);
-  // console.log('filteritems', filterItems);
+  const dispatch = useAppDispatch();
+  const cartItems = useSelector((state: any) => state.cart.cartItems);
+  console.log(cartItems);
 
   return (
     <section
@@ -28,7 +29,7 @@ const Section: React.FC<any> = ({ items, filterItems }) => {
                 <div></div>
                 <span>{item.price}</span>
               </div>
-              <button>Add</button>
+              <button onClick={() => dispatch(setCartItems(item))}>Add</button>
             </div>
           );
         },
