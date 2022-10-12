@@ -3,15 +3,31 @@ import MainPage from './Layouts/MainPage/MainPage';
 import './App.scss';
 import Products from './Layouts/ProductsPage/Products';
 import Cart from './Layouts/CartPage/cart';
+import Catalog from './components/Catalog/Catalog';
+
+// export const App: React.FC = () => {
+//   return (
+//     <Routes>
+//       <Route path="/" element={<MainPage/>}/>
+//       <Route path='/m'
+//     </Routes>
+//   )
+// }
 
 export const App: React.FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<MainPage />} />
-      <Route path="/man" element={<Products />} />
+      <Route path="/home" element={<MainPage />} />
+      <Route path="/" element={<Products />}>
+        <Route path="/man" element={<Catalog />} />
+        <Route path="/woman" element={<Catalog />} />
+        <Route path="/children" element={<Catalog />} />
+        <Route path="/cart" element={<Cart />} />
+      </Route>
+      {/* <Route path="/man" element={<Products />} />
       <Route path="/woman" element={<Products />} />
       <Route path="/children" element={<Products />} />
-      <Route path="/cart" element={<Cart />} />
+  */}
     </Routes>
   );
 };
