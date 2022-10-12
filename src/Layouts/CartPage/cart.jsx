@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { deleteItemfromCart } from '../../redux/cart/cartSlice';
+import { deleteItemfromCart, addItem } from '../../redux/cart/cartSlice';
 import { useAppDispatch } from '../../redux/store';
 
 export default function Cart() {
@@ -15,7 +15,9 @@ export default function Cart() {
           return (
             <div>
               <h2>{el.title}</h2>
+              <h2>Count: {el.count}</h2>
               <button onClick={() => dispatch(deleteItemfromCart(el.title))}>delete</button>
+              <button onClick={() => dispatch(addItem(el.title))}>add</button>
             </div>
           );
         })
