@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { fetchCatalogItems } from '../../redux/catalog/asyncActions';
-import { RootState, useAppDispatch } from '../../redux/store';
+import { useAppDispatch } from '../../redux/store';
 import Section from './Section/Section';
 import Sidebar from './Sidebar/Sidebar';
 import './catalog.scss';

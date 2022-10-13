@@ -21,21 +21,31 @@ const catalogSlice = createSlice({
         },
         setFilterItemsByColor(state, action) {
             state.filterItemByColor = action.payload
-            state.filters = true
         },
         setFilterItemsByPrice(state, action) {
             state.filterItemByPrice = action.payload
-            state.filters = true
         },
         setFilters(state, action) {
-            if (state.filterItemByPrice.length === 0) {
-                state.filterItem = [...state.filterItemByColor]
-            } else if (state.filterItemByColor.length === 0) {
+            if (state.filterItemByColor.length === 0 && state.filterItemByPrice.length === 0) {
+                return state
+            } else if (state.filterItemByColor.length === 0 && state.filterItemByPrice.length !== 0) {
+                console.log("FILTER PRICE");
                 state.filterItem = [...state.filterItemByPrice]
-            } else {
+            } else if (state.filterItemByColor.length !== 0 && state.filterItemByPrice.length === 0) {
+                state.filterItem = [...state.filterItemByColor]
+            } else if (state.filterItemByColor.length !== 0 && state.filterItemByPrice.length !== 0) {
                 state.filterItem = state.filterItemByPrice.filter(el => state.filterItemByColor.some(el2 => el.title === el2.title))
             }
         }
+        // setFilters(state, action) {
+        //     if (state.filterItemByPrice.length === 0) {
+        //         state.filterItem = [...state.filterItemByColor]
+        //     } else if (state.filterItemByColor.length === 0) {
+        //         state.filterItem = [...state.filterItemByPrice]
+        //     } else {
+        //         state.filterItem = state.filterItemByPrice.filter(el => state.filterItemByColor.some(el2 => el.title === el2.title))
+        //     }
+        // }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchCatalogItems.fulfilled, (state, action) => {

@@ -16,6 +16,8 @@ export default function RangeSlider({ items }: any) {
   let filterItemsByPriceArr = useSelector((state: any) => state.catalog.filterItemByPrice);
 
   useEffect(() => {
+    console.log('VALUE CHANGED');
+
     let filterItems = items.filter(
       (item: any) =>
         Number(item.price.substring(0, item.price.length - 1)) >= Number(value[0]) &&
@@ -25,10 +27,14 @@ export default function RangeSlider({ items }: any) {
   }, [value]);
 
   const handleChange = (event: Event, newValue: number | number[]) => {
+    console.log('HANDLE CHANGE');
+
     setValue(newValue as number[]);
   };
 
   const handleChangeForInputs = (newValue: number | number[]) => {
+    console.log('INPUT CHANGE');
+
     setValue(newValue as number[]);
   };
 
