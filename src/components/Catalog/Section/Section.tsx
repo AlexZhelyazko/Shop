@@ -6,8 +6,6 @@ import './section.scss';
 const Section: React.FC<any> = ({ items, filterItems }) => {
   const isFilterActive = useSelector((state: RootState) => state.catalog.filters);
   const dispatch = useAppDispatch();
-  const cartItems = useSelector((state: any) => state.cart.cartItems);
-  console.log(cartItems);
 
   return (
     <section

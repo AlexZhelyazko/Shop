@@ -16,8 +16,6 @@ export default function RangeSlider({ items }: any) {
   let filterItemsByPriceArr = useSelector((state: any) => state.catalog.filterItemByPrice);
 
   useEffect(() => {
-    console.log(value);
-
     let filterItems = items.filter(
       (item: any) =>
         Number(item.price.substring(0, item.price.length - 1)) >= Number(value[0]) &&
@@ -35,7 +33,6 @@ export default function RangeSlider({ items }: any) {
   };
 
   useEffect(() => {
-    console.log(filterItemsByPriceArr);
     dispatch(setFilters(filterItemsByPriceArr));
   }, [filterItemsByPriceArr]);
 

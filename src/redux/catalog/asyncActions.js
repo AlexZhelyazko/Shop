@@ -3,8 +3,8 @@ import axios from 'axios';
 
 export const fetchCatalogItems = createAsyncThunk(
     'catalog/fetchCatalogItems',
-    async () => { 
-        const response = await axios.get(`https://63289772d2c97d8c525a0b8c.mockapi.io/api/products/items`)
+    async (location) => {
+        const response = await axios.get(`https://63289772d2c97d8c525a0b8c.mockapi.io/api/products${location.pathname}`)
         return response.data
     }
 )

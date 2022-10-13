@@ -29,9 +29,8 @@ const Sidebar = ({ items }) => {
     let filterItems = items.filter((item) => activeColors.includes(item.color));
     dispatch(setFilterItemsByColor(filterItems));
   }, [activeColors]);
-  console.log(filterItemsByColor);
+
   useEffect(() => {
-    console.log(filterItemsByColor + 'useEffect');
     dispatch(setFilters());
   }, [filterItemsByColor]);
 

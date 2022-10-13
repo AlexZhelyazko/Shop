@@ -21,11 +21,11 @@ const catalogSlice = createSlice({
         },
         setFilterItemsByColor(state, action) {
             state.filterItemByColor = action.payload
-            console.log(state.filterItemByColor);
+            state.filters = true
         },
         setFilterItemsByPrice(state, action) {
             state.filterItemByPrice = action.payload
-            console.log(state.filterItemByPrice);
+            state.filters = true
         },
         setFilters(state, action) {
             if (state.filterItemByPrice.length === 0) {

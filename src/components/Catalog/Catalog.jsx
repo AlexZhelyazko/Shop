@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { fetchCatalogItems } from '../../redux/catalog/asyncActions';
 import { RootState, useAppDispatch } from '../../redux/store';
 import Section from './Section/Section';
 import Sidebar from './Sidebar/Sidebar';
 import './catalog.scss';
 
-const Catalog: React.FC = () => {
+const Catalog = () => {
   const dispatch = useAppDispatch();
-  const items = useSelector((state: RootState) => state.catalog.items);
-  const filterItems = useSelector((state: RootState) => state.catalog.filterItem);
+  const items = useSelector((state) => state.catalog.items);
+  const filterItems = useSelector((state) => state.catalog.filterItem);
+  const location = useLocation();
   useEffect(() => {
-    dispatch(fetchCatalogItems());
-  }, []);
+    dispatch(fetchCatalogItems(location));
+  }, [location]);
 
   return (
     <div className="catalog__wrapper">
