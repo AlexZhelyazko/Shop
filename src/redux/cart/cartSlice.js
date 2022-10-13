@@ -25,9 +25,17 @@ const cartSlice = createSlice({
         addItem(state, action) {
             let findItem = state.cartItems.find(obj => obj.title === action.payload)
             findItem.count++
+        },
+        minusItem(state, action) {
+            let findItem = state.cartItems.find(obj => obj.title === action.payload)
+            if (findItem.count === 1) {
+                state.cartItems = state.cartItems.filter((el) => el.title !== action.payload)
+            } else {
+                findItem.count--
+            }
         }
     }
 })
 
-export const { setCartItems, deleteItemfromCart, addItem } = cartSlice.actions
+export const { setCartItems, deleteItemfromCart, addItem, minusItem } = cartSlice.actions
 export default cartSlice.reducer;
