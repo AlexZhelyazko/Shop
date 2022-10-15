@@ -49,9 +49,6 @@ export default function RangeSlider({ items }: any) {
 
   useEffect(() => {
     dispatch(setFilters(filterItemsByPriceArr));
-    return () => {
-      dispatch(clearFilterItemsByPrice(filterItemsByPriceArr));
-    };
   }, [filterItemsByPriceArr]);
 
   return (
