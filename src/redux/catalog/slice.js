@@ -25,6 +25,9 @@ const catalogSlice = createSlice({
         setFilterItemsByPrice(state, action) {
             state.filterItemByPrice = action.payload
         },
+        clearFilterItemsByPrice(state, action) {
+            state.filterItemByPrice.length = 0
+        },
         setFilters(state, action) {
             if (state.filterItemByColor.length === 0 && state.filterItemByPrice.length === 0) {
                 return state
@@ -60,5 +63,5 @@ const catalogSlice = createSlice({
     }
 })
 
-export const { setItems, setFilterItemsByColor, setFilterItemsByPrice, setFilters } = catalogSlice.actions;
+export const { setItems, setFilterItemsByColor, setFilterItemsByPrice, setFilters, clearFilterItemsByPrice } = catalogSlice.actions;
 export default catalogSlice.reducer;

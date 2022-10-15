@@ -2,7 +2,11 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useAppDispatch } from '../../redux/store';
-import { setFilterItemsByPrice, setFilters } from '../../redux/catalog/slice';
+import {
+  clearFilterItemsByPrice,
+  setFilterItemsByPrice,
+  setFilters,
+} from '../../redux/catalog/slice';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -16,14 +20,19 @@ export default function RangeSlider({ items }: any) {
   let filterItemsByPriceArr = useSelector((state: any) => state.catalog.filterItemByPrice);
 
   useEffect(() => {
-    console.log('VALUE CHANGED');
-
     let filterItems = items.filter(
       (item: any) =>
         Number(item.price.substring(0, item.price.length - 1)) >= Number(value[0]) &&
         Number(item.price.substring(0, item.price.length - 1)) <= Number(value[1]),
     );
-    dispatch(setFilterItemsByPrice(filterItems));
+    if (value[0] !== 0 || value[1] !== 2000) {
+      dispatch(setFilterItemsByPrice(filterItems));
+    }
+
+    // return () => {
+    //   filterItems = null;
+    //   dispatch(clearFilterItemsByPrice(filterItems));
+    // };
   }, [value]);
 
   const handleChange = (event: Event, newValue: number | number[]) => {
@@ -40,6 +49,9 @@ export default function RangeSlider({ items }: any) {
 
   useEffect(() => {
     dispatch(setFilters(filterItemsByPriceArr));
+    return () => {
+      dispatch(clearFilterItemsByPrice(filterItemsByPriceArr));
+    };
   }, [filterItemsByPriceArr]);
 
   return (

@@ -6,12 +6,12 @@ import './section.scss';
 const Section: React.FC<any> = ({ items, filterItems }) => {
   const isFilterActive = useSelector((state: RootState) => state.catalog.filters);
   const dispatch = useAppDispatch();
-  console.log(filterItems.length === 0);
-  console.log(filterItems.length);
-  console.log(isFilterActive === false);
-  console.log(isFilterActive);
-  console.log(items);
-  console.log(filterItems);
+  // console.log(filterItems.length === 0);
+  // console.log(filterItems.length);
+  // console.log(isFilterActive === false);
+  // console.log(isFilterActive);
+  // console.log(items);
+  // console.log(filterItems);
 
   return (
     <section
