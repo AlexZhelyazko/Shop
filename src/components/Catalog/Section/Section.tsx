@@ -2,9 +2,13 @@ import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../../redux/store';
 import { setCartItems } from '../../../redux/cart/cartSlice';
 import './section.scss';
+import { NavLink, useParams } from 'react-router-dom';
 
 const Section: React.FC<any> = ({ items, filterItems }) => {
   const isFilterActive = useSelector((state: RootState) => state.catalog.filters);
+  const params = useParams();
+  console.log(params);
+
   const dispatch = useAppDispatch();
   // console.log(filterItems.length === 0);
   // console.log(filterItems.length);
@@ -21,13 +25,15 @@ const Section: React.FC<any> = ({ items, filterItems }) => {
         (item: any) => {
           return (
             <div className="catalog__section-product">
-              <img
-                className="catalog__section-image"
-                width="228px"
-                height="300px"
-                src={item.imageUrl}
-                alt={item.title}
-              />
+              <NavLink to={`${item.price}`}>
+                <img
+                  className="catalog__section-image"
+                  width="228px"
+                  height="300px"
+                  src={item.imageUrl}
+                  alt={item.title}
+                />
+              </NavLink>
               <div className="catalog__section-product-info">
                 <span>{item.title}</span>
                 <div></div>

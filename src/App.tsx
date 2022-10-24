@@ -4,6 +4,7 @@ import './App.scss';
 import Products from './Layouts/ProductsPage/Products';
 import Cart from './Layouts/CartPage/cart';
 import Catalog from './components/Catalog/Catalog';
+import CatalogItem from './components/Catalog/CatalogItem/CatalogItem';
 
 // export const App: React.FC = () => {
 //   return (
@@ -22,6 +23,7 @@ export const App: React.FC = () => {
         <Route path="/man" element={<Catalog />} />
         <Route path="/woman" element={<Catalog />} />
         <Route path="/children" element={<Catalog />} />
+        <Route path="/:section/:id" element={<CatalogItem />} />
         <Route path="/cart" element={<Cart />} />
       </Route>
       {/* <Route path="/man" element={<Products />} />
