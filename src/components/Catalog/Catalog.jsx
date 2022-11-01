@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { fetchCatalogItems } from '../../redux/catalog/asyncActions';
 import { useAppDispatch } from '../../redux/store';
+import { clearFilters } from '../../redux/catalog/slice';
 import Section from './Section/Section';
 import Sidebar from './Sidebar/Sidebar';
 import './catalog.scss';
@@ -14,6 +15,9 @@ const Catalog = () => {
   const location = useLocation();
   useEffect(() => {
     dispatch(fetchCatalogItems(location));
+    return () => {
+      dispatch(clearFilters());
+    };
   }, [location]);
 
   return (

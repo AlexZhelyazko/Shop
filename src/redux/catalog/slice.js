@@ -39,6 +39,11 @@ const catalogSlice = createSlice({
             } else if (state.filterItemByColor.length !== 0 && state.filterItemByPrice.length !== 0) {
                 state.filterItem = state.filterItemByPrice.filter(el => state.filterItemByColor.some(el2 => el.title === el2.title))
             }
+        },
+        clearFilters(state, action) {
+            state.filterItemByColor.length = 0
+            state.filterItemByPrice.length = 0
+            state.filterItem.length = 0
         }
         // setFilters(state, action) {
         //     if (state.filterItemByPrice.length === 0) {
@@ -63,5 +68,5 @@ const catalogSlice = createSlice({
     }
 })
 
-export const { setItems, setFilterItemsByColor, setFilterItemsByPrice, setFilters, clearFilterItemsByPrice } = catalogSlice.actions;
+export const { setItems, setFilterItemsByColor, setFilterItemsByPrice, setFilters, clearFilterItemsByPrice, clearFilters } = catalogSlice.actions;
 export default catalogSlice.reducer;
