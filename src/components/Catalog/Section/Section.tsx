@@ -17,7 +17,7 @@ const Section: React.FC<any> = ({ items, filterItems }) => {
         (item: any) => {
           return (
             <div className="catalog__section-product">
-              <NavLink to={`${item.price}`}>
+              <NavLink className="catalog__section-link" to={`${item.price}`}>
                 <img
                   className="catalog__section-image"
                   width="228px"
