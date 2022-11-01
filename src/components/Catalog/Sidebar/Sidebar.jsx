@@ -15,7 +15,7 @@ const colorsData = [
 
 const sizeData = [{ 42: 42 }, { 44: 44 }, { 46: 46 }, { 48: 48 }, { 50: 50 }, { 52: 52 }];
 
-const Sidebar = ({ items }) => {
+const Sidebar = ({ items, location }) => {
   let filterItemsByColor = useSelector((state) => state.catalog.filterItemByColor);
   const dispatch = useAppDispatch();
   const [activeColors, setActiveColors] = useState([]);
@@ -37,7 +37,7 @@ const Sidebar = ({ items }) => {
   return (
     <aside>
       <div className="filter__price">
-        <RangeSlider items={items} />
+        <RangeSlider location={location} items={items} />
       </div>
       <div className="filter__color">
         {colorsData.map((el) => {

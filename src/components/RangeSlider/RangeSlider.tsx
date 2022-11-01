@@ -14,7 +14,7 @@ function valuetext(value: number) {
   return `${value}$`;
 }
 
-export default function RangeSlider({ items }: any) {
+export default function RangeSlider({ items, location }: any) {
   const [value, setValue] = React.useState<number[]>([0, 2000]);
   const dispatch = useAppDispatch();
   let filterItemsByPriceArr = useSelector((state: any) => state.catalog.filterItemByPrice);
@@ -28,28 +28,21 @@ export default function RangeSlider({ items }: any) {
     if (value[0] !== 0 || value[1] !== 2000) {
       dispatch(setFilterItemsByPrice(filterItems));
     }
-
-    // return () => {
-    //   filterItems = null;
-    //   dispatch(clearFilterItemsByPrice(filterItems));
-    // };
   }, [value]);
 
-  const handleChange = (event: Event, newValue: number | number[]) => {
-    console.log('HANDLE CHANGE');
+  useEffect(() => {
+    return () => {
+      setValue([0, 2000]);
+    };
+  }, [location]);
 
+  const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
   };
 
   const handleChangeForInputs = (newValue: number | number[]) => {
-    console.log('INPUT CHANGE');
-
     setValue(newValue as number[]);
   };
-
-  useEffect(() => {
-    dispatch(setFilters(filterItemsByPriceArr));
-  }, [filterItemsByPriceArr]);
 
   return (
     <Box sx={{ width: 300 }}>

@@ -2,20 +2,12 @@ import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../../redux/store';
 import { setCartItems } from '../../../redux/cart/cartSlice';
 import './section.scss';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Section: React.FC<any> = ({ items, filterItems }) => {
   const isFilterActive = useSelector((state: RootState) => state.catalog.filters);
-  const params = useParams();
-  console.log(params);
 
   const dispatch = useAppDispatch();
-  // console.log(filterItems.length === 0);
-  // console.log(filterItems.length);
-  // console.log(isFilterActive === false);
-  // console.log(isFilterActive);
-  // console.log(items);
-  // console.log(filterItems);
 
   return (
     <section
