@@ -8,6 +8,7 @@ const initialState = {
     filterItem: [],
     filterItemByPrice: [],
     filterItemByColor: [],
+    filterItemBySize: [],
     startPrice: 0,
     finalPrice: 1500,
     notFoundItems: false
@@ -26,6 +27,9 @@ const catalogSlice = createSlice({
         setFilterItemsByColor(state, action) {
             state.filterItemByColor = action.payload
         },
+        setFilterItemsBySize(state, action) {
+            state.filterItemBySize = action.payload
+        },
         setFilterItemsByPrice(state, action) {
             state.filterItemByPrice = action.payload
         },
@@ -33,16 +37,16 @@ const catalogSlice = createSlice({
             state.filterItemByPrice.length = 0
         },
         setFilters(state, action) {
-            if (state.filterItemByColor.length === 0 && state.filterItemByPrice.length === 0) {
+            if (state.filterItemBySize.length === 0 && state.filterItemByPrice.length === 0) {
                 return state
-            } else if (state.filterItemByColor.length === 0 && state.filterItemByPrice.length !== 0) {
+            } else if (state.filterItemBySize.length === 0 && state.filterItemByPrice.length !== 0) {
                 console.log("FILTER PRICE");
                 state.filterItem = [...state.filterItemByPrice]
-            } else if (state.filterItemByColor.length !== 0 && state.filterItemByPrice.length === 0) {
-                state.filterItem = [...state.filterItemByColor]
-            } else if (state.filterItemByColor.length !== 0 && state.filterItemByPrice.length !== 0) {
+            } else if (state.filterItemBySize.length !== 0 && state.filterItemByPrice.length === 0) {
+                state.filterItem = [...state.filterItemBySize]
+            } else if (state.filterItemBySize.length !== 0 && state.filterItemByPrice.length !== 0) {
                 console.log("FILTER ALL");
-                state.filterItem = state.filterItemByPrice.filter(el => state.filterItemByColor.some(el2 => el.title === el2.title))
+                state.filterItem = state.filterItemByPrice.filter(el => state.filterItemBySize.some(el2 => el.title === el2.title))
                 state.filterItem.length ? state.notFoundItems = false : state.notFoundItems = true
             }
         },
@@ -74,5 +78,5 @@ const catalogSlice = createSlice({
     }
 })
 
-export const { setItems, setFilterItemsByColor, setFilterItemsByPrice, setFilters, clearFilterItemsByPrice, clearFilters, setNotFound } = catalogSlice.actions;
+export const { setItems, setFilterItemsByColor, setFilterItemsByPrice, setFilters, clearFilterItemsByPrice, clearFilters, setNotFound, setFilterItemsBySize } = catalogSlice.actions;
 export default catalogSlice.reducer;
