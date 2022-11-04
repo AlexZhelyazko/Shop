@@ -43,10 +43,10 @@ const Section = ({ items, filterItems }) => {
                 alt={item.title}
               />
               <div className="catalog__section-product-info">
-                <span>{item.title}</span>
+                <span className="catalog__section-product-title">{item.title}</span>
                 <br />
                 <span>{item.price}</span>
-                <button onClick={() => dispatch(setCartItems(item))}>Add</button>
+                {/* <button onClick={() => dispatch(setCartItems(item))}>Add</button> */}
               </div>
             </NavLink>
             {/* <div className="catalog__section-product-info">
