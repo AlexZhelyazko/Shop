@@ -2,7 +2,12 @@ import './sidebar.scss';
 import { useEffect, useState } from 'react';
 import RangeSlider from '../../RangeSlider/RangeSlider';
 import { useAppDispatch } from '../../../redux/store';
-import { clearFilters, setFilterItemsByColor, setFilters } from '../../../redux/catalog/slice';
+import {
+  clearFilters,
+  setFilterItemsByColor,
+  setFilters,
+  setNotFound,
+} from '../../../redux/catalog/slice';
 import { useSelector } from 'react-redux';
 
 const colorsData = [
@@ -17,7 +22,7 @@ const colorsData = [
 
 const sizeData = ['M', 'S', 'L', 'XL'];
 
-const Sidebar = ({ items, location, setNotFoundItems, func }) => {
+const Sidebar = ({ items, location }) => {
   let filterItemsByColor = useSelector((state) => state.catalog.filterItemByColor);
   let filterItemsByPrice = useSelector((state) => state.catalog.filterItemByPrice);
   const dispatch = useAppDispatch();
@@ -34,11 +39,13 @@ const Sidebar = ({ items, location, setNotFoundItems, func }) => {
   }, [activeColors]);
 
   const onSetFiltersClick = () => {
+    console.log('filterItemsByColor' + filterItemsByColor);
+    console.log('filterItemsByPrice' + filterItemsByPrice);
     if (filterItemsByColor.length || filterItemsByPrice.length) {
-      func(false);
+      dispatch(setNotFound(false));
       dispatch(setFilters());
     } else {
-      func(true);
+      dispatch(setNotFound(true));
     }
   };
   // useEffect(() => {

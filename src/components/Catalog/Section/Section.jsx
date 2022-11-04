@@ -6,11 +6,11 @@ import { NavLink } from 'react-router-dom';
 import { NotFound } from '../../NotFound/NotFound';
 import { useRef, useState } from 'react';
 
-const Section = ({ items, filterItems, notFoundItems }) => {
+const Section = ({ items, filterItems }) => {
   const imgRef = useRef(null);
   const [productHover, setProductHover] = useState(false);
   const isFilterActive = useSelector((state) => state.catalog.filters);
-
+  const notFoundItems = useSelector((state) => state.catalog.notFoundItems);
   const dispatch = useAppDispatch();
 
   const handleMouseEnter = (event, imageSrc) => {

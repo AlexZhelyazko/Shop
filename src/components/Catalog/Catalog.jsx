@@ -9,15 +9,10 @@ import Sidebar from './Sidebar/Sidebar';
 import './catalog.scss';
 
 const Catalog = () => {
-  const [notFoundItems, setNotFoundItems] = useState(false);
   const dispatch = useAppDispatch();
   const items = useSelector((state) => state.catalog.items);
   const filterItems = useSelector((state) => state.catalog.filterItem);
   const location = useLocation();
-
-  const func = (val) => {
-    setNotFoundItems(val);
-  };
 
   useEffect(() => {
     dispatch(fetchCatalogItems(location));
@@ -28,8 +23,8 @@ const Catalog = () => {
 
   return (
     <div className="catalog__wrapper">
-      <Sidebar func={func} setNotFoundItems={setNotFoundItems} location={location} items={items} />
-      <Section notFoundItems={notFoundItems} items={items} filterItems={filterItems} />
+      <Sidebar location={location} items={items} />
+      <Section items={items} filterItems={filterItems} />
     </div>
   );
 };

@@ -10,6 +10,7 @@ const initialState = {
     filterItemByColor: [],
     startPrice: 0,
     finalPrice: 1500,
+    notFoundItems: false
 };
 
 const catalogSlice = createSlice({
@@ -18,6 +19,9 @@ const catalogSlice = createSlice({
     reducers: {
         setItems(state, action) {
             state.items = action.payload
+        },
+        setNotFound(state, action) {
+            state.notFoundItems = action.payload
         },
         setFilterItemsByColor(state, action) {
             state.filterItemByColor = action.payload
@@ -39,6 +43,7 @@ const catalogSlice = createSlice({
             } else if (state.filterItemByColor.length !== 0 && state.filterItemByPrice.length !== 0) {
                 console.log("FILTER ALL");
                 state.filterItem = state.filterItemByPrice.filter(el => state.filterItemByColor.some(el2 => el.title === el2.title))
+                state.filterItem.length ? state.notFoundItems = false : state.notFoundItems = true
             }
         },
         clearFilters(state, action) {
@@ -69,5 +74,5 @@ const catalogSlice = createSlice({
     }
 })
 
-export const { setItems, setFilterItemsByColor, setFilterItemsByPrice, setFilters, clearFilterItemsByPrice, clearFilters } = catalogSlice.actions;
+export const { setItems, setFilterItemsByColor, setFilterItemsByPrice, setFilters, clearFilterItemsByPrice, clearFilters, setNotFound } = catalogSlice.actions;
 export default catalogSlice.reducer;
