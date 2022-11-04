@@ -17,7 +17,6 @@ function valuetext(value: number) {
 export default function RangeSlider({ items, location }: any) {
   const [value, setValue] = React.useState<number[]>([0, 4000]);
   const dispatch = useAppDispatch();
-  let filterItemsByPriceArr = useSelector((state: any) => state.catalog.filterItemByPrice);
   useEffect(() => {
     let filterItems = items.filter(
       (item: any) =>
@@ -26,11 +25,11 @@ export default function RangeSlider({ items, location }: any) {
         Number(item.price.substring(0, item.price.length - 2).replace(/[^0-9]/g, '')) <=
           Number(value[1]),
     );
+
     if (value[0] !== 0 || value[1] !== 4000) {
       dispatch(setFilterItemsByPrice(filterItems));
     }
   }, [value]);
-  console.log(filterItemsByPriceArr);
 
   useEffect(() => {
     return () => {

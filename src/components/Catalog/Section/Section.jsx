@@ -3,9 +3,10 @@ import { useAppDispatch } from '../../../redux/store';
 import { setCartItems } from '../../../redux/cart/cartSlice';
 import './section.scss';
 import { NavLink } from 'react-router-dom';
+import { NotFound } from '../../NotFound/NotFound';
 import { useRef, useState } from 'react';
 
-const Section = ({ items, filterItems }) => {
+const Section = ({ items, filterItems, notFoundItems }) => {
   const imgRef = useRef(null);
   const [productHover, setProductHover] = useState(false);
   const isFilterActive = useSelector((state) => state.catalog.filters);
@@ -19,8 +20,10 @@ const Section = ({ items, filterItems }) => {
   const handleMouseOut = (event, imageSrc) => {
     event.target.src = imageSrc;
   };
-
-  return (
+  console.log(notFoundItems);
+  return notFoundItems ? (
+    <NotFound />
+  ) : (
     <section
       className="catalog__section"
       style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>

@@ -17,8 +17,9 @@ const colorsData = [
 
 const sizeData = ['M', 'S', 'L', 'XL'];
 
-const Sidebar = ({ items, location }) => {
+const Sidebar = ({ items, location, setNotFoundItems, func }) => {
   let filterItemsByColor = useSelector((state) => state.catalog.filterItemByColor);
+  let filterItemsByPrice = useSelector((state) => state.catalog.filterItemByPrice);
   const dispatch = useAppDispatch();
   const [activeColors, setActiveColors] = useState([]);
   const handleClick = (color) => {
@@ -28,10 +29,18 @@ const Sidebar = ({ items, location }) => {
   };
 
   useEffect(() => {
-    let filterItems = items.filter((item) => activeColors.includes(item.color));
-    dispatch(setFilterItemsByColor(filterItems));
+    let filterItemsByColor = items.filter((item) => activeColors.includes(item.color));
+    dispatch(setFilterItemsByColor(filterItemsByColor));
   }, [activeColors]);
 
+  const onSetFiltersClick = () => {
+    if (filterItemsByColor.length || filterItemsByPrice.length) {
+      func(false);
+      dispatch(setFilters());
+    } else {
+      func(true);
+    }
+  };
   // useEffect(() => {
   //   dispatch(setFilters());
   // }, [filterItemsByColor]);
@@ -47,7 +56,7 @@ const Sidebar = ({ items, location }) => {
         })}
       </div>
       <div className="filter__size">{sizeData}</div>
-      <button onClick={() => dispatch(setFilters())}>Set Filters</button>
+      <button onClick={onSetFiltersClick}>Set Filters</button>
       <button onClick={() => dispatch(clearFilters())}>Clear</button>
     </aside>
   );
