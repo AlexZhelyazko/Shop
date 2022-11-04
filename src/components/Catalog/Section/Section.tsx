@@ -22,7 +22,7 @@ const Section: React.FC<any> = ({ items, filterItems }) => {
                   className="catalog__section-image"
                   width="228px"
                   height="300px"
-                  src={item.imageUrl}
+                  src={item.backImageUrl}
                   alt={item.title}
                 />
               </NavLink>

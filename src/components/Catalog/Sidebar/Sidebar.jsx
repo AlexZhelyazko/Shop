@@ -6,7 +6,7 @@ import { clearFilters, setFilterItemsByColor, setFilters } from '../../../redux/
 import { useSelector } from 'react-redux';
 
 const colorsData = [
-  { Blue: 'blue123' },
+  { Blue: 'blue' },
   { Black: 'black' },
   { Paleblue: 'paleblue' },
   { White: 'white' },
