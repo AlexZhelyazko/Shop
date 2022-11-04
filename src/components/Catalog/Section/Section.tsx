@@ -17,7 +17,9 @@ const Section: React.FC<any> = ({ items, filterItems }) => {
         (item: any) => {
           return (
             <div className="catalog__section-product">
-              <NavLink className="catalog__section-link" to={`${item.price}`}>
+              <NavLink
+                className="catalog__section-product catalog__section-link"
+                to={`${item.price}`}>
                 <img
                   className="catalog__section-image"
                   width="228px"
@@ -25,13 +27,18 @@ const Section: React.FC<any> = ({ items, filterItems }) => {
                   src={item.backImageUrl}
                   alt={item.title}
                 />
+                <div className="catalog__section-product-info">
+                  <span>{item.title}</span>
+                  <br />
+                  <span>{item.price}</span>
+                  <button onClick={() => dispatch(setCartItems(item))}>Add</button>
+                </div>
               </NavLink>
-              <div className="catalog__section-product-info">
+              {/* <div className="catalog__section-product-info">
                 <span>{item.title}</span>
                 <div></div>
                 <span>{item.price}</span>
-              </div>
-              <button onClick={() => dispatch(setCartItems(item))}>Add</button>
+              </div> */}
             </div>
           );
         },

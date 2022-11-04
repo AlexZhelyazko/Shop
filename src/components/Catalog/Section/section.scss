@@ -1,15 +1,16 @@
 .catalog__section-product {
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     margin: 2em;
     position: relative;
+    max-width: 18em;
 }
 
 .catalog__section-product-info{
-    position: absolute;
-    font-weight: bold;
-    font-size: 2em;
-    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .catalog__section-link{
