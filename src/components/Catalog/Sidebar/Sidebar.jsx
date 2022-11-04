@@ -8,12 +8,14 @@ import { useSelector } from 'react-redux';
 const colorsData = [
   { Blue: 'blue' },
   { Black: 'black' },
-  { Paleblue: 'paleblue' },
+  { Pink: 'pink' },
   { White: 'white' },
-  { Tan: 'tan' },
+  { Yellow: 'yellow' },
+  { Red: 'red' },
+  { Green: 'green' },
 ];
 
-const sizeData = [{ 42: 42 }, { 44: 44 }, { 46: 46 }, { 48: 48 }, { 50: 50 }, { 52: 52 }];
+const sizeData = ['M', 'S', 'L', 'XL'];
 
 const Sidebar = ({ items, location }) => {
   let filterItemsByColor = useSelector((state) => state.catalog.filterItemByColor);
@@ -44,8 +46,9 @@ const Sidebar = ({ items, location }) => {
           return <div onClick={() => handleClick(Object.values(el)[0])}>{Object.keys(el)}</div>;
         })}
       </div>
-      <div className="filter__size"></div>
+      <div className="filter__size">{sizeData}</div>
       <button onClick={() => dispatch(setFilters())}>Set Filters</button>
+      <button onClick={() => dispatch(clearFilters())}>Clear</button>
     </aside>
   );
 };

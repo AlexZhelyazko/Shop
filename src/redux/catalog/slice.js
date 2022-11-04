@@ -37,6 +37,7 @@ const catalogSlice = createSlice({
             } else if (state.filterItemByColor.length !== 0 && state.filterItemByPrice.length === 0) {
                 state.filterItem = [...state.filterItemByColor]
             } else if (state.filterItemByColor.length !== 0 && state.filterItemByPrice.length !== 0) {
+                console.log("FILTER ALL");
                 state.filterItem = state.filterItemByPrice.filter(el => state.filterItemByColor.some(el2 => el.title === el2.title))
             }
         },

@@ -13,12 +13,10 @@ const Section = ({ items, filterItems }) => {
   const dispatch = useAppDispatch();
 
   const handleMouseEnter = (event, imageSrc) => {
-    console.log(imgRef);
     event.target.src = imageSrc;
   };
 
   const handleMouseOut = (event, imageSrc) => {
-    console.log(imgRef);
     event.target.src = imageSrc;
   };
 
@@ -49,11 +47,6 @@ const Section = ({ items, filterItems }) => {
                 {/* <button onClick={() => dispatch(setCartItems(item))}>Add</button> */}
               </div>
             </NavLink>
-            {/* <div className="catalog__section-product-info">
-                <span>{item.title}</span>
-                <div></div>
-                <span>{item.price}</span>
-              </div> */}
           </div>
         );
       })}
