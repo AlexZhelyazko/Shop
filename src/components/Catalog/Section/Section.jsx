@@ -8,7 +8,6 @@ import { useRef, useState } from 'react';
 
 const Section = ({ items, filterItems }) => {
   const imgRef = useRef(null);
-  const [productHover, setProductHover] = useState(false);
   const isFilterActive = useSelector((state) => state.catalog.filters);
   const notFoundItems = useSelector((state) => state.catalog.notFoundItems);
   const dispatch = useAppDispatch();
@@ -20,7 +19,6 @@ const Section = ({ items, filterItems }) => {
   const handleMouseOut = (event, imageSrc) => {
     event.target.src = imageSrc;
   };
-  console.log(notFoundItems);
   return notFoundItems ? (
     <NotFound />
   ) : (
@@ -40,13 +38,15 @@ const Section = ({ items, filterItems }) => {
                 className="catalog__section-image"
                 width="228px"
                 height="300px"
-                src={productHover ? item.frontImageUrl : item.backImageUrl}
+                src={item.backImageUrl}
                 alt={item.title}
               />
               <div className="catalog__section-product-info">
                 <span className="catalog__section-product-title">{item.title}</span>
                 <br />
-                <span>{item.price}</span>
+                <span>{item.size + ' '}</span>
+                <br />
+                <span>{item.price} </span>
                 {/* <button onClick={() => dispatch(setCartItems(item))}>Add</button> */}
               </div>
             </NavLink>

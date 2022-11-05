@@ -37,33 +37,35 @@ const catalogSlice = createSlice({
             state.filterItemByPrice.length = 0
         },
         setFilters(state, action) {
-            if (state.filterItemBySize.length === 0 && state.filterItemByPrice.length === 0) {
+            if (state.filterItemBySize.length === 0 && state.filterItemByPrice.length === 0 && state.filterItemByColor.length === 0) {
                 return state
-            } else if (state.filterItemBySize.length === 0 && state.filterItemByPrice.length !== 0) {
-                console.log("FILTER PRICE");
+            } else if (state.filterItemBySize.length === 0 && state.filterItemByPrice.length !== 0 && state.filterItemByColor.length === 0) {
                 state.filterItem = [...state.filterItemByPrice]
-            } else if (state.filterItemBySize.length !== 0 && state.filterItemByPrice.length === 0) {
-                state.filterItem = [...state.filterItemBySize]
-            } else if (state.filterItemBySize.length !== 0 && state.filterItemByPrice.length !== 0) {
-                console.log("FILTER ALL");
+            } else if (state.filterItemBySize.length !== 0 && state.filterItemByPrice.length !== 0 && state.filterItemByColor.length === 0) {
                 state.filterItem = state.filterItemByPrice.filter(el => state.filterItemBySize.some(el2 => el.title === el2.title))
+                state.filterItem.length ? state.notFoundItems = false : state.notFoundItems = true
+            } else if (state.filterItemBySize.length === 0 && state.filterItemByPrice.length !== 0 && state.filterItemByColor.length !== 0) {
+                state.filterItem = state.filterItemByPrice.filter(el => state.filterItemByColor.some(el2 => el.title === el2.title))
+                state.filterItem.length ? state.notFoundItems = false : state.notFoundItems = true
+            } else if (state.filterItemBySize.length !== 0 && state.filterItemByPrice.length === 0 && state.filterItemByColor.length === 0) {
+                state.filterItem = [...state.filterItemBySize]
+            } else if (state.filterItemBySize.length !== 0 && state.filterItemByPrice.length === 0 && state.filterItemByColor.length !== 0) {
+                state.filterItem = state.filterItemBySize.filter(el => state.filterItemByColor.some(el2 => el.title === el2.title))
+                state.filterItem.length ? state.notFoundItems = false : state.notFoundItems = true
+            } else if (state.filterItemBySize.length === 0 && state.filterItemByPrice.length === 0 && state.filterItemByColor.length !== 0) {
+                state.filterItem = [...state.filterItemByColor]
+            } else if (state.filterItemBySize.length !== 0 && state.filterItemByPrice.length !== 0 && state.filterItemByColor.length) {
+                let newfilterArr = state.filterItemByPrice.filter(el => state.filterItemBySize.some(el2 => el.title === el2.title))
+                state.filterItem = newfilterArr.filter(el => state.filterItemByColor.some(el2 => el.title === el2.title))
                 state.filterItem.length ? state.notFoundItems = false : state.notFoundItems = true
             }
         },
         clearFilters(state, action) {
             state.filterItemByColor.length = 0
             state.filterItemByPrice.length = 0
+            state.filterItemBySize.length = 0
             state.filterItem.length = 0
         }
-        // setFilters(state, action) {
-        //     if (state.filterItemByPrice.length === 0) {
-        //         state.filterItem = [...state.filterItemByColor]
-        //     } else if (state.filterItemByColor.length === 0) {
-        //         state.filterItem = [...state.filterItemByPrice]
-        //     } else {
-        //         state.filterItem = state.filterItemByPrice.filter(el => state.filterItemByColor.some(el2 => el.title === el2.title))
-        //     }
-        // }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchCatalogItems.fulfilled, (state, action) => {
