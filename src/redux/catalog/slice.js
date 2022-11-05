@@ -64,6 +64,7 @@ const catalogSlice = createSlice({
             state.filterItemByColor.length = 0
             state.filterItemByPrice.length = 0
             state.filterItemBySize.length = 0
+            state.notFoundItems = false
             state.filterItem.length = 0
         }
     },

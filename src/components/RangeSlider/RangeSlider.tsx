@@ -14,8 +14,7 @@ function valuetext(value: number) {
   return `${value}$`;
 }
 
-export default function RangeSlider({ items, location }: any) {
-  const [value, setValue] = React.useState<number[]>([0, 4000]);
+export default function RangeSlider({ items, location, value, setValue }: any) {
   const dispatch = useAppDispatch();
   useEffect(() => {
     let filterItems = items.filter(

@@ -28,6 +28,8 @@ const Sidebar = ({ items, location }) => {
   let filterItemsByPrice = useSelector((state) => state.catalog.filterItemByPrice);
   let filterItemsBySize = useSelector((state) => state.catalog.filterItemBySize);
   const dispatch = useAppDispatch();
+
+  const [value, setValue] = useState([0, 4000]);
   const [activeColors, setActiveColors] = useState([]);
   const [activeSize, setActiveSize] = useState([]);
 
@@ -53,11 +55,6 @@ const Sidebar = ({ items, location }) => {
       let newArr = item.size.filter((el) => activeSize.includes(el));
       return newArr.length !== 0;
     });
-    // let filterItemBySize = items.filter((item) => {
-    //   return
-    //    let newArr = item.size.filter((el) => activeSize.includes(el)))
-    // }
-    console.log(filterItemBySize);
     dispatch(setFilterItemsBySize(filterItemBySize));
   }, [activeSize]);
 
@@ -65,21 +62,25 @@ const Sidebar = ({ items, location }) => {
     console.log('filterItemsByColor' + filterItemsByColor);
     console.log('filterItemsBySize' + filterItemsBySize);
     console.log('filterItemsByPrice' + filterItemsByPrice);
-    if (filterItemsByColor.length || filterItemsByPrice.length || filterItemsBySize) {
+    if (filterItemsByColor.length || filterItemsByPrice.length || filterItemsBySize.length) {
       dispatch(setNotFound(false));
       dispatch(setFilters());
     } else {
       dispatch(setNotFound(true));
     }
   };
-  // useEffect(() => {
-  //   dispatch(setFilters());
-  // }, [filterItemsByColor]);
+
+  const onClearClick = () => {
+    setActiveColors([]);
+    setActiveSize([]);
+    setValue([0, 4000]);
+    dispatch(clearFilters());
+  };
 
   return (
     <aside>
       <div className="filter__price">
-        <RangeSlider location={location} items={items} />
+        <RangeSlider value={value} setValue={setValue} location={location} items={items} />
       </div>
       <div className="filter__color">
         {colorsData.map((el) => {
@@ -94,7 +95,7 @@ const Sidebar = ({ items, location }) => {
         })}
       </div>
       <button onClick={onSetFiltersClick}>Set Filters</button>
-      <button onClick={() => dispatch(clearFilters())}>Clear</button>
+      <button onClick={onClearClick}>Clear</button>
     </aside>
   );
 };
