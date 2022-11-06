@@ -1,15 +1,58 @@
+h3{
+    font-family: "Nunito";
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.filter__menu{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+}
+
 .filter__color {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
-    & div {
-        background-color: aqua;
-        margin: 10px;
+    .filter__color-list{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        &>div{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .filter__color-square{
+            border: solid black 1px;
+            width: 1em;
+            height: 1em;
+            margin-left: 1em;
+        }
     }
 }
 
 .filter__price {
     .filter__price-input_wrapper{
         display: flex;
+        justify-content: flex-start;
+        .filter__price-input {
+            width: 4em;
+            font-family: 'Nunito';
+            font-size: 14px;
+            background-color: whitesmoke;
+            letter-spacing: 1px;
+            border: 1px solid lightgray;
+            box-shadow: rgb(14 41 68 / 20%) 0px 8px 24px;
+        }
     }
+}
+
+.MuiSlider-thumb{
+    width: 15px !important;
+    height: 15px !important;
+}
+
+.MuiSlider-root{
+    height: 3px !important;
 }

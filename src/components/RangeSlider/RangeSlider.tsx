@@ -45,20 +45,25 @@ export default function RangeSlider({ items, location, value, setValue }: any) {
   };
 
   return (
-    <Box sx={{ width: 300 }}>
+    <Box sx={{ width: 280 }}>
+      <h3>Price Range:</h3>
       <div className="filter__price-input_wrapper">
         <input
+          className="filter__price-input"
           onChange={(e) => handleChangeForInputs([Number(e.currentTarget.value), value[1]])}
-          value={value[0]}
+          value={'$' + value[0]}
           type="text"
         />
+        <span>-</span>
         <input
+          className="filter__price-input"
           onChange={(e) => handleChangeForInputs([value[0], Number(e.currentTarget.value)])}
-          value={value[1]}
+          value={'$' + value[1]}
           type="text"
         />
       </div>
       <Slider
+        className="MuiSlider-thumbSizeSmall"
         min={0}
         max={4000}
         defaultValue={[0, 4000]}

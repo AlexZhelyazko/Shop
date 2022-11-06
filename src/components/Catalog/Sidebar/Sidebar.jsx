@@ -78,16 +78,22 @@ const Sidebar = ({ items, location }) => {
   };
 
   return (
-    <aside>
+    <aside className="filter__menu">
       <div className="filter__price">
         <RangeSlider value={value} setValue={setValue} location={location} items={items} />
       </div>
       <div className="filter__color">
-        {colorsData.map((el) => {
-          return (
-            <div onClick={() => handleClickColor(Object.values(el)[0])}>{Object.keys(el)}</div>
-          );
-        })}
+        <h3>Color:</h3>
+        <div className="filter__color-list">
+          {colorsData.map((el) => {
+            return (
+              <div onClick={() => handleClickColor(Object.values(el)[0])}>
+                <span>{Object.keys(el)}</span>
+                <div className="filter__color-square"></div>
+              </div>
+            );
+          })}
+        </div>
       </div>
       <div className="filter__size">
         {sizeData.map((el) => {
