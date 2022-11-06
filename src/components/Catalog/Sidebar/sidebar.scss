@@ -23,11 +23,15 @@ h3{
             flex-direction: row;
             align-items: center;
         }
-        .filter__color-square{
-            border: solid black 1px;
-            width: 1em;
-            height: 1em;
-            margin-left: 1em;
+        .filter__color-notactive {
+            color: black;
+            background-color: #fff;
+            width: 3em;
+        }
+        .filter__color-active{
+            width:3em;
+            color: white;
+            background-color: rgb(33, 59, 136);
         }
     }
 }

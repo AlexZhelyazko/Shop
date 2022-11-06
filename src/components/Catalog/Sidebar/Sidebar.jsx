@@ -59,9 +59,6 @@ const Sidebar = ({ items, location }) => {
   }, [activeSize]);
 
   const onSetFiltersClick = () => {
-    console.log('filterItemsByColor' + filterItemsByColor);
-    console.log('filterItemsBySize' + filterItemsBySize);
-    console.log('filterItemsByPrice' + filterItemsByPrice);
     if (filterItemsByColor.length || filterItemsByPrice.length || filterItemsBySize.length) {
       dispatch(setNotFound(false));
       dispatch(setFilters());
@@ -87,9 +84,14 @@ const Sidebar = ({ items, location }) => {
         <div className="filter__color-list">
           {colorsData.map((el) => {
             return (
-              <div onClick={() => handleClickColor(Object.values(el)[0])}>
+              <div
+                className={`${
+                  activeColors.includes(Object.values(el)[0])
+                    ? 'filter__color-active'
+                    : 'filter__color-notactive'
+                }`}
+                onClick={() => handleClickColor(Object.values(el)[0])}>
                 <span>{Object.keys(el)}</span>
-                <div className="filter__color-square"></div>
               </div>
             );
           })}
