@@ -16,6 +16,11 @@ function valuetext(value: number) {
 
 export default function RangeSlider({ items, location, value, setValue }: any) {
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setFilterItemsByPrice(items));
+  }, [items]);
+
   useEffect(() => {
     let filterItems = items.filter(
       (item: any) =>
@@ -24,10 +29,7 @@ export default function RangeSlider({ items, location, value, setValue }: any) {
         Number(item.price.substring(0, item.price.length - 2).replace(/[^0-9]/g, '')) <=
           Number(value[1]),
     );
-
-    if (value[0] !== 0 || value[1] !== 4000) {
-      dispatch(setFilterItemsByPrice(filterItems));
-    }
+    dispatch(setFilterItemsByPrice(filterItems));
   }, [value]);
 
   useEffect(() => {
