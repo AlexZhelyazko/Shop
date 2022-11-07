@@ -99,9 +99,19 @@ const Sidebar = ({ items, location }) => {
       </div>
       <div className="filter__size">
         <h3>Size:</h3>
-        {sizeData.map((el) => {
-          return <div onClick={() => handleClickSize(el)}>{el}</div>;
-        })}
+        <div className="filter__size-list">
+          {sizeData.map((el) => {
+            return (
+              <div
+                className={`${
+                  activeSize.includes(el) ? 'filter__size-active' : 'filter__size-notactive'
+                }`}
+                onClick={() => handleClickSize(el)}>
+                {el}
+              </div>
+            );
+          })}
+        </div>
       </div>
       <button onClick={onSetFiltersClick}>Set Filters</button>
       <button onClick={onClearClick}>Clear</button>

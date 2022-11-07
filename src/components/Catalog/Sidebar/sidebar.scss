@@ -59,6 +59,38 @@ h3{
     }
 }
 
+.filter__size{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    .filter__size-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        &>div{
+            width: 4em;
+            height: 2em;
+            display: flex;
+            border-radius: 10px;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            font-family: "Nunito";
+        }
+        &>div:hover{
+            cursor: pointer;
+        }
+        .filter__size-active{
+            color: white;
+            background-color: #1976d2;
+        }
+        .filter__size-notactive{
+            border-bottom: solid black 1px;
+            color: black;
+            background-color: #fff;
+        }
+    }
+}
+
 .MuiSlider-thumb{
     width: 15px !important;
     height: 15px !important;
