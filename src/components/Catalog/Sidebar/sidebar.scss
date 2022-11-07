@@ -91,6 +91,31 @@ h3{
     }
 }
 
+.filter__buttons {
+    margin-top: 2.5em;
+    display: flex;
+    flex-direction: row;
+    button{
+        margin: 4px;
+        width: 7em;
+        height: 2em;
+        font-family: "Nunito";
+        font-size: 17px;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    .setFilters_btn{
+        background-color: #2a2a2a;
+        color: white;
+    }
+    .clear_btn{
+        background-color: #f9f9f9;
+        color: #000000;
+    }
+}
+
+
 .MuiSlider-thumb{
     width: 15px !important;
     height: 15px !important;

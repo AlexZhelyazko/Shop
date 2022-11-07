@@ -113,8 +113,14 @@ const Sidebar = ({ items, location }) => {
           })}
         </div>
       </div>
-      <button onClick={onSetFiltersClick}>Set Filters</button>
-      <button onClick={onClearClick}>Clear</button>
+      <div className="filter__buttons">
+        <button className="setFilters_btn" onClick={onSetFiltersClick}>
+          Set Filters
+        </button>
+        <button className="clear_btn" onClick={onClearClick}>
+          Clear
+        </button>
+      </div>
     </aside>
   );
 };
