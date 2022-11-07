@@ -98,6 +98,7 @@ const Sidebar = ({ items, location }) => {
         </div>
       </div>
       <div className="filter__size">
+        <h3>Size:</h3>
         {sizeData.map((el) => {
           return <div onClick={() => handleClickSize(el)}>{el}</div>;
         })}

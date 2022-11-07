@@ -19,19 +19,26 @@ h3{
         display: grid;
         grid-template-columns: 1fr 1fr;
         &>div{
+            width: 4em;
+            height: 2em;
             display: flex;
+            border-radius: 10px;
             flex-direction: row;
             align-items: center;
+            justify-content: center;
+            font-family: "Nunito";
+        }
+        &>div:hover{
+            cursor: pointer;
         }
         .filter__color-notactive {
+            border-bottom: solid black 1px;
             color: black;
             background-color: #fff;
-            width: 3em;
         }
         .filter__color-active{
-            width:3em;
             color: white;
-            background-color: rgb(33, 59, 136);
+            background-color: #1976d2;
         }
     }
 }
