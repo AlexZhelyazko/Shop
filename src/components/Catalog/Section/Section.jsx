@@ -31,7 +31,11 @@ const Section = ({ items, filterItems }) => {
       className="catalog__section"
       style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
       {status === 'pending'
-        ? fakeArr.map(() => <SkeletonLoader />)
+        ? fakeArr.map(() => (
+            <div className="catalog__section-product">
+              <SkeletonLoader />
+            </div>
+          ))
         : (filterItems.length === 0 && isFilterActive === false ? items : filterItems).map(
             (item) => {
               return (
