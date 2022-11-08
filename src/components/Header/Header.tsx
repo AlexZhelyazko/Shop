@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import './header.scss';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 const Header: React.FC = () => {
   return (
@@ -14,7 +15,7 @@ const Header: React.FC = () => {
         Accessories
       </NavLink>
       <NavLink className={({ isActive }) => (isActive ? 'activeLink' : '')} to="/cart">
-        Cart
+        <AiOutlineShoppingCart style={{ width: '25px', height: '25px' }} />
       </NavLink>
     </header>
   );

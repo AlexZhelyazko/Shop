@@ -1,5 +1,5 @@
-import React from 'react';
+import './NotFound.scss';
 
 export const NotFound = () => {
-  return <div>NotFound</div>;
+  return <div className="not_found">Not Found. Try another filters</div>;
 };

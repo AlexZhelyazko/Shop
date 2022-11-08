@@ -54,9 +54,7 @@ const Section = ({ items, filterItems }) => {
                     />
                     <div className="catalog__section-product-info">
                       <span className="catalog__section-product-title">{item.title}</span>
-                      <br />
                       <span>{item.size + ' '}</span>
-                      <br />
                       <span>{item.price} </span>
                       {/* <button onClick={() => dispatch(setCartItems(item))}>Add</button> */}
                     </div>

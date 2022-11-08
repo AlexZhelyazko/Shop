@@ -124,3 +124,12 @@ h3{
 .MuiSlider-root{
     height: 3px !important;
 }
+
+@media all and (max-width: 1280px) and (min-width: 1024px){
+    .filter__menu{
+        width: 20%;
+    }
+    .MuiBox-root{
+        width: 100% !important;
+    }
+}
