@@ -23,7 +23,6 @@ const Section = ({ items, filterItems }) => {
   };
 
   const fakeArr = [...new Array(8)];
-
   return notFoundItems ? (
     <NotFound />
   ) : (
