@@ -5,8 +5,8 @@ const Header: React.FC = () => {
   return (
     <header className="header__wrapper">
       <div>About</div>
-      <NavLink to="/man">Jackets</NavLink>
-      <NavLink to="/woman">Accessories</NavLink>
+      <NavLink to="/jacket">Jackets</NavLink>
+      <NavLink to="/accessories">Accessories</NavLink>
       <div>FORM</div>
       <div>Register</div>
       <NavLink to="/cart">Cart</NavLink>

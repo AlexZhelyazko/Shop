@@ -42,7 +42,7 @@ const Section = ({ items, filterItems }) => {
                 <div className="catalog__section-product">
                   <NavLink
                     className="catalog__section-product catalog__section-link"
-                    to={`${item.price}`}>
+                    to={`${item.id}`}>
                     <img
                       ref={imgRef}
                       onMouseOver={(event) => handleMouseEnter(event, item.frontImageUrl)}
