@@ -4,15 +4,15 @@ import './header.scss';
 const Header: React.FC = () => {
   return (
     <header className="header__wrapper">
-      <div>About</div>
+      <NavLink className={({ isActive }) => (isActive ? 'activeLink' : '')} to="/about">
+        About
+      </NavLink>
       <NavLink className={({ isActive }) => (isActive ? 'activeLink' : '')} to="/jacket">
         Jackets
       </NavLink>
       <NavLink className={({ isActive }) => (isActive ? 'activeLink' : '')} to="/accessories">
         Accessories
       </NavLink>
-      <div>FORM</div>
-      <div>Register</div>
       <NavLink className={({ isActive }) => (isActive ? 'activeLink' : '')} to="/cart">
         Cart
       </NavLink>

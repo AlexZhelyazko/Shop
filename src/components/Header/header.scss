@@ -7,6 +7,8 @@
     justify-content: space-around;
     padding: 0 5em; 
     a {
+        font-family: 'Nunito';
+        font-size: 21px;
         color: white;
         &:hover{
             font-weight: bold;
@@ -15,5 +17,5 @@
 }
 
 .activeLink {
-    font-weight: bold;
+    border-bottom: 1px solid white;
 }
