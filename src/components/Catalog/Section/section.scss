@@ -53,5 +53,8 @@
     }
 }
 
-@media all and (min-width: 768px){
+@media all and (min-width: 768px) and (max-width:1023px){
+    .catalog__section-product{
+        max-width: 13em;
+    }
 }

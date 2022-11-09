@@ -170,7 +170,22 @@ h3{
         display: block;
     }
     .filter__menu{
-        background-color: #2a2a2a;
+        height: 100%;
+        background-color: #282727;
         margin-top: 0;
+        svg {
+            color: white;
+            width: 30px;
+            height: 30px;
+        }
+    }
+    h3{
+        color: white;
+    }
+    .filter__menu > div {
+        padding-left: 10px;
+    }
+    .MuiBox-root{
+        width: 90% !important;
     }
 }
