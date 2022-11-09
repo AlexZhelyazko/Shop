@@ -1,3 +1,7 @@
+.sidebar{
+    display: block;
+}
+
 h3{
     font-family: "Nunito";
     font-size: 1.5em;
@@ -125,11 +129,48 @@ h3{
     height: 3px !important;
 }
 
-@media all and (max-width: 1280px) and (min-width: 1024px){
+@media all and (min-width: 1600px) {
+    .burger{
+        display: none;
+    }
+}
+
+@media all and (min-width: 1281px) and (max-width: 1600px){
+    .burger{
+        display: none;
+    }
     .filter__menu{
         width: 20%;
     }
     .MuiBox-root{
         width: 100% !important;
+    }
+}
+
+@media all and (max-width: 1280px) and (min-width: 1024px){
+    .burger{
+        display: none;
+    }
+    .filter__menu{
+        width: 20%;
+    }
+    .MuiBox-root{
+        width: 100% !important;
+    }
+}
+
+@media all and (min-width: 768px) and (max-width: 1023px) {
+    .sidebar{
+        display: none;
+    }
+    .burger{
+        display: block;
+    }
+    .filter__burger-menu{
+        display: block;
+    }
+    .filter__menu{
+        background-color: #2a2a2a;
+        margin-top: 0;
     }
 }

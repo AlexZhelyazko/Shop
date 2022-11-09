@@ -2,6 +2,8 @@ import './sidebar.scss';
 import { useEffect, useState } from 'react';
 import RangeSlider from '../../RangeSlider/RangeSlider';
 import { useAppDispatch } from '../../../redux/store';
+import { BsFilterLeft } from 'react-icons/bs';
+import { GiCancel } from 'react-icons/gi';
 import {
   clearFilters,
   setFilterItemsByColor,
@@ -24,6 +26,7 @@ const colorsData = [
 const sizeData = ['M', 'S', 'L', 'XL'];
 
 const Sidebar = ({ items, location }) => {
+  const [showFilter, setShowFilter] = useState(true);
   let filterItemsByColor = useSelector((state) => state.catalog.filterItemByColor);
   let filterItemsByPrice = useSelector((state) => state.catalog.filterItemByPrice);
   let filterItemsBySize = useSelector((state) => state.catalog.filterItemBySize);
@@ -75,53 +78,111 @@ const Sidebar = ({ items, location }) => {
   };
 
   return (
-    <aside className="filter__menu">
-      <div className="filter__price">
-        <RangeSlider value={value} setValue={setValue} location={location} items={items} />
-      </div>
-      <div className="filter__color">
-        <h3>Color:</h3>
-        <div className="filter__color-list">
-          {colorsData.map((el) => {
-            return (
-              <div
-                className={`${
-                  activeColors.includes(Object.values(el)[0])
-                    ? 'filter__color-active'
-                    : 'filter__color-notactive'
-                }`}
-                onClick={() => handleClickColor(Object.values(el)[0])}>
-                <span>{Object.keys(el)}</span>
+    <div className="filter__menu">
+      <div className="burger">
+        {showFilter ? (
+          <div className="filter__burger-menu">
+            <GiCancel onClick={() => setShowFilter(false)} /> Filters:
+            <div className="filter__price">
+              <RangeSlider value={value} setValue={setValue} location={location} items={items} />
+            </div>
+            <div className="filter__color">
+              <h3>Color:</h3>
+              <div className="filter__color-list">
+                {colorsData.map((el) => {
+                  return (
+                    <div
+                      className={`${
+                        activeColors.includes(Object.values(el)[0])
+                          ? 'filter__color-active'
+                          : 'filter__color-notactive'
+                      }`}
+                      onClick={() => handleClickColor(Object.values(el)[0])}>
+                      <span>{Object.keys(el)}</span>
+                    </div>
+                  );
+                })}
               </div>
-            );
-          })}
-        </div>
-      </div>
-      <div className="filter__size">
-        <h3>Size:</h3>
-        <div className="filter__size-list">
-          {sizeData.map((el) => {
-            return (
-              <div
-                className={`${
-                  activeSize.includes(el) ? 'filter__size-active' : 'filter__size-notactive'
-                }`}
-                onClick={() => handleClickSize(el)}>
-                {el}
+            </div>
+            <div className="filter__size">
+              <h3>Size:</h3>
+              <div className="filter__size-list">
+                {sizeData.map((el) => {
+                  return (
+                    <div
+                      className={`${
+                        activeSize.includes(el) ? 'filter__size-active' : 'filter__size-notactive'
+                      }`}
+                      onClick={() => handleClickSize(el)}>
+                      {el}
+                    </div>
+                  );
+                })}
               </div>
-            );
-          })}
+            </div>
+            <div className="filter__buttons">
+              <button className="setFilters_btn" onClick={onSetFiltersClick}>
+                Set Filters
+              </button>
+              <button className="clear_btn" onClick={onClearClick}>
+                Clear
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div onClick={() => setShowFilter(true)} className="showFilter_btn">
+            <BsFilterLeft onClick={() => setShowFilter(true)} /> Filters
+          </div>
+        )}
+      </div>
+      <aside className="sidebar">
+        <div className="filter__price">
+          <RangeSlider value={value} setValue={setValue} location={location} items={items} />
         </div>
-      </div>
-      <div className="filter__buttons">
-        <button className="setFilters_btn" onClick={onSetFiltersClick}>
-          Set Filters
-        </button>
-        <button className="clear_btn" onClick={onClearClick}>
-          Clear
-        </button>
-      </div>
-    </aside>
+        <div className="filter__color">
+          <h3>Color:</h3>
+          <div className="filter__color-list">
+            {colorsData.map((el) => {
+              return (
+                <div
+                  className={`${
+                    activeColors.includes(Object.values(el)[0])
+                      ? 'filter__color-active'
+                      : 'filter__color-notactive'
+                  }`}
+                  onClick={() => handleClickColor(Object.values(el)[0])}>
+                  <span>{Object.keys(el)}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="filter__size">
+          <h3>Size:</h3>
+          <div className="filter__size-list">
+            {sizeData.map((el) => {
+              return (
+                <div
+                  className={`${
+                    activeSize.includes(el) ? 'filter__size-active' : 'filter__size-notactive'
+                  }`}
+                  onClick={() => handleClickSize(el)}>
+                  {el}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="filter__buttons">
+          <button className="setFilters_btn" onClick={onSetFiltersClick}>
+            Set Filters
+          </button>
+          <button className="clear_btn" onClick={onClearClick}>
+            Clear
+          </button>
+        </div>
+      </aside>
+    </div>
   );
 };
 
