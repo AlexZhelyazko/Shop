@@ -78,10 +78,10 @@ const Sidebar = ({ items, location }) => {
   };
 
   return (
-    <div className="filter__menu">
+    <>
       <div className="burger">
         {showFilter ? (
-          <div className="filter__burger-menu">
+          <div className="filter__burger-menu filter__menu">
             <GiCancel onClick={() => setShowFilter(false)} /> Filters:
             <div className="filter__price">
               <RangeSlider value={value} setValue={setValue} location={location} items={items} />
@@ -135,7 +135,7 @@ const Sidebar = ({ items, location }) => {
           </div>
         )}
       </div>
-      <aside className="sidebar">
+      <aside className="sidebar filter__menu">
         <div className="filter__price">
           <RangeSlider value={value} setValue={setValue} location={location} items={items} />
         </div>
@@ -182,7 +182,7 @@ const Sidebar = ({ items, location }) => {
           </button>
         </div>
       </aside>
-    </div>
+    </>
   );
 };
 
