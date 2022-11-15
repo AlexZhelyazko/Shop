@@ -1,10 +1,9 @@
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../redux/store';
-import { setCartItems } from '../../../redux/cart/cartSlice';
 import './section.scss';
 import { NavLink } from 'react-router-dom';
 import { NotFound } from '../../NotFound/NotFound';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import SkeletonLoader from '../../Preloader/SleletonLoader/Skeleton';
 
 const Section = ({ items, filterItems }) => {
@@ -12,7 +11,6 @@ const Section = ({ items, filterItems }) => {
   const isFilterActive = useSelector((state) => state.catalog.filters);
   const notFoundItems = useSelector((state) => state.catalog.notFoundItems);
   const status = useSelector((state) => state.catalog.status);
-  const dispatch = useAppDispatch();
 
   const handleMouseEnter = (event, imageSrc) => {
     event.target.src = imageSrc;

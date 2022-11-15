@@ -35,6 +35,8 @@ const Sidebar = ({ items, location }) => {
   const [value, setValue] = useState([0, 4000]);
   const [activeColors, setActiveColors] = useState([]);
   const [activeSize, setActiveSize] = useState([]);
+  const [aciveCategory, setActiveCategory] = useState([]);
+  const [checked, setChecked] = useState(false);
 
   const handleClickColor = (color) => {
     activeColors.includes(color)
@@ -46,6 +48,10 @@ const Sidebar = ({ items, location }) => {
     activeSize.includes(size)
       ? setActiveSize([...activeSize.filter((el) => el !== size)])
       : setActiveSize([...activeSize, size]);
+  };
+
+  const handleClickCategory = (category) => {
+    setChecked(!checked);
   };
 
   useEffect(() => {
@@ -136,6 +142,24 @@ const Sidebar = ({ items, location }) => {
         )}
       </div>
       <aside className="sidebar filter__menu">
+        <div className="filter__category">
+          <h3>Category:</h3>
+          <div>
+            <input
+              value="jackets"
+              type="checkbox"
+              onChange={(event) => handleClickCategory(event.target.checked)}
+              id="jackets"
+              name="jackets"
+              checked={checked}
+            />
+            <label for="lackets">Jackets</label>
+          </div>
+          <div>
+            <input type="checkbox" id="accessories" name="accessories" checked={checked} />
+            <label for="accessories">Accessories</label>
+          </div>
+        </div>
         <div className="filter__price">
           <RangeSlider value={value} setValue={setValue} location={location} items={items} />
         </div>

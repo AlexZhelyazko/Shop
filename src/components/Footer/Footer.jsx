@@ -1,15 +1,15 @@
 import { NavLink } from 'react-router-dom';
-import './header.scss';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import './footer.scss';
+import { AiOutlineShoppingCart, AiOutlineHome, AiOutlineShop } from 'react-icons/ai';
 
-const Header: React.FC = () => {
+const Footer = () => {
   return (
     <header className="header__wrapper">
       <NavLink className={({ isActive }) => (isActive ? 'activeLink' : '')} to="/about">
-        About
+        <AiOutlineHome style={{ width: '25px', height: '25px' }} />
       </NavLink>
       <NavLink className={({ isActive }) => (isActive ? 'activeLink' : '')} to="/shop">
-        Shop
+        <AiOutlineShop style={{ width: '25px', height: '25px' }} />
       </NavLink>
       <NavLink className={({ isActive }) => (isActive ? 'activeLink' : '')} to="/cart">
         <AiOutlineShoppingCart style={{ width: '25px', height: '25px' }} />
@@ -18,4 +18,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default Footer;

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { fetchCatalogItems } from '../../redux/catalog/asyncActions';
 import { useAppDispatch } from '../../redux/store';
 import { clearFilters } from '../../redux/catalog/slice';
@@ -13,10 +13,9 @@ const Catalog = () => {
   const items = useSelector((state) => state.catalog.items);
   const filterItems = useSelector((state) => state.catalog.filterItem);
   const location = useLocation();
-  const params = useParams();
 
   useEffect(() => {
-    dispatch(fetchCatalogItems(params));
+    dispatch(fetchCatalogItems());
     return () => {
       dispatch(clearFilters());
     };
