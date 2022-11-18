@@ -16,36 +16,56 @@ const initialState = {
     notFoundItems: false
 };
 
-function intersection() {
-    let result = [];
-    let lists = [];
-    for (let i = 0; i < arguments[0].length; i++) {
-        if (arguments[0][i].length !== 0) {
-            lists.push(arguments[0][i])
-        }
-    }
-    console.log(lists);
-    // if (arguments.length === 1) {
-    //     lists = arguments[0];
-    // } else {
-    //     lists = arguments;
-    // }
-    for (var i = 0; i < lists.length - 1; i++) {
-        var currentList = lists[i];
-        let filteredArr = lists[i + 1].filter(el => currentList.some(el2 => el2.title === el.title))
-        result.push(filteredArr)
-        // for (var y = 0; y < currentList.length; y++) {
-        //     var currentValue = currentList[y];
-        //     if (result.title.indexOf(currentValue) === -1) {
-        //         if (lists.filter(function (obj) { return obj.title.indexOf(currentValue) == -1 }).length == 0) {
-        //             result.push(currentValue);
-        //         }
-        //     }
-        // }
-    }
-    console.log(result[0]);
-    return result[0];
-}
+// Filter xs where, for a given x, there exists some y in ys where y === x.
+const intersect2 = (xs, ys) => xs.filter(x => ys.some(y => y.title === x.title));
+
+// When there is only one array left, return it (the termination condition
+// of the recursion). Otherwise first find the intersection of the first
+// two arrays (intersect2), then repeat the whole process for that result
+// combined with the remaining arrays (intersect). Thus the number of arrays
+// passed as arguments to intersect is reduced by one each time, until
+// there is only one array remaining.
+const intersect = (xs, ys, ...rest) => ys === undefined ? xs : intersect(intersect2(xs, ys), ...rest);
+
+// function intersection() {
+//     let result = [];
+//     let lists = [];
+//     for (let i = 0; i < arguments[0].length; i++) {
+//         if (arguments[0][i].length !== 0) {
+//             lists.push(arguments[0][i])
+//         }
+//     }
+//     console.log(lists);
+//     // if (arguments.length === 1) {
+//     //     lists = arguments[0];
+//     // } else {
+//     //     lists = arguments;
+//     // }
+//     for (var i = 0; i < lists.length - 1; i++) {
+//         var currentList = lists[i];
+//         let filteredArr = lists[i + 1].filter(el => currentList.some(el2 => el2.title === el.title))
+//         result.push(filteredArr)
+//         // for (var y = 0; y < currentList.length; y++) {
+//         //     var currentValue = currentList[y];
+//         //     if (result.title.indexOf(currentValue) === -1) {
+//         //         if (lists.filter(function (obj) { return obj.title.indexOf(currentValue) == -1 }).length == 0) {
+//         //             result.push(currentValue);
+//         //         }
+//         //     }
+//         // }
+//     }
+//     if(result.length > 1) {
+//         for (let i = 0; i < result.length; i++) {
+//             let newArr = result[i].filter(el => )
+//         }
+//          //         let newfilterArr = state.filterItemByPrice.filter(el => state.filterItemBySize.some(el2 => el.title === el2.title))
+//         //         state.filterItem = newfilterArr.filter(el => state.filterItemByColor.some(el2 => el.title === el2.title))
+//     } else {
+//         return result[0]
+//     }   
+//     console.log(result);
+//     return result[0];
+// }
 
 
 // function intersection() {
@@ -111,8 +131,7 @@ const catalogSlice = createSlice({
             // let data = [state.filterItemByCategory, state.filterItemByColor, state.filterItemByPrice, state.filterItemBySize]
             // state.filterItem = data.reduce((a, b) => a.filter(c => b.title.includes(c.title)))
             // console.log(state.filterItem);
-            state.filterItem = intersection([current(state.filterItemByCategory), current(state.filterItemByColor), current(state.filterItemByPrice), current(state.filterItemBySize)])
-            console.log(state.filterItem);
+            state.filterItem = intersect(current(state.filterItemByCategory), current(state.filterItemByColor), current(state.filterItemByPrice), current(state.filterItemBySize))
             state.filterItem.length ? state.notFoundItems = false : state.notFoundItems = true
         },
         // setFilters(state, action) {
