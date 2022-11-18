@@ -19,7 +19,6 @@ const Section = ({ items, filterItems }) => {
   const handleMouseOut = (event, imageSrc) => {
     event.target.src = imageSrc;
   };
-
   const fakeArr = [...new Array(8)];
   return notFoundItems ? (
     <NotFound />

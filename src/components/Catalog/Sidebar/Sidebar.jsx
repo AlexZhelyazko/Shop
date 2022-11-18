@@ -6,6 +6,7 @@ import { BsFilterLeft } from 'react-icons/bs';
 import { GiCancel } from 'react-icons/gi';
 import {
   clearFilters,
+  setFilterItemsByCategory,
   setFilterItemsByColor,
   setFilterItemsBySize,
   setFilters,
@@ -35,8 +36,8 @@ const Sidebar = ({ items, location }) => {
   const [value, setValue] = useState([0, 4000]);
   const [activeColors, setActiveColors] = useState([]);
   const [activeSize, setActiveSize] = useState([]);
-  const [aciveCategory, setActiveCategory] = useState([]);
-  const [checked, setChecked] = useState(false);
+  const [activeJackets, setActiveJackets] = useState(false);
+  const [activeAccessories, setActiveAccessories] = useState(false);
 
   const handleClickColor = (color) => {
     activeColors.includes(color)
@@ -51,9 +52,31 @@ const Sidebar = ({ items, location }) => {
   };
 
   const handleClickCategory = (category) => {
-    setChecked(!checked);
+    switch (category) {
+      case 'jackets':
+        setActiveJackets(!activeJackets);
+      case 'accessories':
+        setActiveAccessories(!activeAccessories);
+      default:
+        return;
+    }
   };
 
+  useEffect(() => {
+    let filterItemByCategory;
+    if (activeJackets && activeAccessories) {
+      filterItemByCategory = items;
+      dispatch(setFilterItemsByCategory(filterItemByCategory));
+    } else if (activeJackets) {
+      filterItemByCategory = items.filter((item) => item.category === 'jackets');
+      dispatch(setFilterItemsByCategory(filterItemByCategory));
+    } else if (activeAccessories) {
+      filterItemByCategory = items.filter((item) => item.category === 'accessories');
+      dispatch(setFilterItemsByCategory(filterItemByCategory));
+    } else {
+      return;
+    }
+  }, [activeAccessories, activeJackets]);
   useEffect(() => {
     let filterItemsByColor = items.filter((item) => activeColors.includes(item.color));
     dispatch(setFilterItemsByColor(filterItemsByColor));
@@ -148,16 +171,23 @@ const Sidebar = ({ items, location }) => {
             <input
               value="jackets"
               type="checkbox"
-              onChange={(event) => handleClickCategory(event.target.checked)}
+              onChange={(event) => handleClickCategory(event.target.value)}
               id="jackets"
               name="jackets"
-              checked={checked}
+              checked={activeJackets.value}
             />
-            <label for="lackets">Jackets</label>
+            <label htmlFor="lackets">Jackets</label>
           </div>
           <div>
-            <input type="checkbox" id="accessories" name="accessories" checked={checked} />
-            <label for="accessories">Accessories</label>
+            <input
+              onChange={(event) => handleClickCategory(event.target.value)}
+              type="checkbox"
+              id="accessories"
+              name="accessories"
+              value="accessories"
+              checked={activeAccessories.value}
+            />
+            <label htmlFor="accessories">Accessories</label>
           </div>
         </div>
         <div className="filter__price">
