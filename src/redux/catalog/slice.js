@@ -40,7 +40,7 @@ function intersect(...rest) {
             nonEmptyArrays.push(rest[i])
         }
     }
-    console.log(nonEmptyArrays[0]);
+    console.log(nonEmptyArrays)
     const firsrArr = nonEmptyArrays[0]
     const secondArr = nonEmptyArrays[1]
     const params = nonEmptyArrays[2]?.slice(2, nonEmptyArrays.length)
@@ -48,13 +48,15 @@ function intersect(...rest) {
 }
 
 function intersect2(xs, ys, ...rest) {
-    // console.log(xs);
-    // console.log(ys);
-    // console.log(rest);
+    console.log(xs);
+    console.log(ys);
+    console.log(rest);
     if (ys === undefined) {
+        console.log(xs);
         return xs
     } else {
-        intersect2(intersect3(xs, ys), ...rest)
+        console.log(intersect3(xs, ys), ...rest)
+        return intersect2(intersect3(xs, ys), ...rest)
     }
 }
 
@@ -84,6 +86,7 @@ const catalogSlice = createSlice({
             state.filterItemByPrice.length = 0
         },
         setFilters(state, action) {
+            console.log(intersect(current(state.filterItemByCategory), current(state.filterItemByColor), current(state.filterItemByPrice), current(state.filterItemBySize)));
             let res = intersect(current(state.filterItemByCategory), current(state.filterItemByColor), current(state.filterItemByPrice), current(state.filterItemBySize))
             console.log(res);
             state.filterItem = res
