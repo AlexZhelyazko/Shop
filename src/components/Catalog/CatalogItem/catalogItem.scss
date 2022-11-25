@@ -1,0 +1,12 @@
+.catalogItem__wrapper{
+    display: flex;
+    flex-direction: row;
+    margin: 2em;
+    .catalogItem__image{
+        display: flex;
+        justify-content: center;
+        img{
+            width: 50%;
+        }
+    }
+}
