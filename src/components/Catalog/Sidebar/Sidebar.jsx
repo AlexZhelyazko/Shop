@@ -128,8 +128,9 @@ const Sidebar = ({ items, location }) => {
                   Jackets
                 </label>
               </div>
-              <div>
+              <div className="filter__category-item">
                 <input
+                  className="filter__category-input"
                   onChange={(event) => handleClickCategory(event.target.value)}
                   type="checkbox"
                   id="accessories"
@@ -137,7 +138,9 @@ const Sidebar = ({ items, location }) => {
                   value="accessories"
                   checked={activeAccessories.value}
                 />
-                <label htmlFor="accessories">Accessories</label>
+                <label className="filter__category-label" htmlFor="accessories">
+                  Accessories
+                </label>
               </div>
             </div>
             <div className="filter__price">
@@ -195,8 +198,9 @@ const Sidebar = ({ items, location }) => {
       <aside className="sidebar filter__menu">
         <div className="filter__category">
           <h3>Category:</h3>
-          <div>
+          <div className="filter__category-item">
             <input
+              className="filter__category-input"
               value="jackets"
               type="checkbox"
               onChange={(event) => handleClickCategory(event.target.value)}
@@ -204,10 +208,13 @@ const Sidebar = ({ items, location }) => {
               name="jackets"
               checked={activeJackets.value}
             />
-            <label htmlFor="lackets">Jackets</label>
+            <label className="filter__category-label" htmlFor="lackets">
+              Jackets
+            </label>
           </div>
-          <div>
+          <div className="filter__category-item">
             <input
+              className="filter__category-input"
               onChange={(event) => handleClickCategory(event.target.value)}
               type="checkbox"
               id="accessories"
@@ -215,7 +222,9 @@ const Sidebar = ({ items, location }) => {
               value="accessories"
               checked={activeAccessories.value}
             />
-            <label htmlFor="accessories">Accessories</label>
+            <label className="filter__category-label" htmlFor="accessories">
+              Accessories
+            </label>
           </div>
         </div>
         <div className="filter__price">

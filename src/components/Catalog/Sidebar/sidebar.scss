@@ -197,6 +197,9 @@ h3{
     h3{
         color: white;
     }
+    .filter__category-label{
+        color: white;
+    }
     .filter__menu > div {
         padding-left: 10px;
     }
@@ -204,3 +207,37 @@ h3{
         width: 90% !important;
     }
 }
+
+@media all and (max-width: 767px) {
+    .sidebar{
+        display: none;
+    }
+    .burger{
+        display: block;
+    }
+    .filter__burger-menu{
+        display: block;
+    }
+    .filter__menu{
+        height: 100%;
+        background-color: #282727;
+        margin-top: 0;
+        svg {
+            color: white;
+            width: 30px;
+            height: 30px;
+        }
+    }
+    h3{
+        color: white;
+    }
+    .filter__category-label{
+        color: white;
+    }
+    .filter__menu > div {
+        padding-left: 10px;
+    }
+    .MuiBox-root{
+        width: 90% !important;
+    }  
+} 

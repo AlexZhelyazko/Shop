@@ -58,3 +58,9 @@
         max-width: 13em;
     }
 }
+
+@media all and (max-width: 767px) {
+    .catalog__section-product{
+        max-width: 10em;
+    }
+}
