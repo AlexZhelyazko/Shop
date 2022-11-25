@@ -63,6 +63,21 @@ h3{
     }
 }
 
+.filter__category-item{
+    display: flex;
+    align-items: flex-start;
+    font-size: 19px;
+}
+
+.filter__category-label{
+    padding-left: 10px;
+}
+
+.filter__category-input {
+    width: 20px;
+    height: 20px;
+}
+
 .filter__size{
     display: flex;
     flex-direction: column;

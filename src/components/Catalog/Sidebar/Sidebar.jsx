@@ -112,6 +112,34 @@ const Sidebar = ({ items, location }) => {
         {showFilter ? (
           <div className="filter__burger-menu filter__menu">
             <GiCancel onClick={() => setShowFilter(false)} />
+            <div className="filter__category">
+              <h3>Category:</h3>
+              <div className="filter__category-item">
+                <input
+                  className="filter__category-input"
+                  value="jackets"
+                  type="checkbox"
+                  onChange={(event) => handleClickCategory(event.target.value)}
+                  id="jackets"
+                  name="jackets"
+                  checked={activeJackets.value}
+                />
+                <label className="filter__category-label" htmlFor="lackets">
+                  Jackets
+                </label>
+              </div>
+              <div>
+                <input
+                  onChange={(event) => handleClickCategory(event.target.value)}
+                  type="checkbox"
+                  id="accessories"
+                  name="accessories"
+                  value="accessories"
+                  checked={activeAccessories.value}
+                />
+                <label htmlFor="accessories">Accessories</label>
+              </div>
+            </div>
             <div className="filter__price">
               <RangeSlider value={value} setValue={setValue} location={location} items={items} />
             </div>
