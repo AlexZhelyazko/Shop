@@ -4,6 +4,7 @@
     margin: 2em;
     .catalogItem__image{
         display: flex;
+        flex-direction: column;
         justify-content: center;
         img{
             width: 50%;
