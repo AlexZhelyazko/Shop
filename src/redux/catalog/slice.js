@@ -5,7 +5,7 @@ import { fetchCatalogItems, getItem } from './asyncActions';
 const initialState = {
     status: 'pending',
     filters: false,
-    currenItem: {},
+    currentItem: {},
     items: [],
     filterItemByPrice: [],
     filterItemByColor: [],
@@ -81,14 +81,15 @@ const catalogSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(getItem.fulfilled, (state, action) => {
-            state.currenItem = action.payload
+            state.status = 'fulfilled'
+            state.currentItem = action.payload
         })
         builder.addCase(getItem.pending, (state, action) => {
             state.status = 'pending'
         })
         builder.addCase(getItem.rejected, (state, action) => {
             state.status = 'rejected'
-            state.currenItem = {}
+            state.currentItem = {}
         })
         builder.addCase(fetchCatalogItems.fulfilled, (state, action) => {
             state.status = 'fulfilled'

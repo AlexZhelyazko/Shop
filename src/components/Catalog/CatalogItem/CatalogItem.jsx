@@ -16,7 +16,7 @@ function CatalogItem() {
   useEffect(() => {
     console.log('request');
     dispatch(getItem(params.id));
-  }, [item, params]);
+  }, [params]);
   // const currentItem = items.find((el) => el.id === params.id);
   return (
     <div className="catalogItem__wrapper">
