@@ -6,15 +6,6 @@ import Cart from './Layouts/CartPage/cart';
 import Catalog from './components/Catalog/Catalog';
 import CatalogItem from './components/Catalog/CatalogItem/CatalogItem';
 
-// export const App: React.FC = () => {
-//   return (
-//     <Routes>
-//       <Route path="/" element={<MainPage/>}/>
-//       <Route path='/m'
-//     </Routes>
-//   )
-// }
-
 export const App: React.FC = () => {
   return (
     <Routes>
@@ -24,10 +15,6 @@ export const App: React.FC = () => {
         <Route path="/shop/:id" element={<CatalogItem />} />
         <Route path="/cart" element={<Cart />} />
       </Route>
-      {/* <Route path="/man" element={<Products />} />
-      <Route path="/woman" element={<Products />} />
-      <Route path="/children" element={<Products />} />
-  */}
     </Routes>
   );
 };

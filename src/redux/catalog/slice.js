@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 import { store } from '../store';
-import { fetchCatalogItems } from './asyncActions';
+import { fetchCatalogItems, getItem } from './asyncActions';
 
 const initialState = {
     status: 'pending',
     filters: false,
+    currenItem: {},
     items: [],
     filterItemByPrice: [],
     filterItemByColor: [],
@@ -79,6 +80,16 @@ const catalogSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
+        builder.addCase(getItem.fulfilled, (state, action) => {
+            state.currenItem = action.payload
+        })
+        builder.addCase(getItem.pending, (state, action) => {
+            state.status = 'pending'
+        })
+        builder.addCase(getItem.rejected, (state, action) => {
+            state.status = 'rejected'
+            state.currenItem = {}
+        })
         builder.addCase(fetchCatalogItems.fulfilled, (state, action) => {
             state.status = 'fulfilled'
             state.items = action.payload
