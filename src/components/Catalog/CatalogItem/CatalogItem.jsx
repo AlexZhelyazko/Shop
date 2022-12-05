@@ -9,6 +9,7 @@ import './catalogItem.scss';
 function CatalogItem() {
   const [currentImage, setCurrentImage] = useState(false);
   const [count, setCount] = useState(0);
+  const [zoom, setZoom] = useState(false);
   const dispatch = useAppDispatch();
   const params = useParams();
   const item = useSelector((state) => state?.catalog?.currentItem);
