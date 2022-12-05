@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchCatalogItems, getItem } from '../../../redux/catalog/asyncActions';
+import ReactImageMagnify from 'react-image-magnify';
 import { useAppDispatch } from '../../../redux/store';
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
 import './catalogItem.scss';
@@ -24,7 +25,21 @@ function CatalogItem() {
       <div className="catalogItem__image">
         <div>
           <AiOutlineArrowLeft />
-          <img src={currentImage ? item?.backImageUrl : item?.frontImageUrl} alt="" />
+          <ReactImageMagnify
+            {...{
+              smallImage: {
+                alt: 'Wristwatch by Ted Baker London',
+                isFluidWidth: true,
+                src: currentImage ? item.backImageUrl : item.frontImageUrl,
+              },
+              largeImage: {
+                src: currentImage ? item.backImageUrl : item.frontImageUrl,
+                width: 1200,
+                height: 1800,
+              },
+            }}
+          />
+          {/* <img src={currentImage ? item?.backImageUrl : item?.frontImageUrl} alt="" /> */}
           <AiOutlineArrowRight onClick={() => setCurrentImage(!currentImage)} />
         </div>
         <div>
