@@ -9,5 +9,22 @@
         img{
             width: 50%;
         }
+        .catalogItem__image-wrapper{
+            display: flex;
+            align-items: center;
+        }
+        svg{
+            width: 4em;
+            height: 4em;
+            opacity: 0.5;
+            &:hover{
+                opacity: 1;
+                cursor: pointer;
+            }
+        }
     }
+}
+
+.catalogItem__image-wrapper img:hover body{
+    opacity: 0.5;
 }

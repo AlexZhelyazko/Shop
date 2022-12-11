@@ -23,8 +23,8 @@ function CatalogItem() {
   return (
     <div className="catalogItem__wrapper">
       <div className="catalogItem__image">
-        <div>
-          <AiOutlineArrowLeft />
+        <div className="catalogItem__image-wrapper">
+          <AiOutlineArrowLeft onClick={() => setCurrentImage(!currentImage)} />
           <ReactImageMagnify
             {...{
               smallImage: {
