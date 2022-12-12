@@ -21,52 +21,56 @@ function CatalogItem() {
   }, [params]);
   // const currentItem = items.find((el) => el.id === params.id);
   return (
-    <div className="catalogItem__wrapper">
-      <div className="catalogItem__image">
-        <div className="catalogItem__image-wrapper">
-          <AiOutlineArrowLeft onClick={() => setCurrentImage(!currentImage)} />
-          <ReactImageMagnify
-            {...{
-              smallImage: {
-                alt: 'Wristwatch by Ted Baker London',
-                isFluidWidth: true,
-                src: currentImage ? item.backImageUrl : item.frontImageUrl,
-              },
-              largeImage: {
-                src: currentImage ? item.backImageUrl : item.frontImageUrl,
-                width: 1200,
-                height: 1800,
-              },
-            }}
-          />
-          {/* <img src={currentImage ? item?.backImageUrl : item?.frontImageUrl} alt="" /> */}
-          <AiOutlineArrowRight onClick={() => setCurrentImage(!currentImage)} />
-        </div>
-        <div>
-          <img
-            src={currentImage ? item?.frontImageUrl : item?.backImageUrl}
-            style={{ width: '95px' }}
-            alt=""
-          />
-        </div>
-      </div>
-      <div className="catalogItem__info">
-        <div>{item?.price}</div>
-        <div>{item?.title}</div>
-        <div>{item?.size}</div>
-        <div>
-          Quantity:{' '}
+    <>
+      <div className="catalogItem__wrapper">
+        <div className="catalogItem__image">
+          <div className="catalogItem__image-wrapper">
+            <AiOutlineArrowLeft onClick={() => setCurrentImage(!currentImage)} />
+            <ReactImageMagnify
+              {...{
+                smallImage: {
+                  alt: 'Wristwatch by Ted Baker London',
+                  isFluidWidth: true,
+                  src: currentImage ? item.backImageUrl : item.frontImageUrl,
+                },
+                largeImage: {
+                  src: currentImage ? item.backImageUrl : item.frontImageUrl,
+                  width: 1200,
+                  height: 1800,
+                },
+              }}
+            />
+            {/* <img src={currentImage ? item?.backImageUrl : item?.frontImageUrl} alt="" /> */}
+            <AiOutlineArrowRight onClick={() => setCurrentImage(!currentImage)} />
+          </div>
           <div>
-            <span>-</span>
-            {count}
-            <span>+</span>
+            <img
+              src={currentImage ? item?.frontImageUrl : item?.backImageUrl}
+              style={{ width: '95px' }}
+              alt=""
+            />
           </div>
         </div>
-        <button>Add to Cart</button>
-        <div>{item?.description}</div>
+        <div className="catalogItem__info">
+          <div>{item?.price}</div>
+          <div>{item?.title}</div>
+          <div>{item?.size}</div>
+          <div>
+            Quantity:{' '}
+            <div>
+              <span>-</span>
+              {count}
+              <span>+</span>
+            </div>
+          </div>
+          <button>Add to Cart</button>
+          <div>{item?.description}</div>
+        </div>
       </div>
-      <div></div>
-    </div>
+      <div>
+        <img src={currentImage ? item.backImageUrl : item.frontImageUrl} alt="" />
+      </div>
+    </>
   );
 }
 

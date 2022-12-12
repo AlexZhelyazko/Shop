@@ -1,9 +1,10 @@
 .catalogItem__wrapper{
     display: flex;
     flex-direction: row;
-    margin: 2em;
+    margin: 3em 10em;
     .catalogItem__image{
         display: flex;
+        width: 100%;
         flex-direction: column;
         justify-content: center;
         img{
@@ -25,6 +26,11 @@
     }
 }
 
-.catalogItem__image-wrapper img:hover body{
-    opacity: 0.5;
+.catalogItem__info {
+    margin-left: 5em;
+    width: 90%;
+    display: flex;
+    font-family: "Nunito";
+    flex-direction: column;
+    align-items: center;
 }
