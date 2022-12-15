@@ -1,4 +1,6 @@
 .catalogItem__wrapper{
+    position: absolute;
+    z-index: 5;
     display: flex;
     flex-direction: row;
     margin: 3em 10em;
@@ -24,6 +26,16 @@
             }
         }
     }
+}
+
+.catalogItem__large-image{
+    position: absolute;
+    z-index: 20;
+    left: 25%;
+}
+
+.catalogItem__large-image_disabled{
+    display: none;
 }
 
 .catalogItem__info {
