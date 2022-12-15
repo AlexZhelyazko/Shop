@@ -70,11 +70,13 @@ function CatalogItem() {
         className={
           largeImgEnabled ? 'catalogItem__large-image' : 'catalogItem__large-image_disabled'
         }>
+        <AiOutlineArrowLeft onClick={() => setCurrentImage(!currentImage)} />
         <img
           onClick={() => setLargeImgEnabled(false)}
           src={currentImage ? item.backImageUrl : item.frontImageUrl}
           alt=""
         />
+        <AiOutlineArrowRight onClick={() => setCurrentImage(!currentImage)} />
       </div>
     </div>
   );

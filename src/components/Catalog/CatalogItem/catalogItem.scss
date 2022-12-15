@@ -16,22 +16,26 @@
             display: flex;
             align-items: center;
         }
-        svg{
-            width: 4em;
-            height: 4em;
-            opacity: 0.5;
-            &:hover{
-                opacity: 1;
-                cursor: pointer;
-            }
-        }
     }
+}
+
+svg{
+    width: 4em;
+    height: 4em;
+    opacity: 0.5;
+}
+
+svg:hover{
+    opacity: 1;
+    cursor: pointer;
 }
 
 .catalogItem__large-image{
     position: absolute;
     z-index: 20;
     left: 25%;
+    display: flex;
+    align-items: center;
 }
 
 .catalogItem__large-image_disabled{
