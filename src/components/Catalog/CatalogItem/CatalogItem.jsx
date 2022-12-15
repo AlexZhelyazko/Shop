@@ -5,6 +5,7 @@ import { getItem } from '../../../redux/catalog/asyncActions';
 import ReactImageMagnify from 'react-image-magnify';
 import { useAppDispatch } from '../../../redux/store';
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
+import { ImCancelCircle } from 'react-icons/im';
 import './catalogItem.scss';
 
 function CatalogItem() {
@@ -71,11 +72,17 @@ function CatalogItem() {
           largeImgEnabled ? 'catalogItem__large-image' : 'catalogItem__large-image_disabled'
         }>
         <AiOutlineArrowLeft onClick={() => setCurrentImage(!currentImage)} />
-        <img
-          onClick={() => setLargeImgEnabled(false)}
-          src={currentImage ? item.backImageUrl : item.frontImageUrl}
-          alt=""
-        />
+        <div>
+          <img
+            onClick={() => setLargeImgEnabled(false)}
+            src={currentImage ? item.backImageUrl : item.frontImageUrl}
+            alt=""
+          />
+          <ImCancelCircle
+            style={{ position: 'absolute', top: '4%' }}
+            onClick={() => setLargeImgEnabled(false)}
+          />
+        </div>
         <AiOutlineArrowRight onClick={() => setCurrentImage(!currentImage)} />
       </div>
     </div>
