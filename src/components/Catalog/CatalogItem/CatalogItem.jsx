@@ -57,7 +57,7 @@ function CatalogItem() {
         </div>
         <div className="catalogItem__info">
           <div>{item?.price}</div>
-          <div classname="catalogItem__info-title">{item?.title}</div>
+          <div className="catalogItem__info-title">{item?.title}</div>
           <div>
             <select>
               {item?.size.map((el) => (
