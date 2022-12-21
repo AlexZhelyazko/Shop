@@ -15,10 +15,14 @@ function CatalogItem() {
   const dispatch = useAppDispatch();
   const params = useParams();
   const item = useSelector((state) => state?.catalog?.currentItem);
+  console.log(Object.keys(item).length === 0);
   useEffect(() => {
     dispatch(getItem(params.id));
-  }, [params]);
-  return (
+  }, [params.id]);
+
+  return Object.keys(item).length === 0 ? (
+    <div>Load</div>
+  ) : (
     <div>
       <div
         className={largeImgEnabled ? 'catalogItem__large-image_disabled' : 'catalogItem__wrapper'}>
@@ -31,10 +35,10 @@ function CatalogItem() {
                   smallImage: {
                     alt: '',
                     isFluidWidth: true,
-                    src: currentImage ? item.backImageUrl : item.frontImageUrl,
+                    src: currentImage ? item?.backImageUrl : item?.frontImageUrl,
                   },
                   largeImage: {
-                    src: currentImage ? item.backImageUrl : item.frontImageUrl,
+                    src: currentImage ? item?.backImageUrl : item?.frontImageUrl,
                     width: 1200,
                     height: 1800,
                   },
@@ -53,8 +57,14 @@ function CatalogItem() {
         </div>
         <div className="catalogItem__info">
           <div>{item?.price}</div>
-          <div>{item?.title}</div>
-          <div>{item?.size}</div>
+          <div classname="catalogItem__info-title">{item?.title}</div>
+          <div>
+            <select>
+              {item?.size.map((el) => (
+                <option key={el}>{el}</option>
+              ))}
+            </select>
+          </div>
           <div>
             Quantity:{' '}
             <div>
