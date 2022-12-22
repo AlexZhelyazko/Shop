@@ -59,6 +59,7 @@ function CatalogItem() {
           <div>{item?.price}</div>
           <div className="catalogItem__info-title">{item?.title}</div>
           <div>
+            <div>Size:</div>
             <select>
               {item?.size.map((el) => (
                 <option key={el}>{el}</option>
@@ -66,11 +67,21 @@ function CatalogItem() {
             </select>
           </div>
           <div>
-            Quantity:{' '}
+            <div>Quantity:</div>
             <div>
-              <span>-</span>
+              <span
+                onClick={() =>
+                  setCount((prev) => {
+                    if (prev === 0) {
+                      return 0;
+                    }
+                    return prev - 1;
+                  })
+                }>
+                -
+              </span>
               {count}
-              <span>+</span>
+              <span onClick={() => setCount((prev) => prev + 1)}>+</span>
             </div>
           </div>
           <button>Add to Cart</button>
