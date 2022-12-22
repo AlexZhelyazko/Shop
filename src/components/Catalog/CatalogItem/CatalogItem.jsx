@@ -56,9 +56,9 @@ function CatalogItem() {
           </div>
         </div>
         <div className="catalogItem__info">
-          <div>{item?.price}</div>
+          <div className="catalogItem__info-price">{item?.price}</div>
           <div className="catalogItem__info-title">{item?.title}</div>
-          <div>
+          <div className="catalogItem__info-size">
             <div>Size:</div>
             <select>
               {item?.size.map((el) => (
@@ -66,9 +66,9 @@ function CatalogItem() {
               ))}
             </select>
           </div>
-          <div>
+          <div className="catalogItem__info-quantity">
             <div>Quantity:</div>
-            <div>
+            <div className="catalogItem__info-quantity_counter">
               <span
                 onClick={() =>
                   setCount((prev) => {
@@ -84,7 +84,7 @@ function CatalogItem() {
               <span onClick={() => setCount((prev) => prev + 1)}>+</span>
             </div>
           </div>
-          <button>Add to Cart</button>
+          <button className="catalogItem__info-addBtn">Add to Cart</button>
           <div>{item?.description}</div>
         </div>
       </div>
