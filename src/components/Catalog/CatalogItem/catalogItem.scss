@@ -98,6 +98,9 @@ svg:hover{
         text-transform: uppercase;
         border: solid black 1px;
         margin-bottom: 3em;
+        &:hover{
+            cursor: pointer;
+        }
     }
 }
 

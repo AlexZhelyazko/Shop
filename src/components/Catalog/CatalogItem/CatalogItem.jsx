@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getItem } from '../../../redux/catalog/asyncActions';
@@ -7,18 +7,25 @@ import { useAppDispatch } from '../../../redux/store';
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
 import { ImCancelCircle } from 'react-icons/im';
 import './catalogItem.scss';
+import { setCartItems } from '../../../redux/cart/cartSlice';
 
 function CatalogItem() {
+  const [selectValue, setSelectValue] = useState('');
   const [currentImage, setCurrentImage] = useState(false);
   const [largeImgEnabled, setLargeImgEnabled] = useState(false);
   const [count, setCount] = useState(0);
   const dispatch = useAppDispatch();
   const params = useParams();
   const item = useSelector((state) => state?.catalog?.currentItem);
-  console.log(Object.keys(item).length === 0);
   useEffect(() => {
     dispatch(getItem(params.id));
   }, [params.id]);
+
+  const addItemToCart = (item) => {
+    console.log(selectValue);
+    console.log(count);
+    dispatch(setCartItems());
+  };
 
   return Object.keys(item).length === 0 ? (
     <div>Load</div>
@@ -60,9 +67,11 @@ function CatalogItem() {
           <div className="catalogItem__info-title">{item?.title}</div>
           <div className="catalogItem__info-size">
             <div>Size:</div>
-            <select>
+            <select value={selectValue} onChange={(e) => setSelectValue(e.target.value)}>
               {item?.size.map((el) => (
-                <option key={el}>{el}</option>
+                <option value={el} key={el}>
+                  {el}
+                </option>
               ))}
             </select>
           </div>
@@ -84,7 +93,9 @@ function CatalogItem() {
               <span onClick={() => setCount((prev) => prev + 1)}>+</span>
             </div>
           </div>
-          <button className="catalogItem__info-addBtn">Add to Cart</button>
+          <button onClick={() => addItemToCart(item)} className="catalogItem__info-addBtn">
+            Add to Cart
+          </button>
           <div>{item?.description}</div>
         </div>
       </div>
