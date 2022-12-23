@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../redux/store';
 
 export default function Cart() {
   const cartItems = useSelector((state) => state.cart.cartItems);
+  console.log(cartItems);
   const dispatch = useAppDispatch();
   return (
     <div>
@@ -14,7 +15,9 @@ export default function Cart() {
         cartItems.map((el) => {
           return (
             <div>
+              <img src={el.img} alt="" srcset="" />
               <h2>{el.title}</h2>
+              <h2>{el.selectValue}</h2>
               <h2>Count: {el.count}</h2>
               <button onClick={() => dispatch(deleteItemfromCart(el.title))}>delete</button>
               <button onClick={() => dispatch(addItem(el.title))}>add</button>

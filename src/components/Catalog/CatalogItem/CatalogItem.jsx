@@ -21,10 +21,14 @@ function CatalogItem() {
     dispatch(getItem(params.id));
   }, [params.id]);
 
+  useEffect(() => {
+    setSelectValue(item?.size[0]);
+  }, []);
+
   const addItemToCart = (item) => {
-    console.log(selectValue);
-    console.log(count);
-    dispatch(setCartItems());
+    let title = item.title;
+    let img = item.frontImageUrl;
+    dispatch(setCartItems({ title, img, count, selectValue }));
   };
 
   return Object.keys(item).length === 0 ? (
