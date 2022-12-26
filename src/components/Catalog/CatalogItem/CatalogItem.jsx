@@ -22,7 +22,9 @@ function CatalogItem() {
   }, [params.id]);
 
   useEffect(() => {
-    setSelectValue(item?.size[0]);
+    if (item.size !== undefined) {
+      setSelectValue(item?.size[0]);
+    }
   }, []);
 
   const addItemToCart = (item) => {
