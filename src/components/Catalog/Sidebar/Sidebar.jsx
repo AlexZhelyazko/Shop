@@ -77,6 +77,7 @@ const Sidebar = ({ items, location }) => {
       return;
     }
   }, [activeAccessories, activeJackets]);
+
   useEffect(() => {
     let filterItemsByColor = items.filter((item) => activeColors.includes(item.color));
     dispatch(setFilterItemsByColor(filterItemsByColor));
@@ -100,6 +101,8 @@ const Sidebar = ({ items, location }) => {
   };
 
   const onClearClick = () => {
+    setActiveAccessories(false);
+    setActiveJackets(false);
     setActiveColors([]);
     setActiveSize([]);
     setValue([0, 4000]);

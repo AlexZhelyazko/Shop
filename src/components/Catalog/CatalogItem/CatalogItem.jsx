@@ -99,7 +99,10 @@ function CatalogItem() {
               <span onClick={() => setCount((prev) => prev + 1)}>+</span>
             </div>
           </div>
-          <button onClick={() => addItemToCart(item)} className="catalogItem__info-addBtn">
+          <button
+            disabled={!count}
+            onClick={() => addItemToCart(item)}
+            className="catalogItem__info-addBtn">
             Add to Cart
           </button>
           <div>{item?.description}</div>

@@ -85,6 +85,9 @@
             height: 28px;
             font-size: 19px;
             align-items: center;
+            span:hover {
+                cursor: pointer;
+            }
         }
     }
     .catalogItem__info-addBtn{
@@ -98,6 +101,9 @@
         margin-bottom: 3em;
         &:hover{
             cursor: pointer;
+        }
+        &:disabled{
+            cursor: not-allowed;
         }
     }
 }
