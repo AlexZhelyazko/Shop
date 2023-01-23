@@ -5,7 +5,6 @@ import './cart.scss';
 
 export default function Cart() {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  console.log(cartItems);
   const dispatch = useAppDispatch();
   return (
     <div className="cart__container">
