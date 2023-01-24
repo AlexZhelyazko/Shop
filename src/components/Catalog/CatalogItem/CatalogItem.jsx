@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getItem } from '../../../redux/catalog/asyncActions';
-import ReactImageMagnify from 'react-image-magnify';
+// import ReactImageMagnify from 'react-image-magnify';
 import { useAppDispatch } from '../../../redux/store';
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
 import { ImCancelCircle } from 'react-icons/im';
@@ -42,7 +42,7 @@ function CatalogItem() {
         <div className="catalogItem__image">
           <div className="catalogItem__image-wrapper">
             <AiOutlineArrowLeft onClick={() => setCurrentImage(!currentImage)} />
-            <div onClick={() => setLargeImgEnabled(true)}>
+            {/* <div onClick={() => setLargeImgEnabled(true)}>
               <ReactImageMagnify
                 {...{
                   smallImage: {
@@ -57,7 +57,7 @@ function CatalogItem() {
                   },
                 }}
               />
-            </div>
+            </div> */}
             <AiOutlineArrowRight onClick={() => setCurrentImage(!currentImage)} />
           </div>
           <div>
