@@ -1,6 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-const initialState = {
+interface ICartItems {
+    cartItems: any[]
+}
+
+const initialState: ICartItems = {
     cartItems: []
 }
 
@@ -8,7 +12,7 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        setCartItems(state, action) {
+        setCartItems(state, action: PayloadAction) {
             state.cartItems = [...state.cartItems, action.payload]
         },
         // setCartItems(state, action) {

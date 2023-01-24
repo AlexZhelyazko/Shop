@@ -1,24 +1,30 @@
-import { useSelector } from 'react-redux';
 import './section.scss';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { NotFound } from '../../NotFound/NotFound';
-import { useRef } from 'react';
 import SkeletonLoader from '../../Preloader/SleletonLoader/Skeleton';
+import { RootState } from '../../../redux/store';
 
-const Section = ({ items, filterItems }) => {
-  const imgRef = useRef(null);
-  const isFilterActive = useSelector((state) => state.catalog.filters);
-  const notFoundItems = useSelector((state) => state.catalog.notFoundItems);
-  const status = useSelector((state) => state.catalog.status);
+interface SectionProps {
+  items: [];
+  filterItems: [];
+}
 
-  const handleMouseEnter = (event, imageSrc) => {
-    event.target.src = imageSrc;
+const Section: React.FC<SectionProps> = ({ items, filterItems }) => {
+  const isFilterActive = useSelector((state: RootState) => state.catalog.filters);
+  const notFoundItems = useSelector((state: RootState) => state.catalog.notFoundItems);
+  const status = useSelector((state: RootState) => state.catalog.status);
+
+  const handleMouseEnter = (event: React.MouseEvent<HTMLImageElement>, imageSrc: string) => {
+    (event.target as HTMLImageElement).src = imageSrc;
   };
 
-  const handleMouseOut = (event, imageSrc) => {
-    event.target.src = imageSrc;
+  const handleMouseOut = (event: React.MouseEvent<HTMLImageElement>, imageSrc: string) => {
+    (event.target as HTMLImageElement).src = imageSrc;
   };
+
   const fakeArr = [...new Array(8)];
+
   return notFoundItems ? (
     <NotFound />
   ) : (
@@ -39,7 +45,6 @@ const Section = ({ items, filterItems }) => {
                     className="catalog__section-product catalog__section-link"
                     to={`${item.id}`}>
                     <img
-                      ref={imgRef}
                       onMouseOver={(event) => handleMouseEnter(event, item.frontImageUrl)}
                       onMouseOut={(event) => handleMouseOut(event, item.backImageUrl)}
                       className="catalog__section-image"
