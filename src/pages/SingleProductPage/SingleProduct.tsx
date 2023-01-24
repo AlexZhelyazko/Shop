@@ -7,6 +7,7 @@ import { RootState, useAppDispatch } from '../../redux/store';
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
 import { ImCancelCircle } from 'react-icons/im';
 import { setCartItems } from '../../redux/cart/cartSlice';
+import ImageMagnifier from '../../components/ImageMagnify/ImageMagnify';
 
 function SingleProduct() {
   const [selectValue, setSelectValue] = useState<string>('');
@@ -45,22 +46,9 @@ function SingleProduct() {
         <div className="catalogItem__image">
           <div className="catalogItem__image-wrapper">
             <AiOutlineArrowLeft onClick={() => setCurrentImage(!currentImage)} />
-            {/* <div onClick={() => setLargeImgEnabled(true)}>
-              <ReactImageMagnify
-                {...{
-                  smallImage: {
-                    alt: '',
-                    isFluidWidth: true,
-                    src: currentImage ? item?.backImageUrl : item?.frontImageUrl,
-                  },
-                  largeImage: {
-                    src: currentImage ? item?.backImageUrl : item?.frontImageUrl,
-                    width: 1200,
-                    height: 1800,
-                  },
-                }}
-              />
-            </div> */}
+            <div onClick={() => setLargeImgEnabled(true)}>
+              <ImageMagnifier src={currentImage ? item?.backImageUrl : item?.frontImageUrl} />
+            </div>
             <AiOutlineArrowRight onClick={() => setCurrentImage(!currentImage)} />
           </div>
           <div>
