@@ -23,12 +23,14 @@ function SingleProduct() {
 
   useEffect(() => {
     dispatch(getItem(params.id!));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id]);
 
   useEffect(() => {
     if (item.size !== undefined) {
       setSelectValue(item?.size[0]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const addItemToCart = (item: any) => {
@@ -103,7 +105,7 @@ function SingleProduct() {
         className={
           largeImgEnabled ? 'catalogItem__large-image' : 'catalogItem__large-image_disabled'
         }>
-        <AiOutlineArrowLeft onClick={() => setCurrentImage(!currentImage)} />
+        <AiOutlineArrowLeft className="svg" onClick={() => setCurrentImage(!currentImage)} />
         <div>
           <img
             onClick={() => setLargeImgEnabled(false)}
@@ -111,11 +113,12 @@ function SingleProduct() {
             alt=""
           />
           <ImCancelCircle
+            className="svg"
             style={{ position: 'absolute', top: '4%' }}
             onClick={() => setLargeImgEnabled(false)}
           />
         </div>
-        <AiOutlineArrowRight onClick={() => setCurrentImage(!currentImage)} />
+        <AiOutlineArrowRight className="svg" onClick={() => setCurrentImage(!currentImage)} />
       </div>
     </div>
   );
