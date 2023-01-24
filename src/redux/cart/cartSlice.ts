@@ -25,14 +25,14 @@ const cartSlice = createSlice({
         //         //state.cartItems = {...state.cartItems, action.payload, count: 1}
         //     }
         // },
-        deleteItemfromCart(state, action) {
+        deleteItemfromCart(state, action: PayloadAction<string>) {
             state.cartItems = state.cartItems.filter((el) => el.title !== action.payload)
         },
-        addItem(state, action) {
+        addItem(state, action: PayloadAction<string>) {
             let findItem = state.cartItems.find(obj => obj.title === action.payload)
             findItem!.count++
         },
-        minusItem(state, action) {
+        minusItem(state, action: PayloadAction<string>) {
             let findItem = state.cartItems.find(obj => obj.title === action.payload)
             if (findItem!.count === 1) {
                 state.cartItems = state.cartItems.filter((el) => el.title !== action.payload)

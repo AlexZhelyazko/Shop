@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
+import { ICatalog, IProduct } from '../../@types/types';
 import { intersect } from '../../utils/intersects';
 import { fetchCatalogItems, getItem } from './asyncActions';
 
-const initialState = {
+const initialState: ICatalog = {
     status: 'pending',
     filters: false,
     currentItem: {},
@@ -21,22 +22,19 @@ const catalogSlice = createSlice({
     name: 'catalog',
     initialState,
     reducers: {
-        setItems(state, action) {
-            state.items = action.payload
-        },
-        setNotFound(state, action) {
+        setNotFound(state, action: PayloadAction<boolean>) {
             state.notFoundItems = action.payload
         },
-        setFilterItemsByColor(state, action) {
+        setFilterItemsByColor(state, action: PayloadAction<IProduct[]>) {
             state.filterItemByColor = action.payload
         },
-        setFilterItemsBySize(state, action) {
+        setFilterItemsBySize(state, action: PayloadAction<IProduct[]>) {
             state.filterItemBySize = action.payload
         },
-        setFilterItemsByPrice(state, action) {
+        setFilterItemsByPrice(state, action: PayloadAction<IProduct[]>) {
             state.filterItemByPrice = action.payload
         },
-        setFilterItemsByCategory(state, action) {
+        setFilterItemsByCategory(state, action: PayloadAction<IProduct[]>) {
             state.filterItemByCategory = action.payload
         },
         clearFilterItemsByPrice(state) {
@@ -82,5 +80,5 @@ const catalogSlice = createSlice({
     }
 })
 
-export const { setItems, setFilterItemsByColor, setFilterItemsByPrice, setFilters, clearFilterItemsByPrice, clearFilters, setNotFound, setFilterItemsBySize, setFilterItemsByCategory } = catalogSlice.actions;
+export const { setFilterItemsByColor, setFilterItemsByPrice, setFilters, clearFilterItemsByPrice, clearFilters, setNotFound, setFilterItemsBySize, setFilterItemsByCategory } = catalogSlice.actions;
 export default catalogSlice.reducer;
