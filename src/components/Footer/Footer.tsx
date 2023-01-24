@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom';
 import './footer.scss';
+import { NavLink } from 'react-router-dom';
 import { AiOutlineShoppingCart, AiOutlineHome, AiOutlineShop } from 'react-icons/ai';
 
 const Footer = () => {

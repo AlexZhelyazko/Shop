@@ -1,6 +1,5 @@
 import React from 'react';
 import './MainPage.scss';
-import { NavLink } from 'react-router-dom';
 
 const MainPage: React.FC = () => {
   return (
