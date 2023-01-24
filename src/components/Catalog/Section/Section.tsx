@@ -4,10 +4,11 @@ import { NavLink } from 'react-router-dom';
 import { NotFound } from '../../NotFound/NotFound';
 import SkeletonLoader from '../../Preloader/SleletonLoader/Skeleton';
 import { RootState } from '../../../redux/store';
+import { IProduct } from '../../../@types/types';
 
 interface SectionProps {
-  items: [];
-  filterItems: [];
+  items: IProduct[];
+  filterItems: IProduct[];
 }
 
 const Section: React.FC<SectionProps> = ({ items, filterItems }) => {
@@ -38,7 +39,7 @@ const Section: React.FC<SectionProps> = ({ items, filterItems }) => {
             </div>
           ))
         : (filterItems.length === 0 && isFilterActive === false ? items : filterItems).map(
-            (item) => {
+            (item: IProduct) => {
               return (
                 <div className="catalog__section-product">
                   <NavLink
