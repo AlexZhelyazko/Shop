@@ -1,15 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+import './catalogItem.scss';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getItem } from '../../../redux/catalog/asyncActions';
-// import ReactImageMagnify from 'react-image-magnify';
-import { useAppDispatch } from '../../../redux/store';
+import { getItem } from '../../redux/catalog/asyncActions';
+import { useAppDispatch } from '../../redux/store';
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
 import { ImCancelCircle } from 'react-icons/im';
-import './catalogItem.scss';
-import { setCartItems } from '../../../redux/cart/cartSlice';
+import { setCartItems } from '../../redux/cart/cartSlice';
 
-function CatalogItem() {
+function SingleProduct() {
   const [selectValue, setSelectValue] = useState('');
   const [currentImage, setCurrentImage] = useState(false);
   const [largeImgEnabled, setLargeImgEnabled] = useState(false);
@@ -130,4 +129,4 @@ function CatalogItem() {
   );
 }
 
-export default CatalogItem;
+export default SingleProduct;

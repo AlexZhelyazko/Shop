@@ -1,10 +1,10 @@
-import { Route, Routes } from 'react-router-dom';
-import MainPage from './Layouts/MainPage/MainPage';
 import './App.scss';
-import Products from './Layouts/ProductsPage/Products';
-import Cart from './Layouts/CartPage/cart';
+import { Route, Routes } from 'react-router-dom';
+import MainPage from './pages/MainPage/MainPage';
+import Products from './pages/ProductsPage/Products';
+import Cart from './pages/CartPage/cart';
 import Catalog from './components/Catalog/Catalog';
-import CatalogItem from './components/Catalog/CatalogItem/CatalogItem';
+import SingleProduct from './pages/SingleProductPage/SingleProduct';
 
 export const App: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ export const App: React.FC = () => {
       <Route path="/home" element={<MainPage />} />
       <Route path="/" element={<Products />}>
         <Route path="shop" element={<Catalog />} />
-        <Route path="/shop/:id" element={<CatalogItem />} />
+        <Route path="/shop/:id" element={<SingleProduct />} />
         <Route path="/cart" element={<Cart />} />
       </Route>
     </Routes>

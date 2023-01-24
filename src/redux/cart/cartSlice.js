@@ -4,8 +4,6 @@ const initialState = {
     cartItems: []
 }
 
-//cartItem ={title: '', count: '', size: '', image: ''}
-
 const cartSlice = createSlice({
     name: 'cart',
     initialState,

@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../../redux/store';
 import './section.scss';
 import { NavLink } from 'react-router-dom';
 import { NotFound } from '../../NotFound/NotFound';
@@ -53,7 +52,6 @@ const Section = ({ items, filterItems }) => {
                       <span className="catalog__section-product-title">{item.title}</span>
                       <span>{item.size + ' '}</span>
                       <span>{item.price} </span>
-                      {/* <button onClick={() => dispatch(setCartItems(item))}>Add</button> */}
                     </div>
                   </NavLink>
                 </div>
