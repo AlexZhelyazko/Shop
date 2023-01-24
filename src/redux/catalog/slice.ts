@@ -39,15 +39,15 @@ const catalogSlice = createSlice({
         setFilterItemsByCategory(state, action) {
             state.filterItemByCategory = action.payload
         },
-        clearFilterItemsByPrice(state, action) {
+        clearFilterItemsByPrice(state) {
             state.filterItemByPrice.length = 0
         },
-        setFilters(state, action) {
+        setFilters(state) {
             let res = intersect(current(state.filterItemByCategory), current(state.filterItemByColor), current(state.filterItemByPrice), current(state.filterItemBySize))
             state.filterItem = res
             state.filterItem.length ? state.notFoundItems = false : state.notFoundItems = true
         },
-        clearFilters(state, action) {
+        clearFilters(state) {
             state.filterItemByColor.length = 0
             state.filterItemByPrice.length = 0
             state.filterItemBySize.length = 0

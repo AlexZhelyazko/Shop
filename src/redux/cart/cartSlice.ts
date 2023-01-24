@@ -1,10 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { CartProduct, ICartProducts } from "../../@types/types"
 
-interface ICartItems {
-    cartItems: any[]
-}
 
-const initialState: ICartItems = {
+const initialState: ICartProducts = {
     cartItems: []
 }
 
@@ -12,7 +10,7 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        setCartItems(state, action: PayloadAction) {
+        setCartItems(state, action: PayloadAction<CartProduct>) {
             state.cartItems = [...state.cartItems, action.payload]
         },
         // setCartItems(state, action) {
@@ -32,14 +30,14 @@ const cartSlice = createSlice({
         },
         addItem(state, action) {
             let findItem = state.cartItems.find(obj => obj.title === action.payload)
-            findItem.count++
+            findItem!.count++
         },
         minusItem(state, action) {
             let findItem = state.cartItems.find(obj => obj.title === action.payload)
-            if (findItem.count === 1) {
+            if (findItem!.count === 1) {
                 state.cartItems = state.cartItems.filter((el) => el.title !== action.payload)
             } else {
-                findItem.count--
+                findItem!.count--
             }
         }
     }

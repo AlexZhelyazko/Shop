@@ -2,13 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useAppDispatch } from '../../redux/store';
-import {
-  clearFilterItemsByPrice,
-  setFilterItemsByPrice,
-  setFilters,
-} from '../../redux/catalog/slice';
+import { setFilterItemsByPrice } from '../../redux/catalog/slice';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
 function valuetext(value: number) {
   return `${value}$`;

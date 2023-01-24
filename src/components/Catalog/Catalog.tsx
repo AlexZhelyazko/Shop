@@ -24,7 +24,7 @@ const Catalog = () => {
 
   return (
     <div className="catalog__wrapper">
-      <Sidebar location={location} items={items} />
+      <Sidebar location={location.pathname} items={items} />
       <Section items={items} filterItems={filterItems} />
     </div>
   );

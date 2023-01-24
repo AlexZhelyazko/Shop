@@ -9,3 +9,14 @@ export interface IProduct {
   description: string;
   size: string[];
 }
+
+export type CartProduct = {
+  count: number;
+  image: string;
+  selectValue: string;
+  title: string;
+};
+
+export interface ICartProducts {
+  cartItems: CartProduct[];
+}

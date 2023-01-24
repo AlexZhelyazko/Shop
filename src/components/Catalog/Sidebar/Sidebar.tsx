@@ -1,7 +1,7 @@
 import './sidebar.scss';
 import { useEffect, useState } from 'react';
 import RangeSlider from '../../RangeSlider/RangeSlider';
-import { useAppDispatch } from '../../../redux/store';
+import { RootState, useAppDispatch } from '../../../redux/store';
 import { BsFilterLeft } from 'react-icons/bs';
 import { GiCancel } from 'react-icons/gi';
 import {
@@ -13,6 +13,7 @@ import {
   setNotFound,
 } from '../../../redux/catalog/slice';
 import { useSelector } from 'react-redux';
+import { IProduct } from '../../../@types/types';
 
 const colorsData = [
   { Blue: 'blue' },
@@ -26,37 +27,45 @@ const colorsData = [
 
 const sizeData = ['M', 'S', 'L', 'XL'];
 
-const Sidebar = ({ items, location }) => {
-  const [showFilter, setShowFilter] = useState(true);
-  let filterItemsByColor = useSelector((state) => state.catalog.filterItemByColor);
-  let filterItemsByPrice = useSelector((state) => state.catalog.filterItemByPrice);
-  let filterItemsBySize = useSelector((state) => state.catalog.filterItemBySize);
+interface SidebarProps {
+  items: IProduct[];
+  location: string;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
+  const [showFilter, setShowFilter] = useState<boolean>(true);
+  const [value, setValue] = useState<number[]>([0, 4000]);
+  const [activeColors, setActiveColors] = useState<string[]>([]);
+  const [activeSize, setActiveSize] = useState<string[]>([]);
+  const [activeJackets, setActiveJackets] = useState<boolean>(false);
+  const [activeAccessories, setActiveAccessories] = useState<boolean>(false);
+
+  let filterItemsByColor = useSelector((state: RootState) => state.catalog.filterItemByColor);
+  let filterItemsByPrice = useSelector((state: RootState) => state.catalog.filterItemByPrice);
+  let filterItemsBySize = useSelector((state: RootState) => state.catalog.filterItemBySize);
+
   const dispatch = useAppDispatch();
 
-  const [value, setValue] = useState([0, 4000]);
-  const [activeColors, setActiveColors] = useState([]);
-  const [activeSize, setActiveSize] = useState([]);
-  const [activeJackets, setActiveJackets] = useState(false);
-  const [activeAccessories, setActiveAccessories] = useState(false);
-
-  const handleClickColor = (color) => {
+  const handleClickColor = (color: string) => {
     activeColors.includes(color)
       ? setActiveColors([...activeColors.filter((el) => el !== color)])
       : setActiveColors([...activeColors, color]);
   };
 
-  const handleClickSize = (size) => {
+  const handleClickSize = (size: string) => {
     activeSize.includes(size)
       ? setActiveSize([...activeSize.filter((el) => el !== size)])
       : setActiveSize([...activeSize, size]);
   };
 
-  const handleClickCategory = (category) => {
+  const handleClickCategory = (category: string) => {
     switch (category) {
       case 'jackets':
         setActiveJackets(!activeJackets);
+        break;
       case 'accessories':
         setActiveAccessories(!activeAccessories);
+        break;
       default:
         return;
     }
@@ -125,7 +134,7 @@ const Sidebar = ({ items, location }) => {
                   onChange={(event) => handleClickCategory(event.target.value)}
                   id="jackets"
                   name="jackets"
-                  checked={activeJackets.value}
+                  checked={activeJackets}
                 />
                 <label className="filter__category-label" htmlFor="lackets">
                   Jackets
@@ -139,7 +148,7 @@ const Sidebar = ({ items, location }) => {
                   id="accessories"
                   name="accessories"
                   value="accessories"
-                  checked={activeAccessories.value}
+                  checked={activeAccessories}
                 />
                 <label className="filter__category-label" htmlFor="accessories">
                   Accessories
@@ -209,7 +218,7 @@ const Sidebar = ({ items, location }) => {
               onChange={(event) => handleClickCategory(event.target.value)}
               id="jackets"
               name="jackets"
-              checked={activeJackets.value}
+              checked={activeJackets}
             />
             <label className="filter__category-label" htmlFor="lackets">
               Jackets
@@ -223,7 +232,7 @@ const Sidebar = ({ items, location }) => {
               id="accessories"
               name="accessories"
               value="accessories"
-              checked={activeAccessories.value}
+              checked={activeAccessories}
             />
             <label className="filter__category-label" htmlFor="accessories">
               Accessories
