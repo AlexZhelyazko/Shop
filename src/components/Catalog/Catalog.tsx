@@ -11,8 +11,10 @@ import { IProduct } from '../../@types/types';
 
 const Catalog = () => {
   const dispatch = useAppDispatch();
+
   const items: IProduct[] = useSelector((state: RootState) => state.catalog.items);
   const filterItems = useSelector((state: RootState) => state.catalog.filterItem);
+
   const location = useLocation();
 
   useEffect(() => {

@@ -3,21 +3,25 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getItem } from '../../redux/catalog/asyncActions';
-import { useAppDispatch } from '../../redux/store';
+import { RootState, useAppDispatch } from '../../redux/store';
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
 import { ImCancelCircle } from 'react-icons/im';
 import { setCartItems } from '../../redux/cart/cartSlice';
 
 function SingleProduct() {
-  const [selectValue, setSelectValue] = useState('');
-  const [currentImage, setCurrentImage] = useState(false);
-  const [largeImgEnabled, setLargeImgEnabled] = useState(false);
-  const [count, setCount] = useState(0);
+  const [selectValue, setSelectValue] = useState<string>('');
+  const [currentImage, setCurrentImage] = useState<boolean>(false);
+  const [largeImgEnabled, setLargeImgEnabled] = useState<boolean>(false);
+  const [count, setCount] = useState<number>(0);
+
   const dispatch = useAppDispatch();
+
   const params = useParams();
-  const item = useSelector((state) => state?.catalog?.currentItem);
+
+  const item = useSelector((state: RootState) => state?.catalog?.currentItem);
+
   useEffect(() => {
-    dispatch(getItem(params.id));
+    dispatch(getItem(params.id!));
   }, [params.id]);
 
   useEffect(() => {
@@ -26,7 +30,7 @@ function SingleProduct() {
     }
   }, []);
 
-  const addItemToCart = (item) => {
+  const addItemToCart = (item: any) => {
     let title = item.title;
     let img = item.frontImageUrl;
     dispatch(setCartItems({ title, img, count, selectValue }));
@@ -73,7 +77,7 @@ function SingleProduct() {
           <div className="catalogItem__info-size">
             <div>Size:</div>
             <select value={selectValue} onChange={(e) => setSelectValue(e.target.value)}>
-              {item?.size.map((el) => (
+              {item?.size.map((el: any) => (
                 <option value={el} key={el}>
                   {el}
                 </option>

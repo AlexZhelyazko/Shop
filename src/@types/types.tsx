@@ -26,7 +26,7 @@ export interface ICatalog {
 
 export type CartProduct = {
   count: number;
-  image: string;
+  img: string;
   selectValue: string;
   title: string;
 };

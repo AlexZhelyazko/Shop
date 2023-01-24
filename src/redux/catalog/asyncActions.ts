@@ -11,9 +11,8 @@ export const fetchCatalogItems = createAsyncThunk(
 
 export const getItem = createAsyncThunk(
     'catalog/getItem',
-    async (id) => {
+    async (id: string) => {
         const response = await axios.get(`https://63645ab08a3337d9a2f5d855.mockapi.io/products?id=${id}`)
-        console.log(response.data);
         return response.data[0]
     }
 )
