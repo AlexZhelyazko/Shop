@@ -28,9 +28,10 @@ function SingleProduct() {
 
   const addItemToCart = (item: any) => {
     let { title, frontImageUrl, price, color } = item;
+    let id = Date.now();
     let img = frontImageUrl;
     let size = selectValue || item.size[0];
-    dispatch(setCartItems({ title, img, count, size, price, color }));
+    dispatch(setCartItems({ title, img, count, size, price, color, id }));
   };
 
   return Object.keys(item).length === 0 ? (

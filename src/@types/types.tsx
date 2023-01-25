@@ -31,6 +31,7 @@ export type CartProduct = {
   title: string;
   price: string;
   color?: string;
+  id: number;
 };
 
 export interface ICartProducts {

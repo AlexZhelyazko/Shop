@@ -15,17 +15,17 @@ const cartSlice = createSlice({
             state.cartItems = [...state.cartItems, action.payload]
             state.totalPrice = state.cartItems.reduce((acc, num) => acc + +num.price.slice(1, -2).replace(/[\s.,%]/g, '') * num.count, 0)
         },
-        deleteItemfromCart(state, action: PayloadAction<string>) {
-            state.cartItems = state.cartItems.filter((el) => el.title !== action.payload)
+        deleteItemfromCart(state, action: PayloadAction<number>) {
+            state.cartItems = state.cartItems.filter((el) => el.id !== action.payload)
         },
-        addItem(state, action: PayloadAction<string>) {
-            let findItem = state.cartItems.find(obj => obj.title === action.payload)
+        addItem(state, action: PayloadAction<number>) {
+            let findItem = state.cartItems.find(obj => obj.id === action.payload)
             findItem!.count++
         },
-        minusItem(state, action: PayloadAction<string>) {
-            let findItem = state.cartItems.find(obj => obj.title === action.payload)
+        minusItem(state, action: PayloadAction<number>) {
+            let findItem = state.cartItems.find(obj => obj.id === action.payload)
             if (findItem!.count === 1) {
-                state.cartItems = state.cartItems.filter((el) => el.title !== action.payload)
+                state.cartItems = state.cartItems.filter((el) => el.id !== action.payload)
             } else {
                 findItem!.count--
             }

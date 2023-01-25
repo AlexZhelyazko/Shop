@@ -32,17 +32,17 @@ export default function Cart() {
                   </div>
                   <div className="cart__item-buttons">
                     <div>
-                      <button className="countBtn" onClick={() => dispatch(minusItem(el.title))}>
+                      <button className="countBtn" onClick={() => dispatch(minusItem(el.id))}>
                         -
                       </button>
                       <span>{el.count}</span>
-                      <button className="countBtn" onClick={() => dispatch(addItem(el.title))}>
+                      <button className="countBtn" onClick={() => dispatch(addItem(el.id))}>
                         +
                       </button>
                     </div>
                     <button
                       className="deleteBtn"
-                      onClick={() => dispatch(deleteItemfromCart(el.title))}>
+                      onClick={() => dispatch(deleteItemfromCart(el.id))}>
                       Delete
                     </button>
                   </div>
