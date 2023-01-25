@@ -12,13 +12,13 @@ export default function Cart() {
       {cartItems.length === 0 ? (
         <h1>Empty</h1>
       ) : (
-        cartItems.map((el) => {
+        cartItems.map((el, index) => {
           return (
-            <div key={el.count + el.title} className="cart__item">
+            <div key={el.count + el.title + index} className="cart__item">
               <h1>Your Cart</h1>
               <img src={el.img} alt="" />
               <h2>{el.title}</h2>
-              <h2>Size: {el.selectValue}</h2>
+              <h2>Size: {el.size}</h2>
               <h2>Count: {el.count}</h2>
               <button onClick={() => dispatch(deleteItemfromCart(el.title))}>delete</button>
               <button onClick={() => dispatch(addItem(el.title))}>add</button>

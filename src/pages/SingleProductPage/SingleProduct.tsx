@@ -26,17 +26,11 @@ function SingleProduct() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id]);
 
-  useEffect(() => {
-    if (item.size !== undefined) {
-      setSelectValue(item?.size[0]);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const addItemToCart = (item: any) => {
     let title = item.title;
     let img = item.frontImageUrl;
-    dispatch(setCartItems({ title, img, count, selectValue }));
+    let size = selectValue || item.size[0];
+    dispatch(setCartItems({ title, img, count, size }));
   };
 
   return Object.keys(item).length === 0 ? (
