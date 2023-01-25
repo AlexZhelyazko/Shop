@@ -13,7 +13,7 @@ const cartSlice = createSlice({
     reducers: {
         setCartItems(state, action: PayloadAction<CartProduct>) {
             state.cartItems = [...state.cartItems, action.payload]
-            state.totalPrice = state.cartItems.reduce((acc, num) => acc + +num.price.slice(1, -2).replace(/[\s.,%]/g, '') * num.count,state.totalPrice)
+            state.totalPrice = state.cartItems.reduce((acc, num) => acc + +num.price.slice(1, -2).replace(/[\s.,%]/g, '') * num.count, 0)
         },
         deleteItemfromCart(state, action: PayloadAction<string>) {
             state.cartItems = state.cartItems.filter((el) => el.title !== action.payload)
