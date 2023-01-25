@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     margin: 1em 10em;
-    height: 100%;
     .cart__items-wrapper{
         display: flex;
         flex-direction: row;
@@ -16,8 +15,9 @@
     .cart__item{
         display: flex;
         flex-direction: column;
+        align-self: center;
         border-right: 1px solid lightgray;
-        width: 25vw;
+        width: 23vw;
         margin-right: 40px;
         align-items: center;
         margin-bottom: 2em;
@@ -25,14 +25,35 @@
             margin-right: 10px;
         }
         img{
-            height: 50%;
-            width: 50%;
+            height: 60%;
+            width: 100%;
             object-fit: contain;
         }
         .cart__item-info{
             width: 90%;
             display: flex;
             flex-direction: column;
+            .cart__item-buttons {
+                padding-top: 10px;
+                display: flex;
+                align-items: center;
+                .countBtn {
+                    background-color: transparent;
+                    border: none;
+                    font-size: 20px;
+                    cursor: pointer;
+                }
+            }
+
+            .deleteBtn {
+                font-family: 'Nunito';
+                letter-spacing: 1px;
+                background-color: transparent;
+                border: none;
+                border-bottom: 1px solid lightgray;
+                cursor: pointer;
+            }
+            
             .cart__item-info_size-color{
                 display: flex;
                 flex-direction: row;
@@ -50,6 +71,7 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
+                align-items: center;
             }
         }
     }

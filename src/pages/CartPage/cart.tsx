@@ -21,19 +21,28 @@ export default function Cart() {
               <div className="cart__item-info">
                 <h2 className="cart__item-title">{el.title}</h2>
                 <div>
-                  <div>Price:{el.price}</div>
+                  <div style={{ letterSpacing: '0.5px' }}>Price: {el.price}</div>
                   <div className="cart__item-info_size-color">
-                    <span>SIZE: {el.size} </span>
+                    {el.size ? <span>{el.size}</span> : ''}
                     <span> | </span>
                     {el.color ? <span>{el.color}</span> : ''}
                   </div>
                 </div>
                 <div className="cart__item-buttons">
                   <div>
-                    <button onClick={() => dispatch(addItem(el.title))}>add</button>
-                    <button onClick={() => dispatch(minusItem(el.title))}>minus</button>
+                    <button className="countBtn" onClick={() => dispatch(minusItem(el.title))}>
+                      -
+                    </button>
+                    <span>{el.count}</span>
+                    <button className="countBtn" onClick={() => dispatch(addItem(el.title))}>
+                      +
+                    </button>
                   </div>
-                  <button onClick={() => dispatch(deleteItemfromCart(el.title))}>delete</button>
+                  <button
+                    className="deleteBtn"
+                    onClick={() => dispatch(deleteItemfromCart(el.title))}>
+                    Delete
+                  </button>
                 </div>
               </div>
             </div>
