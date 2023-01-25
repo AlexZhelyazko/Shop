@@ -8,6 +8,26 @@ export default function Cart() {
   const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
   const dispatch = useAppDispatch();
 
+  const onAddItemClick = (params: any[]) => {
+    let id = params[0];
+    let price = params[1];
+    dispatch(addItem({ id, price }));
+  };
+
+  const onMinusItemClick = (params: any[]) => {
+    let id = params[0];
+    let price = params[1];
+    dispatch(minusItem({ id, price }));
+  };
+
+  const onDeleteItemClick = (params: any[]) => {
+    let id = params[0];
+    let price = params[1];
+    let count = params[2];
+    price = +price.slice(1, -2).replace(/[\s.,%]/g, '') * count;
+    dispatch(deleteItemfromCart({ id, price }));
+  };
+
   if (cartItems.length === 0) {
     return <h1>Empty</h1>;
   }
@@ -32,17 +52,21 @@ export default function Cart() {
                   </div>
                   <div className="cart__item-buttons">
                     <div>
-                      <button className="countBtn" onClick={() => dispatch(minusItem(el.id))}>
+                      <button
+                        className="countBtn"
+                        onClick={() => onMinusItemClick([el.id, el.price])}>
                         -
                       </button>
                       <span>{el.count}</span>
-                      <button className="countBtn" onClick={() => dispatch(addItem(el.id))}>
+                      <button
+                        className="countBtn"
+                        onClick={() => onAddItemClick([el.id, el.price])}>
                         +
                       </button>
                     </div>
                     <button
                       className="deleteBtn"
-                      onClick={() => dispatch(deleteItemfromCart(el.id))}>
+                      onClick={() => onDeleteItemClick([el.id, el.price, el.count])}>
                       Delete
                     </button>
                   </div>
@@ -56,4 +80,3 @@ export default function Cart() {
     </>
   );
 }
-//el.price.slice(0, -2).replace(/[\s.,%]/g, '')
