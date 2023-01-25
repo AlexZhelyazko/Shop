@@ -35,4 +35,5 @@ export type CartProduct = {
 
 export interface ICartProducts {
   cartItems: CartProduct[];
+  totalPrice: number;
 }

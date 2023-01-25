@@ -3,7 +3,8 @@ import { CartProduct, ICartProducts } from "../../@types/types"
 
 
 const initialState: ICartProducts = {
-    cartItems: []
+    cartItems: [],
+    totalPrice: 0,
 }
 
 const cartSlice = createSlice({
@@ -12,19 +13,8 @@ const cartSlice = createSlice({
     reducers: {
         setCartItems(state, action: PayloadAction<CartProduct>) {
             state.cartItems = [...state.cartItems, action.payload]
+            state.totalPrice = state.cartItems.reduce((acc, num) => acc + +num.price.slice(1, -2).replace(/[\s.,%]/g, '') * num.count,state.totalPrice)
         },
-        // setCartItems(state, action) {
-        //     let findItem = state.cartItems.find(obj => obj.title === action.payload.title)
-        //     console.log(action.payload);
-        //     console.log(findItem);
-        //     if (findItem) {
-        //         findItem.count++
-        //     } else {
-        //         let item = { ...action.payload, count: 1 }
-        //         state.cartItems = [...state.cartItems, item]
-        //         //state.cartItems = {...state.cartItems, action.payload, count: 1}
-        //     }
-        // },
         deleteItemfromCart(state, action: PayloadAction<string>) {
             state.cartItems = state.cartItems.filter((el) => el.title !== action.payload)
         },

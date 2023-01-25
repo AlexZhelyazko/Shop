@@ -8,10 +8,6 @@
         flex-direction: row;
         flex-wrap: wrap;
     }
-    .cart__footer{
-        width: 100%;
-        background-color: lightgray;
-    }
     .cart__item{
         display: flex;
         flex-direction: column;
@@ -75,4 +71,11 @@
             }
         }
     }
+}
+
+.cart__footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: rgb(237, 233, 233);
 }
