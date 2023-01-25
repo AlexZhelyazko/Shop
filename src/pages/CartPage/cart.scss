@@ -1,18 +1,29 @@
 .cart__container{
+    font-family: "Nunito";
     display: flex;
     flex-direction: column;
-    margin: 3em 10em;
+    margin: 1em 10em;
     height: 100%;
     .cart__item{
         display: flex;
         flex-direction: row;
-        height: 7em;
+        height: 10em;
         align-items: center;
+        margin-bottom: 2em;
         & > * {
             margin-right: 10px;
         }
         img{
             height: 100%;
+        }
+        .cart__item-info{
+            display: flex;
+            flex-direction: column;
+            div{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
         }
     }
 }
