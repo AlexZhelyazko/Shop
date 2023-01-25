@@ -27,10 +27,10 @@ function SingleProduct() {
   }, [params.id]);
 
   const addItemToCart = (item: any) => {
-    let title = item.title;
-    let img = item.frontImageUrl;
+    let { title, frontImageUrl, price, color } = item;
+    let img = frontImageUrl;
     let size = selectValue || item.size[0];
-    dispatch(setCartItems({ title, img, count, size }));
+    dispatch(setCartItems({ title, img, count, size, price, color }));
   };
 
   return Object.keys(item).length === 0 ? (

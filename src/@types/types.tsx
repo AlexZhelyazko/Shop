@@ -27,8 +27,10 @@ export interface ICatalog {
 export type CartProduct = {
   count: number;
   img: string;
-  size: string;
+  size?: string;
   title: string;
+  price: string;
+  color?: string;
 };
 
 export interface ICartProducts {
