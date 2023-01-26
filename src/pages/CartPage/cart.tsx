@@ -2,6 +2,7 @@ import './cart.scss';
 import { useSelector } from 'react-redux';
 import { deleteItemfromCart, addItem, minusItem } from '../../redux/cart/cartSlice';
 import { RootState, useAppDispatch } from '../../redux/store';
+import { EmptyCart } from '../../components/EmptyCart/EmptyCart';
 
 export default function Cart() {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
@@ -29,7 +30,7 @@ export default function Cart() {
   };
 
   if (cartItems.length === 0) {
-    return <h1>Empty</h1>;
+    return <EmptyCart />;
   }
   return (
     <>

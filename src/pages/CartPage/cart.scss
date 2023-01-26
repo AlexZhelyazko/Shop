@@ -1,19 +1,21 @@
 .cart__container{
     font-family: "Nunito";
     display: flex;
+    height: 100%;
     flex-direction: column;
-    margin: 1em 10em;
+    margin: 1em 3em;
     .cart__items-wrapper{
+        width: 100%;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: center;
     }
     .cart__item{
         display: flex;
         flex-direction: column;
-        align-self: center;
         border-right: 1px solid lightgray;
-        width: 23vw;
+        max-width: 25vw;
         margin-right: 40px;
         align-items: center;
         margin-bottom: 2em;
@@ -74,8 +76,40 @@
 }
 
 .cart__footer{
+    height: 45px;
     width: 100%;
     position: fixed;
     bottom: 0;
-    background-color: rgb(237, 233, 233);
+    background-color: rgb(253 250 250);
+    font-size: 20px;
+    font-family: serif;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@media all and (max-width: 875px) {
+    .cart__container{
+        margin: 1em 1em;
+        .cart__item {
+            max-width: 40%
+        }
+    }
+}
+
+@media all and (max-width: 480px) {
+    .cart__container{
+        margin: 1em 1em;
+        .cart__items-wrapper {
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-items: center;
+            .cart__item{
+                margin-right: 0;
+                max-width: 80%;
+                border: none;
+            }
+        }
+    }
 }
