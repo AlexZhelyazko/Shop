@@ -3,7 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BiLogIn } from 'react-icons/bi';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  loginVisibility: boolean;
+  setLoginVisibility: (value: boolean | ((prevVar: boolean) => boolean)) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ loginVisibility, setLoginVisibility }) => {
   return (
     <header className="header__wrapper">
       <NavLink className={({ isActive }) => (isActive ? 'activeLink' : '')} to="/">
@@ -15,7 +20,10 @@ const Header: React.FC = () => {
       <NavLink className={({ isActive }) => (isActive ? 'activeLink' : '')} to="/cart">
         <AiOutlineShoppingCart style={{ width: '25px', height: '25px' }} />
       </NavLink>
-      <BiLogIn style={{ width: '25px', height: '25px', cursor: 'pointer' }} />
+      <BiLogIn
+        onClick={() => setLoginVisibility(!loginVisibility)}
+        style={{ width: '25px', height: '25px', cursor: 'pointer' }}
+      />
     </header>
   );
 };
