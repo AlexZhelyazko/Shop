@@ -4,6 +4,7 @@ import styled from 'styled-components';
 interface ModalProps {
   loginVisibility: boolean;
   children?: React.ReactNode;
+  setLoginVisibility: (value: boolean | ((prevVar: boolean) => boolean)) => void;
 }
 
 const Wrapper = styled.div<{ loginVisibility: any }>`
@@ -14,6 +15,8 @@ const Wrapper = styled.div<{ loginVisibility: any }>`
   position: fixed;
   top: 0;
   left: 0;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ModalWindow = styled.div`
@@ -23,12 +26,15 @@ const ModalWindow = styled.div`
   background-color: white;
   z-index: 4;
   opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
-export const Modal: React.FC<ModalProps> = ({ loginVisibility, children }) => {
+export const Modal: React.FC<ModalProps> = ({ loginVisibility, setLoginVisibility, children }) => {
   return (
-    <Wrapper loginVisibility={loginVisibility}>
-      <ModalWindow>{children}</ModalWindow>
+    <Wrapper onClick={() => setLoginVisibility(false)} loginVisibility={loginVisibility}>
+      <ModalWindow onClick={(e) => e.stopPropagation()}>{children}</ModalWindow>
     </Wrapper>
   );
 };

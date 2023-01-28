@@ -12,7 +12,7 @@ const Products: React.FC = () => {
     <div className="container">
       <Header loginVisibility={loginVisibility} setLoginVisibility={setLoginVisibility} />
       {loginVisibility ? (
-        <Modal loginVisibility={loginVisibility}>
+        <Modal loginVisibility={loginVisibility} setLoginVisibility={setLoginVisibility}>
           <Login />
         </Modal>
       ) : (
