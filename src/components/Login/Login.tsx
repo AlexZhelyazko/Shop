@@ -7,13 +7,27 @@ interface LoginProps {
 
 const Wrapper = styled.div<{ loginVisibility: any }>`
   display: ${(props) => (props.loginVisibility ? 'flex' : 'none')};
-  width: 20%;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+`;
+
+const LoginForm = styled.div`
   position: absolute;
-  background-color: gray;
-  height: 100%;
-  z-index: 2;
+  width: 30%;
+  height: 20%;
+  background-color: white;
+  z-index: 4;
+  opacity: 1;
 `;
 
 export const Login: React.FC<LoginProps> = (loginVisibility: LoginProps) => {
-  return <Wrapper loginVisibility={loginVisibility}>login</Wrapper>;
+  return (
+    <Wrapper loginVisibility={loginVisibility}>
+      <LoginForm />
+    </Wrapper>
+  );
 };
