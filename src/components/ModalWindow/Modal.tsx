@@ -15,20 +15,21 @@ const Wrapper = styled.div<{ loginVisibility: any }>`
   position: fixed;
   top: 0;
   left: 0;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-start;
 `;
 
 const ModalWindow = styled.div`
   position: absolute;
-  width: 30%;
-  height: 20%;
+  width: 25%;
+  height: 100%;
   background-color: white;
+  padding: 15px 55px;
   z-index: 4;
   opacity: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const Modal: React.FC<ModalProps> = ({ loginVisibility, setLoginVisibility, children }) => {
