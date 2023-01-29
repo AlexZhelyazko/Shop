@@ -1,10 +1,14 @@
 import './cart.scss';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { deleteItemfromCart, addItem, minusItem } from '../../redux/cart/cartSlice';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { EmptyCart } from '../../components/EmptyCart/EmptyCart';
+import { ModalForPayment } from '../../components/ModalWindow/ModalForPayment';
+import PaymentForm from '../../components/Payment/PaymentForm';
 
 export default function Cart() {
+  const [paymentVisible, setPaymentVisible] = useState(false);
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
   const dispatch = useAppDispatch();
@@ -77,9 +81,16 @@ export default function Cart() {
           })}
         </div>
       </div>
+      {paymentVisible ? (
+        <ModalForPayment visible={paymentVisible} setVisible={setPaymentVisible}>
+          <PaymentForm />
+        </ModalForPayment>
+      ) : (
+        ''
+      )}
       <div className="cart__footer">
         Total: ${totalPrice}
-        <button>Continue</button>
+        <button onClick={() => setPaymentVisible(true)}>Continue</button>
       </div>
     </>
   );

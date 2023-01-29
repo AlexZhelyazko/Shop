@@ -1,15 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AuthVisible } from '../../@types/types';
 
 interface ModalProps {
-  visible: string | boolean;
+  visible: boolean;
   children?: React.ReactNode;
-  setVisible: (value: AuthVisible | ((prevVar: AuthVisible) => AuthVisible)) => void;
+  setVisible: (value: boolean | ((prevVar: boolean) => boolean)) => void;
 }
 
-const Wrapper = styled.div<{ authVisible: any }>`
-  display: ${(props) => (props.authVisible !== AuthVisible.disabled ? 'flex' : 'none')};
+const Wrapper = styled.div<{ visible: any }>`
+  display: ${(props) => (props.visible ? 'flex' : 'none')};
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);
@@ -17,14 +16,14 @@ const Wrapper = styled.div<{ authVisible: any }>`
   z-index: 10;
   top: 0;
   left: 0;
-  justify-content: flex-end;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ModalWindow = styled.div`
   position: absolute;
-  width: 25%;
-  height: 100%;
+  width: 50%;
+  height: 60%;
   background-color: white;
   padding: 10px 55px;
   z-index: 4;
@@ -38,9 +37,9 @@ const ModalWindow = styled.div`
   }
 `;
 
-export const Modal: React.FC<ModalProps> = ({ visible, setVisible, children }) => {
+export const ModalForPayment: React.FC<ModalProps> = ({ visible, setVisible, children }) => {
   return (
-    <Wrapper onClick={() => setVisible(AuthVisible.disabled)} authVisible={visible}>
+    <Wrapper onClick={() => setVisible(false)} visible={visible}>
       <ModalWindow onClick={(e) => e.stopPropagation()}>{children}</ModalWindow>
     </Wrapper>
   );

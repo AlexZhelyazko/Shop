@@ -14,7 +14,7 @@ const Products: React.FC = () => {
     <div className="container">
       <Header setAuthVisible={setAuthVisible} />
       {authVisible !== AuthVisible.disabled ? (
-        <Modal authVisible={authVisible} setAuthVisible={setAuthVisible}>
+        <Modal visible={authVisible} setVisible={setAuthVisible}>
           {authVisible === AuthVisible.register ? (
             <Register setAuthVisible={setAuthVisible} />
           ) : (
