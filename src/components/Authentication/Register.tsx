@@ -13,17 +13,25 @@ export const Register: React.FC<RegisterProps> = ({ setLoginVisibility }) => {
   return (
     <div className="auth__wrapper">
       <div className="auth__top">
-        <h2>Register</h2>
+        <h2>IDENTIFICATION</h2>
         <div className="auth__cancel-icons">
           <ImCancelCircle onClick={() => setLoginVisibility(false)} />
         </div>
       </div>
       <div className="auth__form-wrapper">
-        <h4>I ALREADY HAVE AN ACCOUNT</h4>
+        <h4>Register</h4>
         <form className="auth__form" action="">
           <div>
-            <label htmlFor="login">Login</label>
-            <input type="text" name="login" id="" />
+            <label htmlFor="firstName">First Name</label>
+            <input type="text" name="firstName" id="" />
+          </div>
+          <div>
+            <label htmlFor="lastName">Last Name</label>
+            <input type="text" name="lastName" id="" />
+          </div>
+          <div>
+            <label htmlFor="login">Email</label>
+            <input type="text" name="email" id="" />
           </div>
           <div>
             <label htmlFor="password">Password</label>
@@ -38,13 +46,12 @@ export const Register: React.FC<RegisterProps> = ({ setLoginVisibility }) => {
               onChange={(e) => setValue(value)}
             />
           </div>
-          <button className="signBtn">Sign In</button>
+          <button className="signBtn">Sign Up</button>
         </form>
       </div>
-      <div className="auth__bottom">
-        <h4>I DON'T HAVE AN ACCOUNT</h4>
-        <span>Enjoy added benefits and a richer experience by creating a personal account</span>
-        <button className="createAccount">Create My Account</button>
+      <div className="auth__bottom" style={{ display: 'flex', alignItems: 'center' }}>
+        <h4>I HAVE AN ACCOUNT!</h4>
+        <button className="createAccount">Sign In</button>
       </div>
     </div>
   );

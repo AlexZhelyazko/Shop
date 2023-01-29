@@ -1,4 +1,6 @@
 .auth__wrapper {
+    width: 100%;
+    height: 100%;
     .auth__top{
         display: flex;
         flex-direction: row;
@@ -77,13 +79,19 @@
     }
 }
 
-.PhoneInputCountry{
+.PhoneInput{
     display: flex;
-    flex-direction: row-reverse;
     align-items: center;
-    justify-content: flex-end;
+    select{
+        position: absolute;
+        width: 40px;
+        height: 28px;
+        opacity: 0;
+    }
 }
 
 .PhoneInputCountryIcon {
+    cursor: pointer;
     width: 40px;
+    margin-right: 15px;
 }

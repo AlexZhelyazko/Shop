@@ -20,8 +20,8 @@ export const Login: React.FC<LoginProps> = ({ setLoginVisibility, setRegisterVis
         <h4>I ALREADY HAVE AN ACCOUNT</h4>
         <form className="auth__form" action="">
           <div>
-            <label htmlFor="login">Login</label>
-            <input type="text" name="login" id="" />
+            <label htmlFor="email">Email</label>
+            <input type="text" name="email" id="" />
           </div>
           <div>
             <label htmlFor="password">Password</label>

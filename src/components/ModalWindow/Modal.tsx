@@ -25,7 +25,7 @@ const ModalWindow = styled.div`
   width: 25%;
   height: 100%;
   background-color: white;
-  padding: 15px 55px;
+  padding: 10px 55px;
   z-index: 4;
   opacity: 1;
   display: flex;
