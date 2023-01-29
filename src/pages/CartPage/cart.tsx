@@ -77,7 +77,10 @@ export default function Cart() {
           })}
         </div>
       </div>
-      <div className="cart__footer">Total: ${totalPrice}</div>
+      <div className="cart__footer">
+        Total: ${totalPrice}
+        <button>Continue</button>
+      </div>
     </>
   );
 }
