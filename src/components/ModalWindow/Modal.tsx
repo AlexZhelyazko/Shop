@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { AuthVisible } from '../../@types/types';
 
 interface ModalProps {
-  loginVisibility: boolean;
+  authVisible: string;
   children?: React.ReactNode;
-  setLoginVisibility: (value: boolean | ((prevVar: boolean) => boolean)) => void;
+  setAuthVisible: (value: AuthVisible | ((prevVar: AuthVisible) => AuthVisible)) => void;
 }
 
-const Wrapper = styled.div<{ loginVisibility: any }>`
-  display: ${(props) => (props.loginVisibility ? 'flex' : 'none')};
+const Wrapper = styled.div<{ authVisible: any }>`
+  display: ${(props) => (props.authVisible !== AuthVisible.disabled ? 'flex' : 'none')};
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);
@@ -37,9 +38,9 @@ const ModalWindow = styled.div`
   }
 `;
 
-export const Modal: React.FC<ModalProps> = ({ loginVisibility, setLoginVisibility, children }) => {
+export const Modal: React.FC<ModalProps> = ({ authVisible, setAuthVisible, children }) => {
   return (
-    <Wrapper onClick={() => setLoginVisibility(false)} loginVisibility={loginVisibility}>
+    <Wrapper onClick={() => setAuthVisible(AuthVisible.disabled)} authVisible={authVisible}>
       <ModalWindow onClick={(e) => e.stopPropagation()}>{children}</ModalWindow>
     </Wrapper>
   );

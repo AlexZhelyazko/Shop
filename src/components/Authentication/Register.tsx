@@ -2,20 +2,20 @@ import './auth.scss';
 import React, { useState } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
 import PhoneInput from 'react-phone-number-input';
+import { AuthVisible } from '../../@types/types';
 
 interface RegisterProps {
-  setLoginVisibility: (value: boolean | ((prevVar: boolean) => boolean)) => void;
-  setRegisterVisibility: (value: boolean | ((prevVar: boolean) => boolean)) => void;
+  setAuthVisible: (value: AuthVisible | ((prevVar: AuthVisible) => AuthVisible)) => void;
 }
 
-export const Register: React.FC<RegisterProps> = ({ setLoginVisibility }) => {
+export const Register: React.FC<RegisterProps> = ({ setAuthVisible }) => {
   const [value, setValue] = useState();
   return (
     <div className="auth__wrapper">
       <div className="auth__top">
         <h2>IDENTIFICATION</h2>
         <div className="auth__cancel-icons">
-          <ImCancelCircle onClick={() => setLoginVisibility(false)} />
+          <ImCancelCircle onClick={() => setAuthVisible(AuthVisible.disabled)} />
         </div>
       </div>
       <div className="auth__form-wrapper">
@@ -51,7 +51,9 @@ export const Register: React.FC<RegisterProps> = ({ setLoginVisibility }) => {
       </div>
       <div className="auth__bottom" style={{ display: 'flex', alignItems: 'center' }}>
         <h4>I HAVE AN ACCOUNT!</h4>
-        <button className="createAccount">Sign In</button>
+        <button className="createAccount" onClick={() => setAuthVisible(AuthVisible.login)}>
+          Sign In
+        </button>
       </div>
     </div>
   );

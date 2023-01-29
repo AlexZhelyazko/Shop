@@ -5,26 +5,20 @@ import { Outlet } from 'react-router-dom';
 import { Login } from '../../components/Authentication/Login';
 import { Modal } from '../../components/ModalWindow/Modal';
 import { Register } from '../../components/Authentication/Register';
+import { AuthVisible } from '../../@types/types';
 
 const Products: React.FC = () => {
-  const [loginVisibility, setLoginVisibility] = useState(false);
-  const [registerVisiility, setRegisterVisibility] = useState(false);
+  const [authVisible, setAuthVisible] = useState<AuthVisible>(AuthVisible.disabled);
 
   return (
     <div className="container">
-      <Header loginVisibility={loginVisibility} setLoginVisibility={setLoginVisibility} />
-      {loginVisibility ? (
-        <Modal loginVisibility={loginVisibility} setLoginVisibility={setLoginVisibility}>
-          {registerVisiility ? (
-            <Register
-              setRegisterVisibility={setRegisterVisibility}
-              setLoginVisibility={setLoginVisibility}
-            />
+      <Header setAuthVisible={setAuthVisible} />
+      {authVisible !== AuthVisible.disabled ? (
+        <Modal authVisible={authVisible} setAuthVisible={setAuthVisible}>
+          {authVisible === AuthVisible.register ? (
+            <Register setAuthVisible={setAuthVisible} />
           ) : (
-            <Login
-              setRegisterVisibility={setRegisterVisibility}
-              setLoginVisibility={setLoginVisibility}
-            />
+            <Login setAuthVisible={setAuthVisible} />
           )}
         </Modal>
       ) : (

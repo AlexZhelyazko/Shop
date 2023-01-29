@@ -1,19 +1,19 @@
 import './auth.scss';
 import React from 'react';
 import { ImCancelCircle } from 'react-icons/im';
+import { AuthVisible } from '../../@types/types';
 
 interface LoginProps {
-  setLoginVisibility: (value: boolean | ((prevVar: boolean) => boolean)) => void;
-  setRegisterVisibility: (value: boolean | ((prevVar: boolean) => boolean)) => void;
+  setAuthVisible: (value: AuthVisible | ((prevVar: AuthVisible) => AuthVisible)) => void;
 }
 
-export const Login: React.FC<LoginProps> = ({ setLoginVisibility, setRegisterVisibility }) => {
+export const Login: React.FC<LoginProps> = ({ setAuthVisible }) => {
   return (
     <div className="auth__wrapper">
       <div className="auth__top">
         <h2>IDENTIFICATION</h2>
         <div className="auth__cancel-icons">
-          <ImCancelCircle onClick={() => setLoginVisibility(false)} />
+          <ImCancelCircle onClick={() => setAuthVisible(AuthVisible.disabled)} />
         </div>
       </div>
       <div className="auth__form-wrapper">
@@ -33,7 +33,7 @@ export const Login: React.FC<LoginProps> = ({ setLoginVisibility, setRegisterVis
       <div className="auth__bottom">
         <h4>I DON'T HAVE AN ACCOUNT</h4>
         <span>Enjoy added benefits and a richer experience by creating a personal account</span>
-        <button onClick={() => setRegisterVisibility(true)} className="createAccount">
+        <button onClick={() => setAuthVisible(AuthVisible.register)} className="createAccount">
           Create My Account
         </button>
       </div>

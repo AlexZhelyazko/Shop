@@ -38,3 +38,9 @@ export interface ICartProducts {
   cartItems: CartProduct[];
   totalPrice: number;
 }
+
+export enum AuthVisible {
+  disabled = 'disabled',
+  login = 'login',
+  register = 'register',
+}
