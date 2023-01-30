@@ -1,54 +1,45 @@
 import React, { useState } from 'react';
 
-interface FormValues {
-  name: string;
-  cardNumber: string;
-  expiryDate: string;
-  cvv: string;
-}
+interface PaymentFormProps {}
 
-const PaymentForm: React.FC = () => {
-  const [formValues, setFormValues] = useState<FormValues>({
-    name: '',
-    cardNumber: '',
-    expiryDate: '',
-    cvv: '',
-  });
+const PaymentForm: React.FC<PaymentFormProps> = () => {
+  const [cardNumber, setCardNumber] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
+  const [cvc, setCvc] = useState('');
+  const [name, setName] = useState('');
+  const [error, setError] = useState('');
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFormValues({
-      ...formValues,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // Add submit logic here
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!cardNumber || !expiryDate || !cvc || !name) {
+      setError('All fields are required');
+      return;
+    }
+    if (!/^\d{16}$/.test(cardNumber)) {
+      setError('Invalid card number');
+      return;
+    }
+    if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
+      setError('Invalid expiry date');
+      return;
+    }
+    if (!/^\d{3}$/.test(cvc)) {
+      setError('Invalid CVC');
+      return;
+    }
+    // perform payment
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Name on Card:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={formValues.name}
-          onChange={handleInputChange}
-          required
-        />
-      </div>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <div>
         <label htmlFor="cardNumber">Card Number:</label>
         <input
           type="text"
           id="cardNumber"
-          name="cardNumber"
-          value={formValues.cardNumber}
-          onChange={handleInputChange}
-          required
+          value={cardNumber}
+          onChange={(e) => setCardNumber(e.target.value)}
         />
       </div>
       <div>
@@ -56,24 +47,19 @@ const PaymentForm: React.FC = () => {
         <input
           type="text"
           id="expiryDate"
-          name="expiryDate"
-          value={formValues.expiryDate}
-          onChange={handleInputChange}
-          required
+          value={expiryDate}
+          onChange={(e) => setExpiryDate(e.target.value)}
         />
       </div>
       <div>
-        <label htmlFor="cvv">CVV:</label>
-        <input
-          type="text"
-          id="cvv"
-          name="cvv"
-          value={formValues.cvv}
-          onChange={handleInputChange}
-          required
-        />
+        <label htmlFor="cvc">CVC:</label>
+        <input type="text" id="cvc" value={cvc} onChange={(e) => setCvc(e.target.value)} />
       </div>
-      <button type="submit">Submit</button>
+      <div>
+        <label htmlFor="name">Name:</label>
+        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+      </div>
+      <button type="submit">Pay</button>
     </form>
   );
 };
