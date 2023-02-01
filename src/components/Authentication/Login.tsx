@@ -14,11 +14,13 @@ interface LoginProps {
 export const Login: React.FC<LoginProps> = ({ setAuthVisible }) => {
   const { data = [], isLoading } = authApi.useGetUsersQuery('');
   const isAuth = useSelector((state: RootState) => state.auth.isAuth);
+  const currentUser = useSelector((state: RootState) => state.auth.currentUser);
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   console.log(data);
   console.log(isAuth);
+  console.log(currentUser);
   const handleClick = (e: any) => {
     e.preventDefault();
     let user = data.find((item: any) => {
