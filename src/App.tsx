@@ -9,8 +9,8 @@ import SingleProduct from './pages/SingleProductPage/SingleProduct';
 export const App: React.FC = () => {
   return (
     <Routes>
-      <Route path="/home" element={<MainPage />} />
       <Route path="/" element={<Products />}>
+        <Route path="" element={<MainPage />} />
         <Route path="shop" element={<Catalog />} />
         <Route path="/shop/:id" element={<SingleProduct />} />
         <Route path="/cart" element={<Cart />} />

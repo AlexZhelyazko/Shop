@@ -4,18 +4,7 @@ import './MainPage.scss';
 const MainPage: React.FC = () => {
   return (
     <article className="mainPage-wrapper">
-      {/* <div className='mainPage-man_block'>
-      <h2>For Man</h2>
-      <NavLink to='/man'>Buy Now</NavLink>
-    </div>
-    <div className='mainPage-woman_block'>
-      <h2>For Woman</h2>
-      <NavLink to='/woman'>Buy Now</NavLink>
-    </div>
-    <div className='mainPage-child_block'>
-      <h2>For Children</h2>
-      <NavLink to='/children'>Buy Now</NavLink>
-    </div> */}
+      <img src="https://cdn.shopify.com/s/files/1/0053/7994/8647/files/THISISNOTDIOR_MARILYN_EDITED2_1440x.jpg?v=1667320644" alt="" />
     </article>
   );
 };
