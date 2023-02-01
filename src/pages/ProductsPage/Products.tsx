@@ -24,7 +24,7 @@ const Products: React.FC = () => {
       ) : (
         ''
       )}
-      <div>
+      <div style={{ height: '90%' }}>
         <Outlet />
       </div>
     </div>
