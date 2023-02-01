@@ -5,6 +5,7 @@ import { BiLogIn } from 'react-icons/bi';
 import { AuthVisible } from '../../@types/types';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { HeaderUser } from '../HeaderUserBlock/HeaderUser';
 
 interface HeaderProps {
   setAuthVisible: (value: AuthVisible | ((prevVar: AuthVisible) => AuthVisible)) => void;
@@ -25,20 +26,13 @@ const Header: React.FC<HeaderProps> = ({ setAuthVisible }) => {
         <AiOutlineShoppingCart style={{ width: '25px', height: '25px' }} />
       </NavLink>
       {isAuth ? (
-        <div className="header__user">
-          <span className="header__user-name">name</span>
-          <div className="header__user-avatar"></div>
-        </div>
+        <HeaderUser />
       ) : (
         <BiLogIn
           onClick={() => setAuthVisible(AuthVisible.login)}
           style={{ width: '25px', height: '25px', cursor: 'pointer' }}
         />
       )}
-      {/* <div className="header__user">
-        <span className="header__user-name">Name</span>
-        <div className="header__user-avatar"></div>
-      </div> */}
     </header>
   );
 };

@@ -1,0 +1,23 @@
+.header__user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 6%;
+    justify-content: space-between;
+    .header__user-avatar{
+        width: 30px;
+        height: 30px;
+        border: solid 1px;
+        border-radius: 50%;
+    }
+    .header__user-popup{
+        position: absolute;
+        top: 8%;
+        background: red;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 10px 0;
+        width: 160px;
+    }
+}
