@@ -44,3 +44,13 @@ export enum AuthVisible {
   login = 'login',
   register = 'register',
 }
+
+export type IUser = {
+  email: string;
+  name: string;
+  role: string;
+  avatar: string;
+  basket: any;
+  history: any;
+  id: number;
+};

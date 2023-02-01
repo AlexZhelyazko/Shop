@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const authApi = createApi({
     reducerPath: 'authApi',
     tagTypes: ['User'],
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
     endpoints: (build) => ({
         addUser: build.mutation({
             query: (body) => ({
@@ -21,10 +21,13 @@ export const authApi = createApi({
                     history: {}
                 },
             }),
-            // invalidatesTags: (result, error, arg) => [{type: 'User', id: arg.id}]
             invalidatesTags: [{ type: 'User' }],
         }),
+        getUsers: build.query({
+            query: () => `/users`,
+            invalidatesTags: [{ type: 'User' }],
+        }),
+
     })
 })
 
-export const { useAddUserMutation } = authApi

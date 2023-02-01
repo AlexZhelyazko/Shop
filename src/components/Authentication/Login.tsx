@@ -1,13 +1,36 @@
 import './auth.scss';
-import React from 'react';
+import React, { useState } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
 import { AuthVisible } from '../../@types/types';
+import { authApi } from '../../redux/auth/asyncActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { setCurrentUser, setIsAuth } from '../../redux/auth/authSlice';
 
 interface LoginProps {
   setAuthVisible: (value: AuthVisible | ((prevVar: AuthVisible) => AuthVisible)) => void;
 }
 
 export const Login: React.FC<LoginProps> = ({ setAuthVisible }) => {
+  const { data = [], isLoading } = authApi.useGetUsersQuery('');
+  const isAuth = useSelector((state: RootState) => state.auth.isAuth);
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  console.log(data);
+  console.log(isAuth);
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    let user = data.find((item: any) => {
+      return item.password === password && item.email === email;
+    });
+    if (user) {
+      dispatch(setIsAuth(true));
+      dispatch(setCurrentUser(user));
+    } else {
+      console.log('Error');
+    }
+  };
   return (
     <div className="auth__wrapper">
       <div className="auth__top">
@@ -21,13 +44,27 @@ export const Login: React.FC<LoginProps> = ({ setAuthVisible }) => {
         <form className="auth__form" action="">
           <div>
             <label htmlFor="email">Email</label>
-            <input type="text" name="email" id="" />
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              name="email"
+              id=""
+            />
           </div>
           <div>
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="" />
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              name="password"
+              id=""
+            />
           </div>
-          <button className="signBtn">Sign In</button>
+          <button onClick={(e) => handleClick(e)} className="signBtn">
+            Sign In
+          </button>
         </form>
       </div>
       <div className="auth__bottom">

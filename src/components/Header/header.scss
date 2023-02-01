@@ -14,6 +14,19 @@
             font-weight: bold;
         }
     }
+    .header__user{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 6%;
+        justify-content: space-between;
+    .header__user-avatar{
+            width: 30px;
+            height: 30px;
+            border: solid 1px;
+            border-radius: 50%;
+        }
+    }
 }
 
 .activeLink {

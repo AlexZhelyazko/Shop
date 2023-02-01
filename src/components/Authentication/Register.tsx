@@ -4,7 +4,7 @@ import { ImCancelCircle } from 'react-icons/im';
 import PhoneInput from 'react-phone-number-input';
 import { AuthVisible } from '../../@types/types';
 import { useDispatch } from 'react-redux';
-import { authApi, useAddUserMutation } from '../../redux/auth/asyncActions';
+import { authApi } from '../../redux/auth/asyncActions';
 
 interface RegisterProps {
   setAuthVisible: (value: AuthVisible | ((prevVar: AuthVisible) => AuthVisible)) => void;
@@ -12,7 +12,7 @@ interface RegisterProps {
 
 export const Register: React.FC<RegisterProps> = ({ setAuthVisible }) => {
   const [value, setValue] = useState();
-  const [addUser] = useAddUserMutation();
+  const [addUser] = authApi.useAddUserMutation();
   const dispatch = useDispatch();
   const signUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

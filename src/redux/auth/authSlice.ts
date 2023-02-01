@@ -1,11 +1,28 @@
+import { IUser } from './../../@types/types';
 import { createSlice } from '@reduxjs/toolkit';
-const initialState = {}
+
+interface IAuth {
+    isAuth: boolean,
+    currentUser: IUser[]
+}
+
+const initialState: IAuth = {
+    isAuth: false,
+    currentUser: [],
+}
 
 const auhtSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {}
+    reducers: {
+        setIsAuth(state, action) {
+            state.isAuth = action.payload
+        },
+        setCurrentUser(state, action) {
+            state.currentUser = action.payload
+        }
+    }
 })
 
-export const {} = auhtSlice.actions
+export const {setIsAuth, setCurrentUser} = auhtSlice.actions
 export default auhtSlice.reducer
