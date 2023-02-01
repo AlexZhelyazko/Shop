@@ -5,24 +5,34 @@ import PhoneInput from 'react-phone-number-input';
 import { AuthVisible } from '../../@types/types';
 import { useDispatch } from 'react-redux';
 import { authApi } from '../../redux/auth/asyncActions';
+import { setCurrentUser, setIsAuth } from '../../redux/auth/authSlice';
 
 interface RegisterProps {
   setAuthVisible: (value: AuthVisible | ((prevVar: AuthVisible) => AuthVisible)) => void;
 }
 
 export const Register: React.FC<RegisterProps> = ({ setAuthVisible }) => {
+  const { data = [], isLoading } = authApi.useGetUsersQuery('');
+
   const [value, setValue] = useState();
-  const [addUser] = authApi.useAddUserMutation();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [addUser, {}] = authApi.useAddUserMutation();
   const dispatch = useDispatch();
   const signUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    dispatch(setIsAuth(true));
     await addUser({
-      email: '123@m.com',
-      password: '1234',
-      name: 'userwer',
+      email: email,
+      password: password,
+      name: firstName + lastName,
       role: 'user',
-      avatar: '34t5',
+      avatar: 'default',
     });
+    dispatch(setCurrentUser(firstName));
   };
   return (
     <div className="auth__wrapper">
@@ -37,19 +47,43 @@ export const Register: React.FC<RegisterProps> = ({ setAuthVisible }) => {
         <form className="auth__form" action="">
           <div>
             <label htmlFor="firstName">First Name</label>
-            <input type="text" name="firstName" id="" />
+            <input
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              type="text"
+              name="firstName"
+              id=""
+            />
           </div>
           <div>
             <label htmlFor="lastName">Last Name</label>
-            <input type="text" name="lastName" id="" />
+            <input
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              type="text"
+              name="lastName"
+              id=""
+            />
           </div>
           <div>
-            <label htmlFor="login">Email</label>
-            <input type="text" name="email" id="" />
+            <label htmlFor="email">Email</label>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              name="email"
+              id=""
+            />
           </div>
           <div>
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="" />
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              name="password"
+              id=""
+            />
           </div>
           <div>
             <PhoneInput

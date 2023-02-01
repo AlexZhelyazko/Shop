@@ -311,6 +311,18 @@
       },
       "history": {},
       "id": 4
+    },
+    {
+      "email": "testUser@gmail.com",
+      "password": "12345",
+      "name": "testuser",
+      "role": "user",
+      "avatar": "default",
+      "basket": {
+        "item": []
+      },
+      "history": {},
+      "id": 5
     }
   ]
 }
