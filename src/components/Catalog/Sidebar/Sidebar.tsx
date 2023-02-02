@@ -202,8 +202,14 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
             </div>
           </div>
         ) : (
-          <div onClick={() => setShowFilter(true)} className="showFilter_btn">
-            <BsFilterLeft onClick={() => setShowFilter(true)} /> Filters
+          <div
+            style={{ padding: '10px' }}
+            onClick={() => setShowFilter(true)}
+            className="showFilter_btn">
+            <BsFilterLeft
+              style={{ width: '35px', height: '35px' }}
+              onClick={() => setShowFilter(true)}
+            />
           </div>
         )}
       </div>
