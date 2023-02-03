@@ -1,8 +1,17 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+function providesList(resultsWithIds, tagType) {
+    return resultsWithIds
+        ? [
+            { type: tagType, id: 'LIST' },
+            ...resultsWithIds.map(({ id }) => ({ type: tagType, id })),
+        ]
+        : [{ type: tagType, id: 'LIST' }];
+}
+
 export const authApi = createApi({
     reducerPath: 'authApi',
-    tagTypes: ['User'],
+    tagTypes: ['User', 'Products'],
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
     endpoints: (build) => ({
         addUser: build.mutation({
@@ -23,18 +32,23 @@ export const authApi = createApi({
         }),
         getUsers: build.query({
             query: () => `/users`,
-            invalidatesTags: [{ type: 'User' }],
+            providesTags: (result) => providesList(result, 'User')
+        }),
+        getUser: build.query({
+            query: (id) => ({
+                url: `/users/${id}`
+            }),
+            providesTags: (result) => result ? [result, { type: 'User' }] : [{ type: 'User' }]
         }),
         addProductForAuthUser: build.mutation({
             query: (body) => ({
                 url: `/users/${body.userId}`,
-                method: 'UPDATE',
+                method: 'PATCH',
                 body: {
-                    basket: []
-                    //GENERALSUM?
+                    basket: body.data
                 }
             }),
-            invalidatesTags: [{ type: 'User' }]
+            invalidatesTags: [{ type: 'Products', id: 'LIST' }]
         })
     })
 })

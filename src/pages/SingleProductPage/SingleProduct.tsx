@@ -9,11 +9,13 @@ import { ImCancelCircle } from 'react-icons/im';
 import { setCartItems } from '../../redux/cart/cartSlice';
 import ImageMagnifier from '../../components/ImageMagnify/ImageMagnify';
 import { authApi } from '../../redux/auth/asyncActions';
+import { setCurrentUser } from '../../redux/auth/authSlice';
 
 function SingleProduct() {
-  const [addProduct, {}] = authApi.useAddProductForAuthUserMutation();
-  const isAuth = useSelector((state: RootState) => state.auth.isAuth);
   const currentUser = useSelector((state: RootState) => state.auth.currentUser);
+  const [addProduct, {}] = authApi.useAddProductForAuthUserMutation();
+
+  const isAuth = useSelector((state: RootState) => state.auth.isAuth);
   const authUserID = useSelector((state: RootState) => state.auth.currentUser);
   const [selectValue, setSelectValue] = useState<string>('');
   const [currentImage, setCurrentImage] = useState<boolean>(false);
@@ -45,6 +47,7 @@ function SingleProduct() {
         });
       } else {
         let cartProducts = [...currentUser.basket, { title, img, count, size, price, color, id }];
+        console.log(cartProducts);
         await addProduct({ userId: authUserID.id, data: cartProducts });
       }
     }
