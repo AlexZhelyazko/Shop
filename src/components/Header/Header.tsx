@@ -22,11 +22,13 @@ const Header: React.FC<HeaderProps> = ({ setAuthVisible }) => {
       <NavLink className={({ isActive }) => (isActive ? 'activeLink' : '')} to="/shop">
         Shop
       </NavLink>
-      <NavLink className={({ isActive }) => (isActive ? 'activeLink' : '')} to="/cart">
-        <AiOutlineShoppingCart style={{ width: '25px', height: '25px' }} />
-      </NavLink>
       {isAuth ? (
-        <HeaderUser />
+        <>
+          <NavLink className={({ isActive }) => (isActive ? 'activeLink' : '')} to="/cart">
+            <AiOutlineShoppingCart style={{ width: '25px', height: '25px' }} />
+          </NavLink>
+          <HeaderUser />
+        </>
       ) : (
         <BiLogIn
           onClick={() => setAuthVisible(AuthVisible.login)}

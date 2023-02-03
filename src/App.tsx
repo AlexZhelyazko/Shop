@@ -5,6 +5,7 @@ import Products from './pages/ProductsPage/Products';
 import Cart from './pages/CartPage/cart';
 import Catalog from './components/Catalog/Catalog';
 import SingleProduct from './pages/SingleProductPage/SingleProduct';
+import { Privat } from './hoc/Privat';
 
 export const App: React.FC = () => {
   return (
@@ -13,7 +14,14 @@ export const App: React.FC = () => {
         <Route path="" element={<MainPage />} />
         <Route path="shop" element={<Catalog />} />
         <Route path="/shop/:id" element={<SingleProduct />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/cart"
+          element={
+            <Privat>
+              <Cart />
+            </Privat>
+          }
+        />
       </Route>
     </Routes>
   );

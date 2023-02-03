@@ -34,10 +34,10 @@ export const Login: React.FC<LoginProps> = ({ setAuthVisible }) => {
       console.log({ ...cartItems });
       dispatch(setIsAuth(true));
       dispatch(setCurrentUser(user));
-      if (cartItems.length !== 0) {
-        await setProducts({ userId: user.id, data: [...cartItems] });
-        dispatch(clearCart());
-      }
+      // if (cartItems.length !== 0) {
+      //   await setProducts({ userId: user.id, data: [...cartItems] });
+      //   dispatch(clearCart());
+      // }
     } else {
       console.log('Error');
     }
