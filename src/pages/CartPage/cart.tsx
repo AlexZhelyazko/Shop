@@ -7,6 +7,7 @@ import { EmptyCart } from '../../components/EmptyCart/EmptyCart';
 import { ModalForPayment } from '../../components/ModalWindow/ModalForPayment';
 import PaymentForm from '../../components/Payment/PaymentForm';
 import { Success } from '../../Icons/Success/Success';
+import { Error } from '../../Icons/Error/Error';
 
 export default function Cart() {
   const [paymentVisible, setPaymentVisible] = useState(false);
@@ -35,7 +36,7 @@ export default function Cart() {
   };
 
   if (cartItems.length === 0) {
-    return <Success />;
+    return <Error />;
   }
   return (
     <>
