@@ -15,9 +15,7 @@ export const authApi = createApi({
                     name: body.name,
                     role: body.role,
                     avatar: body.avatar,
-                    basket: {
-                        item: []
-                    },
+                    basket: [],
                     history: {}
                 },
             }),
@@ -27,7 +25,17 @@ export const authApi = createApi({
             query: () => `/users`,
             invalidatesTags: [{ type: 'User' }],
         }),
-
+        addProductForAuthUser: build.mutation({
+            query: (body) => ({
+                url: `/users/${body.userId}`,
+                method: 'UPDATE',
+                body: {
+                    basket: []
+                    //GENERALSUM?
+                }
+            }),
+            invalidatesTags: [{ type: 'User' }]
+        })
     })
 })
 

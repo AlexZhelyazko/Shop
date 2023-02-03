@@ -6,6 +6,7 @@ import { RootState, useAppDispatch } from '../../redux/store';
 import { EmptyCart } from '../../components/EmptyCart/EmptyCart';
 import { ModalForPayment } from '../../components/ModalWindow/ModalForPayment';
 import PaymentForm from '../../components/Payment/PaymentForm';
+import { Success } from '../../Icons/Success/Success';
 
 export default function Cart() {
   const [paymentVisible, setPaymentVisible] = useState(false);
@@ -34,7 +35,7 @@ export default function Cart() {
   };
 
   if (cartItems.length === 0) {
-    return <EmptyCart />;
+    return <Success />;
   }
   return (
     <>

@@ -272,57 +272,17 @@
       "name": "Jhon",
       "role": "customer",
       "avatar": "https://api.lorem.space/image/face?w=640&h=480&r=174",
-      "basket": {
-        "item": []
-      }
+      "basket": []
     },
     {
-      "email": "123@m.com",
-      "password": "1234",
-      "name": "userwer",
-      "role": "user",
-      "avatar": "34t5",
-      "basket": {
-        "item": []
-      },
-      "history": {},
-      "id": 2
-    },
-    {
-      "email": "123@m.com",
-      "password": "1234",
-      "name": "userwer",
-      "role": "user",
-      "avatar": "34t5",
-      "basket": {
-        "item": []
-      },
-      "history": {},
-      "id": 3
-    },
-    {
-      "email": "123@m.com",
-      "password": "1234",
-      "name": "userwer",
-      "role": "user",
-      "avatar": "34t5",
-      "basket": {
-        "item": []
-      },
-      "history": {},
-      "id": 4
-    },
-    {
+      "id": 2,
       "email": "testUser@gmail.com",
       "password": "12345",
       "name": "testuser",
       "role": "user",
       "avatar": "default",
-      "basket": {
-        "item": []
-      },
-      "history": {},
-      "id": 5
+      "basket": [],
+      "history": {}
     }
   ]
 }

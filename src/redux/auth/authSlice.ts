@@ -1,9 +1,9 @@
 import { IUser } from './../../@types/types';
 import { createSlice } from '@reduxjs/toolkit';
-
+//TODO type IUSER
 interface IAuth {
     isAuth: boolean,
-    currentUser: IUser[]
+    currentUser: any
 }
 
 const initialState: IAuth = {

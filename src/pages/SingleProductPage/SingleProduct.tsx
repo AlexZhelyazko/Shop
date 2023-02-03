@@ -8,8 +8,13 @@ import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
 import { ImCancelCircle } from 'react-icons/im';
 import { setCartItems } from '../../redux/cart/cartSlice';
 import ImageMagnifier from '../../components/ImageMagnify/ImageMagnify';
+import { authApi } from '../../redux/auth/asyncActions';
 
 function SingleProduct() {
+  const [addProduct, {}] = authApi.useAddProductForAuthUserMutation();
+  const isAuth = useSelector((state: RootState) => state.auth.isAuth);
+  const currentUser = useSelector((state: RootState) => state.auth.currentUser);
+  const authUserID = useSelector((state: RootState) => state.auth.currentUser);
   const [selectValue, setSelectValue] = useState<string>('');
   const [currentImage, setCurrentImage] = useState<boolean>(false);
   const [largeImgEnabled, setLargeImgEnabled] = useState<boolean>(false);
@@ -26,11 +31,23 @@ function SingleProduct() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id]);
 
-  const addItemToCart = (item: any) => {
+  const addItemToCart = async (item: any) => {
     let { title, frontImageUrl, price, color } = item;
     let id = Date.now();
     let img = frontImageUrl;
     let size = selectValue || item.size[0];
+    console.log(currentUser);
+    if (isAuth) {
+      if (currentUser.basket.length === 0) {
+        await addProduct({
+          userId: authUserID.id,
+          data: { title, img, count, size, price, color, id },
+        });
+      } else {
+        let cartProducts = [...currentUser.basket, { title, img, count, size, price, color, id }];
+        await addProduct({ userId: authUserID.id, data: cartProducts });
+      }
+    }
     dispatch(setCartItems({ title, img, count, size, price, color, id }));
   };
 
