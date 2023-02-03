@@ -20,6 +20,9 @@ const cartSlice = createSlice({
             state.cartItems = [...state.cartItems, action.payload]
             state.totalPrice = state.cartItems.reduce((acc, num) => acc + +num.price.slice(1, -2).replace(/[\s.,%]/g, '') * num.count, 0)
         },
+        clearCart(state) {
+            state.cartItems.length = 0
+        },
         deleteItemfromCart(state, action: PayloadAction<ParamsForCalcTotalPrice>) {
             state.cartItems = state.cartItems.filter((el) => el.id !== action.payload.id)
             state.totalPrice -= action.payload.price
@@ -41,5 +44,5 @@ const cartSlice = createSlice({
     }
 })
 
-export const { setCartItems, deleteItemfromCart, addItem, minusItem } = cartSlice.actions
+export const { setCartItems, deleteItemfromCart, addItem, minusItem, clearCart } = cartSlice.actions
 export default cartSlice.reducer;

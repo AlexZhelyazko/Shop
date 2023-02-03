@@ -14,9 +14,11 @@ import { setCurrentUser } from '../../redux/auth/authSlice';
 function SingleProduct() {
   const currentUser = useSelector((state: RootState) => state.auth.currentUser);
   const [addProduct, {}] = authApi.useAddProductForAuthUserMutation();
-
   const isAuth = useSelector((state: RootState) => state.auth.isAuth);
   const authUserID = useSelector((state: RootState) => state.auth.currentUser);
+  let { data, isLoading, isFetching } = authApi.useGetUserQuery(authUserID.id);
+  //  let { data, isLoading } = authApi.useGetUsersQuery('');
+  console.log(data);
   const [selectValue, setSelectValue] = useState<string>('');
   const [currentImage, setCurrentImage] = useState<boolean>(false);
   const [largeImgEnabled, setLargeImgEnabled] = useState<boolean>(false);
@@ -40,16 +42,31 @@ function SingleProduct() {
     let size = selectValue || item.size[0];
     console.log(currentUser);
     if (isAuth) {
-      if (currentUser.basket.length === 0) {
-        await addProduct({
-          userId: authUserID.id,
-          data: { title, img, count, size, price, color, id },
-        });
-      } else {
-        let cartProducts = [...currentUser.basket, { title, img, count, size, price, color, id }];
-        console.log(cartProducts);
-        await addProduct({ userId: authUserID.id, data: cartProducts });
-      }
+      //let cartProducts = [...data[0].basket, { title, img, count, size, price, color, id }];
+      let res = { title, img, count, size, price, color, id };
+      let arr = [];
+      data[0].basket.forEach((element: any) => {
+        arr.push(element);
+      });
+      arr.push(res);
+      await addProduct({
+        userId: authUserID.id,
+        data: arr,
+      });
+      // if (currentUser.basket.length === 0) {
+      //   console.log('OLALA');
+      //   let cartProducts = { title, img, count, size, price, color, id };
+      //   await addProduct({
+      //     userId: authUserID.id,
+      //     data: [cartProducts],
+      //   });
+      // } else {
+      //   console.log(currentUser.basket);
+      //   let cartProducts = [...currentUser.basket, { title, img, count, size, price, color, id }];
+      //   //let cartProducts = [...currentUser.basket, { title, img, count, size, price, color, id }];
+      //   console.log(cartProducts);
+      //   await addProduct({ userId: authUserID.id, data: [cartProducts] });
+      // }
     }
     dispatch(setCartItems({ title, img, count, size, price, color, id }));
   };

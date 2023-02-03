@@ -35,10 +35,9 @@ export const authApi = createApi({
             providesTags: (result) => providesList(result, 'User')
         }),
         getUser: build.query({
-            query: (id) => ({
-                url: `/users/${id}`
-            }),
-            providesTags: (result) => result ? [result, { type: 'User' }] : [{ type: 'User' }]
+            query: (id) => `/users?id=${id}`,
+
+            providesTags: (result) => providesList(result, 'Products')
         }),
         addProductForAuthUser: build.mutation({
             query: (body) => ({

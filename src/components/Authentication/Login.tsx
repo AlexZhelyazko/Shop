@@ -6,6 +6,7 @@ import { authApi } from '../../redux/auth/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setCurrentUser, setIsAuth } from '../../redux/auth/authSlice';
+import { clearCart, setCartItems } from '../../redux/cart/cartSlice';
 
 interface LoginProps {
   setAuthVisible: (value: AuthVisible | ((prevVar: AuthVisible) => AuthVisible)) => void;
@@ -13,6 +14,8 @@ interface LoginProps {
 
 export const Login: React.FC<LoginProps> = ({ setAuthVisible }) => {
   const { data = [], isLoading } = authApi.useGetUsersQuery('');
+  const [setProducts] = authApi.useAddProductForAuthUserMutation();
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const isAuth = useSelector((state: RootState) => state.auth.isAuth);
   const currentUser = useSelector((state: RootState) => state.auth.currentUser);
   const dispatch = useDispatch();
@@ -21,14 +24,20 @@ export const Login: React.FC<LoginProps> = ({ setAuthVisible }) => {
   console.log(data);
   console.log(isAuth);
   console.log(currentUser);
-  const handleClick = (e: any) => {
+  const handleClick = async (e: any) => {
     e.preventDefault();
     let user = data.find((item: any) => {
       return item.password === password && item.email === email;
     });
     if (user) {
+      console.log(user);
+      console.log({ ...cartItems });
       dispatch(setIsAuth(true));
       dispatch(setCurrentUser(user));
+      if (cartItems.length !== 0) {
+        await setProducts({ userId: user.id, data: [...cartItems] });
+        dispatch(clearCart());
+      }
     } else {
       console.log('Error');
     }
