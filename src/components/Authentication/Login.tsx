@@ -6,7 +6,6 @@ import { authApi } from '../../redux/auth/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setCurrentUser, setIsAuth } from '../../redux/auth/authSlice';
-import { clearCart, setCartItems } from '../../redux/cart/cartSlice';
 
 interface LoginProps {
   setAuthVisible: (value: AuthVisible | ((prevVar: AuthVisible) => AuthVisible)) => void;

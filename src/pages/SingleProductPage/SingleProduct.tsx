@@ -6,10 +6,8 @@ import { getItem } from '../../redux/catalog/asyncActions';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
 import { ImCancelCircle } from 'react-icons/im';
-import { setCartItems } from '../../redux/cart/cartSlice';
 import ImageMagnifier from '../../components/ImageMagnify/ImageMagnify';
 import { authApi } from '../../redux/auth/asyncActions';
-import { setCurrentUser } from '../../redux/auth/authSlice';
 
 function SingleProduct() {
   const currentUser = useSelector((state: RootState) => state.auth.currentUser);
@@ -17,8 +15,6 @@ function SingleProduct() {
   const isAuth = useSelector((state: RootState) => state.auth.isAuth);
   const authUserID = useSelector((state: RootState) => state.auth.currentUser);
   let { data, isLoading, isFetching } = authApi.useGetUserQuery(authUserID.id);
-  //  let { data, isLoading } = authApi.useGetUsersQuery('');
-  console.log(data);
   const [selectValue, setSelectValue] = useState<string>('');
   const [currentImage, setCurrentImage] = useState<boolean>(false);
   const [largeImgEnabled, setLargeImgEnabled] = useState<boolean>(false);
@@ -40,9 +36,7 @@ function SingleProduct() {
     let id = Date.now();
     let img = frontImageUrl;
     let size = selectValue || item.size[0];
-    console.log(currentUser);
     if (isAuth) {
-      //let cartProducts = [...data[0].basket, { title, img, count, size, price, color, id }];
       let res = { title, img, count, size, price, color, id };
       let arr = [];
       data[0].basket.forEach((element: any) => {
@@ -53,22 +47,7 @@ function SingleProduct() {
         userId: authUserID.id,
         data: arr,
       });
-      // if (currentUser.basket.length === 0) {
-      //   console.log('OLALA');
-      //   let cartProducts = { title, img, count, size, price, color, id };
-      //   await addProduct({
-      //     userId: authUserID.id,
-      //     data: [cartProducts],
-      //   });
-      // } else {
-      //   console.log(currentUser.basket);
-      //   let cartProducts = [...currentUser.basket, { title, img, count, size, price, color, id }];
-      //   //let cartProducts = [...currentUser.basket, { title, img, count, size, price, color, id }];
-      //   console.log(cartProducts);
-      //   await addProduct({ userId: authUserID.id, data: [cartProducts] });
-      // }
     }
-    dispatch(setCartItems({ title, img, count, size, price, color, id }));
   };
 
   return Object.keys(item).length === 0 ? (
