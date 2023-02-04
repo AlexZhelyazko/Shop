@@ -8,11 +8,15 @@ import PaymentForm from '../../components/Payment/PaymentForm';
 import { Success } from '../../Icons/Success/Success';
 import { Error } from '../../Icons/Error/Error';
 import { Modal } from '../../components/ModalWindow/Modal';
+import { authApi } from '../../redux/auth/asyncActions';
 
 export default function Cart() {
   const [paymentVisible, setPaymentVisible] = useState(false);
-  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
-  const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
+  const currentUser = useSelector((state: RootState) => state.auth.currentUser);
+  const { data, isLoading } = authApi.useGetUserQuery(currentUser.id);
+  // const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  //const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
+  let cartItems = data[0]?.basket;
   const dispatch = useAppDispatch();
 
   const onAddItemClick = (params: any[]) => {
@@ -43,7 +47,7 @@ export default function Cart() {
       <div className="cart__container">
         <h1 style={{ fontFamily: 'initial', fontWeight: 'bold', fontSize: '35px' }}>YOUR CART</h1>
         <div className="cart__items-wrapper">
-          {cartItems.map((el, index) => {
+          {cartItems.map((el: any, index: any) => {
             return (
               <div key={el.title + index} className="cart__item">
                 <img src={el.img} alt="" />
@@ -97,7 +101,7 @@ export default function Cart() {
         ''
       )}
       <div className="cart__footer">
-        Total: ${totalPrice}
+        Total: ${}
         <button onClick={() => setPaymentVisible(true)}>Continue</button>
       </div>
     </>

@@ -14,7 +14,6 @@ import { Spinner } from '../../components/Preloader/Spinner/Spinner';
 
 function SingleProduct() {
   const [warningVisible, setWarningVisible] = useState(false);
-  const currentUser = useSelector((state: RootState) => state.auth.currentUser);
   const [addProduct, {}] = authApi.useAddProductForAuthUserMutation();
   const isAuth = useSelector((state: RootState) => state.auth.isAuth);
   const authUserID = useSelector((state: RootState) => state.auth.currentUser);
@@ -56,7 +55,7 @@ function SingleProduct() {
     }
   };
 
-  return Object.keys(item).length !== 0 ? (
+  return Object.keys(item).length === 0 ? (
     <Spinner />
   ) : (
     <>
