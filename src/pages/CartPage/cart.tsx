@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 import { deleteItemfromCart, addItem, minusItem } from '../../redux/cart/cartSlice';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { EmptyCart } from '../../components/EmptyCart/EmptyCart';
-import { ModalForPayment } from '../../components/ModalWindow/ModalForPayment';
 import PaymentForm from '../../components/Payment/PaymentForm';
 import { Success } from '../../Icons/Success/Success';
 import { Error } from '../../Icons/Error/Error';
+import { Modal } from '../../components/ModalWindow/Modal';
 
 export default function Cart() {
   const [paymentVisible, setPaymentVisible] = useState(false);
@@ -36,7 +36,7 @@ export default function Cart() {
   };
 
   if (cartItems.length === 0) {
-    return <Error />;
+    return <EmptyCart />;
   }
   return (
     <>
@@ -84,9 +84,15 @@ export default function Cart() {
         </div>
       </div>
       {paymentVisible ? (
-        <ModalForPayment visible={paymentVisible} setVisible={setPaymentVisible}>
+        <Modal
+          width="50%"
+          height="60%"
+          justifyContent="center"
+          alignItems="center"
+          visible={paymentVisible}
+          setVisible={setPaymentVisible}>
           <PaymentForm />
-        </ModalForPayment>
+        </Modal>
       ) : (
         ''
       )}
