@@ -47,7 +47,7 @@ export default function Cart() {
   const onMinusItemClick = async (params: any[]) => {
     let id = params[0];
     let price = params[1];
-    let newList = null
+    let newList = null;
     let findItem = { ...data[0].basket.find((obj: any) => obj.id === id) };
     if (findItem.count === 1) {
       const index = data[0].basket.findIndex((n: any) => n.id === id);
@@ -67,12 +67,18 @@ export default function Cart() {
     await updateCart({ userId: currentUser.id, data: newList });
   };
 
-  const onDeleteItemClick = (params: any[]) => {
+  const onDeleteItemClick = async (params: any[]) => {
     let id = params[0];
     let price = params[1];
     let count = params[2];
-    price = +price.slice(1, -2).replace(/[\s.,%]/g, '') * count;
-    dispatch(deleteItemfromCart({ id, price }));
+    let newList = null;
+    const index = data[0].basket.findIndex((n: any) => n.id === id);
+    if (index !== -1) {
+      newList = [...data[0].basket];
+      newList.splice(index, 1);
+    }
+    //price = +price.slice(1, -2).replace(/[\s.,%]/g, '') * count;
+    await updateCart({ userId: currentUser.id, data: newList });
   };
 
   if (data[0]?.basket.length === 0) {
