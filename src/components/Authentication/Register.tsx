@@ -1,17 +1,17 @@
 import './auth.scss';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
 import PhoneInput from 'react-phone-number-input';
-import { AuthVisible } from '../../@types/types';
 import { useDispatch } from 'react-redux';
 import { authApi } from '../../redux/auth/asyncActions';
 import { setCurrentUser, setIsAuth } from '../../redux/auth/authSlice';
 
 interface RegisterProps {
-  setAuthVisible: (value: AuthVisible | ((prevVar: AuthVisible) => AuthVisible)) => void;
+  setRegisterVisible: (value: boolean | ((prevVar: boolean) => boolean)) => void;
+  setLoginVisible: (value: boolean | ((prevVar: boolean) => boolean)) => void;
 }
 
-export const Register: React.FC<RegisterProps> = ({ setAuthVisible }) => {
+export const Register: React.FC<RegisterProps> = ({ setRegisterVisible, setLoginVisible }) => {
   const { data = [], isLoading } = authApi.useGetUsersQuery('');
 
   const [value, setValue] = useState();
@@ -22,6 +22,11 @@ export const Register: React.FC<RegisterProps> = ({ setAuthVisible }) => {
   const [lastName, setLastName] = useState('');
   const [addUser, {}] = authApi.useAddUserMutation();
   const dispatch = useDispatch();
+  const haveAccountClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setRegisterVisible(false);
+    setLoginVisible(true);
+  };
   const signUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     dispatch(setIsAuth(true));
@@ -39,7 +44,7 @@ export const Register: React.FC<RegisterProps> = ({ setAuthVisible }) => {
       <div className="auth__top">
         <h2>IDENTIFICATION</h2>
         <div className="auth__cancel-icons">
-          <ImCancelCircle onClick={() => setAuthVisible(AuthVisible.disabled)} />
+          <ImCancelCircle onClick={() => setRegisterVisible(false)} />
         </div>
       </div>
       <div className="auth__form-wrapper">
@@ -101,7 +106,7 @@ export const Register: React.FC<RegisterProps> = ({ setAuthVisible }) => {
       </div>
       <div className="auth__bottom" style={{ display: 'flex', alignItems: 'center' }}>
         <h4>I HAVE AN ACCOUNT!</h4>
-        <button className="createAccount" onClick={() => setAuthVisible(AuthVisible.login)}>
+        <button className="createAccount" onClick={(e) => haveAccountClick(e)}>
           Sign In
         </button>
       </div>

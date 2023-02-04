@@ -39,12 +39,6 @@ export interface ICartProducts {
   totalPrice: number;
 }
 
-export enum AuthVisible {
-  disabled = 'disabled',
-  login = 'login',
-  register = 'register',
-}
-
 export type IUser = {
   email: string;
   name: string;

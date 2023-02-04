@@ -1,17 +1,17 @@
 import './auth.scss';
 import React, { useState } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
-import { AuthVisible } from '../../@types/types';
 import { authApi } from '../../redux/auth/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setCurrentUser, setIsAuth } from '../../redux/auth/authSlice';
 
 interface LoginProps {
-  setAuthVisible: (value: AuthVisible | ((prevVar: AuthVisible) => AuthVisible)) => void;
+  setLoginVisible: (value: boolean | ((prevVar: boolean) => boolean)) => void;
+  setRegisterVisible: (value: boolean | ((prevVar: boolean) => boolean)) => void;
 }
 
-export const Login: React.FC<LoginProps> = ({ setAuthVisible }) => {
+export const Login: React.FC<LoginProps> = ({ setLoginVisible, setRegisterVisible }) => {
   const { data = [], isLoading } = authApi.useGetUsersQuery('');
   const [setProducts] = authApi.useAddProductForAuthUserMutation();
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
@@ -23,6 +23,11 @@ export const Login: React.FC<LoginProps> = ({ setAuthVisible }) => {
   console.log(data);
   console.log(isAuth);
   console.log(currentUser);
+  const registerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setLoginVisible(false);
+    setRegisterVisible(true);
+  };
   const handleClick = async (e: any) => {
     e.preventDefault();
     let user = data.find((item: any) => {
@@ -46,7 +51,7 @@ export const Login: React.FC<LoginProps> = ({ setAuthVisible }) => {
       <div className="auth__top">
         <h2>IDENTIFICATION</h2>
         <div className="auth__cancel-icons">
-          <ImCancelCircle onClick={() => setAuthVisible(AuthVisible.disabled)} />
+          <ImCancelCircle onClick={() => setLoginVisible(false)} />
         </div>
       </div>
       <div className="auth__form-wrapper">
@@ -80,7 +85,7 @@ export const Login: React.FC<LoginProps> = ({ setAuthVisible }) => {
       <div className="auth__bottom">
         <h4>I DON'T HAVE AN ACCOUNT</h4>
         <span>Enjoy added benefits and a richer experience by creating a personal account</span>
-        <button onClick={() => setAuthVisible(AuthVisible.register)} className="createAccount">
+        <button onClick={(e) => registerClick(e)} className="createAccount">
           Create My Account
         </button>
       </div>

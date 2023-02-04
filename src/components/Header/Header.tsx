@@ -2,16 +2,15 @@ import './header.scss';
 import { NavLink } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BiLogIn } from 'react-icons/bi';
-import { AuthVisible } from '../../@types/types';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { HeaderUser } from '../HeaderUserBlock/HeaderUser';
 
 interface HeaderProps {
-  setAuthVisible: (value: AuthVisible | ((prevVar: AuthVisible) => AuthVisible)) => void;
+  setLoginVisible: (value: boolean | ((prevVar: boolean) => boolean)) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ setAuthVisible }) => {
+const Header: React.FC<HeaderProps> = ({ setLoginVisible }) => {
   const isAuth = useSelector((state: RootState) => state.auth.isAuth);
   const user = useSelector((state: RootState) => state.auth.currentUser);
   return (
@@ -31,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ setAuthVisible }) => {
         </>
       ) : (
         <BiLogIn
-          onClick={() => setAuthVisible(AuthVisible.login)}
+          onClick={() => setLoginVisible(true)}
           style={{ width: '25px', height: '25px', cursor: 'pointer' }}
         />
       )}
