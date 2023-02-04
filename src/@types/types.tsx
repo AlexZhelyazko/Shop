@@ -1,4 +1,4 @@
-export interface IProduct {
+export type IProduct = {
   id: string;
   category: string;
   frontImageUrl: string;
@@ -8,11 +8,11 @@ export interface IProduct {
   color: string;
   description: string;
   size: string[];
-}
-export interface ICatalog {
+};
+export type ICatalog = {
   status: string;
   filters: boolean;
-  currentItem: any;
+  currentItem: IProduct | {};
   items: IProduct[];
   filterItemByPrice: IProduct[];
   filterItemByColor: IProduct[];
@@ -22,7 +22,7 @@ export interface ICatalog {
   startPrice: number;
   finalPrice: number;
   notFoundItems: boolean;
-}
+};
 
 export type CartProduct = {
   count: number;

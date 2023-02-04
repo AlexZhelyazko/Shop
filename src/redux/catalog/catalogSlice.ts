@@ -59,10 +59,10 @@ const catalogSlice = createSlice({
             state.status = 'fulfilled'
             state.currentItem = action.payload
         })
-        builder.addCase(getItem.pending, (state, action) => {
+        builder.addCase(getItem.pending, (state) => {
             state.status = 'pending'
         })
-        builder.addCase(getItem.rejected, (state, action) => {
+        builder.addCase(getItem.rejected, (state) => {
             state.status = 'rejected'
             state.currentItem = {}
         })
@@ -70,10 +70,10 @@ const catalogSlice = createSlice({
             state.status = 'fulfilled'
             state.items = action.payload
         })
-        builder.addCase(fetchCatalogItems.pending, (state, action) => {
+        builder.addCase(fetchCatalogItems.pending, (state) => {
             state.status = 'pending'
         })
-        builder.addCase(fetchCatalogItems.rejected, (state, action) => {
+        builder.addCase(fetchCatalogItems.rejected, (state) => {
             state.status = 'rejected'
             state.items = []
         })

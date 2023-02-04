@@ -1,9 +1,9 @@
+import { PayloadAction } from '@reduxjs/toolkit';
 import { IUser } from './../../@types/types';
 import { createSlice } from '@reduxjs/toolkit';
-//TODO type IUSER
 interface IAuth {
     isAuth: boolean,
-    currentUser: any
+    currentUser: IUser | []
 }
 
 const initialState: IAuth = {
@@ -15,10 +15,10 @@ const auhtSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        setIsAuth(state, action) {
+        setIsAuth(state, action: PayloadAction<boolean>) {
             state.isAuth = action.payload
         },
-        setCurrentUser(state, action) {
+        setCurrentUser(state, action: PayloadAction<IUser>) {
             state.currentUser = action.payload
         }
     }
