@@ -11,7 +11,7 @@ import {
   setFilterItemsBySize,
   setFilters,
   setNotFound,
-} from '../../../redux/catalog/slice';
+} from '../../../redux/catalog/catalogSlice';
 import { useSelector } from 'react-redux';
 import { IProduct } from '../../../@types/types';
 

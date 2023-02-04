@@ -9,8 +9,8 @@ function providesList(resultsWithIds, tagType) {
         : [{ type: tagType, id: 'LIST' }];
 }
 
-export const authApi = createApi({
-    reducerPath: 'authApi',
+export const queryApi = createApi({
+    reducerPath: 'queryApi',
     tagTypes: ['User', 'Products'],
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
     endpoints: (build) => ({
@@ -36,7 +36,6 @@ export const authApi = createApi({
         }),
         getUser: build.query({
             query: (id) => `/users?id=${id}`,
-
             providesTags: (result) => providesList(result, 'Products')
         }),
         addProductForAuthUser: build.mutation({

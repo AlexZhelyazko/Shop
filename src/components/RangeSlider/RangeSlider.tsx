@@ -3,7 +3,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useAppDispatch } from '../../redux/store';
-import { setFilterItemsByPrice } from '../../redux/catalog/slice';
+import { setFilterItemsByPrice } from '../../redux/catalog/catalogSlice';
 import { useEffect } from 'react';
 
 function valuetext(value: number) {

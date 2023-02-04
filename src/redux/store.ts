@@ -1,24 +1,21 @@
-import { useDispatch } from 'react-redux';
 import { configureStore } from "@reduxjs/toolkit";
-import catalog from './catalog/slice'
+import { queryApi } from './query';
+import catalog from './catalog/catalogSlice'
 import cart from './cart/cartSlice'
 import auth from './auth/authSlice'
-import { authApi } from './auth/asyncActions';
 
 export const store = configureStore({
     reducer: {
         catalog,
         cart,
         auth,
-        [authApi.reducerPath]: authApi.reducer,
-
+        [queryApi.reducerPath]: queryApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware),
+    getDefaultMiddleware().concat(queryApi.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
-type AppDispatch = typeof store.dispatch;
-
-export const useAppDispatch = () => useDispatch<AppDispatch>();
+//ADD: Persist, Memo, Orders cab, Admin Panel, loading/failure, selectors

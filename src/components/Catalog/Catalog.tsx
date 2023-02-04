@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { fetchCatalogItems } from '../../redux/catalog/asyncActions';
 import { RootState, useAppDispatch } from '../../redux/store';
-import { clearFilters } from '../../redux/catalog/slice';
+import { clearFilters } from '../../redux/catalog/catalogSlice';
 import Section from './Section/Section';
 import Sidebar from './Sidebar/Sidebar';
 import { IProduct } from '../../@types/types';

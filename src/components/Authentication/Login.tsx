@@ -13,7 +13,6 @@ interface LoginProps {
 
 export const Login: React.FC<LoginProps> = ({ setLoginVisible, setRegisterVisible }) => {
   const { data = [], isLoading } = authApi.useGetUsersQuery('');
-  const [setProducts] = authApi.useAddProductForAuthUserMutation();
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const isAuth = useSelector((state: RootState) => state.auth.isAuth);
   const currentUser = useSelector((state: RootState) => state.auth.currentUser);
@@ -38,10 +37,6 @@ export const Login: React.FC<LoginProps> = ({ setLoginVisible, setRegisterVisibl
       console.log({ ...cartItems });
       dispatch(setIsAuth(true));
       dispatch(setCurrentUser(user));
-      // if (cartItems.length !== 0) {
-      //   await setProducts({ userId: user.id, data: [...cartItems] });
-      //   dispatch(clearCart());
-      // }
     } else {
       console.log('Error');
     }
