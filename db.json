@@ -283,18 +283,9 @@
       "avatar": "default",
       "basket": [
         {
-          "title": "IDENTITY BLACK DENIM JACKET",
-          "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/BLACKDIOR_720x.png?v=1612979302",
-          "count": 2,
-          "size": "L",
-          "price": "$1,750.00",
-          "color": "black",
-          "id": 1675409103941
-        },
-        {
           "title": "NOW OR NEVER CLASSIC DENIM JACKET",
           "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/IMG_7386_720x.jpg?v=1594394873",
-          "count": 2,
+          "count": 6,
           "size": "M",
           "price": "$1,750.00",
           "color": "black",
@@ -303,20 +294,11 @@
         {
           "title": "SET YOUR SOUL ON FIRE JACKET",
           "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/DERULO_FRONT_f2c1fea3-fdd7-4fb9-96ee-1d50d76ddd0b_720x.png?v=1599663703",
-          "count": 1,
+          "count": 3,
           "size": "M",
           "price": "$1,750.00",
           "color": "yellow",
           "id": 1675409144786
-        },
-        {
-          "title": "IDENTITY BLACK DENIM JACKET",
-          "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/BLACKDIOR_720x.png?v=1612979302",
-          "count": 1,
-          "size": "L",
-          "price": "$1,750.00",
-          "color": "black",
-          "id": 1675471842298
         },
         {
           "title": "IDENTITY BLACK DENIM JACKET",

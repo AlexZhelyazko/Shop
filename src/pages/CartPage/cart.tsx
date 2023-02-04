@@ -1,7 +1,7 @@
 import './cart.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { deleteItemfromCart, addItem, minusItem } from '../../redux/cart/cartSlice';
+import { deleteItemfromCart, addItem, minusItem, setCartItems } from '../../redux/cart/cartSlice';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { EmptyCart } from '../../components/EmptyCart/EmptyCart';
 import PaymentForm from '../../components/Payment/PaymentForm';
@@ -12,23 +12,59 @@ import { authApi } from '../../redux/auth/asyncActions';
 
 export default function Cart() {
   const [paymentVisible, setPaymentVisible] = useState(false);
+  const [updateCart, {}] = authApi.useAddProductForAuthUserMutation();
   const currentUser = useSelector((state: RootState) => state.auth.currentUser);
   const { data, isLoading } = authApi.useGetUserQuery(currentUser.id);
-  // const cartItems = useSelector((state: RootState) => state.cart.cartItems);
-  //const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
-  let cartItems = data[0]?.basket;
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
+
   const dispatch = useAppDispatch();
 
-  const onAddItemClick = (params: any[]) => {
+  // let findItem = state.cartItems.find(obj => obj.id === action.payload.id)
+  // state.totalPrice += +action.payload.price.slice(1, -2).replace(/[\s.,%]/g, '')
+  // findItem!.count++
+  const onAddItemClick = async (params: any[]) => {
     let id = params[0];
     let price = params[1];
-    dispatch(addItem({ id, price }));
+    let findItem = { ...data[0].basket.find((obj: any) => obj.id === id) };
+    findItem.count++;
+    const newList = data[0].basket.map((o: any) => {
+      if (o.id === findItem.id) {
+        return findItem;
+      }
+      return o;
+    });
+    await updateCart({ userId: currentUser.id, data: newList });
   };
 
-  const onMinusItemClick = (params: any[]) => {
+  // let findItem = state.cartItems.find(obj => obj.id === action.payload.id)
+  //           state.totalPrice -= +action.payload.price.slice(1, -2).replace(/[\s.,%]/g, '')
+  //           if (findItem!.count === 1) {
+  //               state.cartItems = state.cartItems.filter((el) => el.id !== action.payload.id)
+  //           } else {
+  //               findItem!.count--
+  //           }
+  const onMinusItemClick = async (params: any[]) => {
     let id = params[0];
     let price = params[1];
-    dispatch(minusItem({ id, price }));
+    let newList = null
+    let findItem = { ...data[0].basket.find((obj: any) => obj.id === id) };
+    if (findItem.count === 1) {
+      const index = data[0].basket.findIndex((n: any) => n.id === id);
+      if (index !== -1) {
+        newList = [...data[0].basket];
+        newList.splice(index, 1);
+      }
+    } else {
+      findItem.count--;
+      newList = data[0].basket.map((o: any) => {
+        if (o.id === findItem.id) {
+          return findItem;
+        }
+        return o;
+      });
+    }
+    await updateCart({ userId: currentUser.id, data: newList });
   };
 
   const onDeleteItemClick = (params: any[]) => {
@@ -39,7 +75,7 @@ export default function Cart() {
     dispatch(deleteItemfromCart({ id, price }));
   };
 
-  if (cartItems.length === 0) {
+  if (data[0]?.basket.length === 0) {
     return <EmptyCart />;
   }
   return (
@@ -47,7 +83,7 @@ export default function Cart() {
       <div className="cart__container">
         <h1 style={{ fontFamily: 'initial', fontWeight: 'bold', fontSize: '35px' }}>YOUR CART</h1>
         <div className="cart__items-wrapper">
-          {cartItems.map((el: any, index: any) => {
+          {data[0]?.basket.map((el: any, index: any) => {
             return (
               <div key={el.title + index} className="cart__item">
                 <img src={el.img} alt="" />
@@ -101,7 +137,7 @@ export default function Cart() {
         ''
       )}
       <div className="cart__footer">
-        Total: ${}
+        Total: ${totalPrice}
         <button onClick={() => setPaymentVisible(true)}>Continue</button>
       </div>
     </>
