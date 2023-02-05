@@ -1,5 +1,5 @@
 import './auth.scss';
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
 import { setCurrentUser, setIsAuth } from '../../redux/auth/authSlice';
 import { queryApi } from '../../redux/query';
@@ -12,7 +12,7 @@ interface LoginProps {
 }
 
 export const Login: React.FC<LoginProps> = ({ setLoginVisible, setRegisterVisible }) => {
-  const { data = [], isLoading } = queryApi.useGetUsersQuery('');
+  const { data = [], isLoading, isError } = queryApi.useGetUsersQuery('');
 
   const dispatch = useAppDispatch();
 
@@ -52,6 +52,10 @@ export const Login: React.FC<LoginProps> = ({ setLoginVisible, setRegisterVisibl
     }
   };
 
+  if (isError) {
+    console.warn('Error');
+  }
+
   return (
     <div className="auth__wrapper">
       <div className="auth__top">
@@ -84,7 +88,11 @@ export const Login: React.FC<LoginProps> = ({ setLoginVisible, setRegisterVisibl
             <div className="auth__form-validation_error">{passwordError && passwordError}</div>
           </div>
           <div className="auth__form-validation_error">{error && error}</div>
-          <button type="submit" onClick={(e) => handleClick(e)} className="signBtn">
+          <button
+            disabled={isLoading}
+            type="submit"
+            onClick={(e) => handleClick(e)}
+            className="signBtn">
             Sign In
           </button>
         </form>

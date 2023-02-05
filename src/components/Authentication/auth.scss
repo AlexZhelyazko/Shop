@@ -33,6 +33,9 @@
             font-family: "Nunito";
             font-size: 16px;
             cursor: pointer;
+            &:disabled{
+                cursor: not-allowed;
+            }
         }
         h4{
             margin: 20px 0px;
