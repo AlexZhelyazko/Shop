@@ -1,19 +1,16 @@
 import './catalog.scss';
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { fetchCatalogItems } from '../../redux/catalog/asyncActions';
-import { RootState, useAppDispatch } from '../../redux/store';
 import { clearFilters } from '../../redux/catalog/catalogSlice';
 import Section from './Section/Section';
 import Sidebar from './Sidebar/Sidebar';
-import { IProduct } from '../../@types/types';
+import { useAppDispatch, useAppSelector } from '../../hooks/hook';
 
 const Catalog = () => {
   const dispatch = useAppDispatch();
 
-  const items: IProduct[] = useSelector((state: RootState) => state.catalog.items);
-  const filterItems = useSelector((state: RootState) => state.catalog.filterItem);
+  const items = useAppSelector((state) => state.catalog.items);
 
   const location = useLocation();
 
@@ -27,7 +24,7 @@ const Catalog = () => {
   return (
     <div className="catalog__wrapper">
       <Sidebar location={location.pathname} items={items} />
-      <Section items={items} filterItems={filterItems} />
+      <Section items={items} />
     </div>
   );
 };

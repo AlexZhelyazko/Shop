@@ -1,7 +1,7 @@
 import './sidebar.scss';
 import { useEffect, useState } from 'react';
 import RangeSlider from '../../RangeSlider/RangeSlider';
-import { RootState, useAppDispatch } from '../../../redux/store';
+import { RootState } from '../../../redux/store';
 import { BsFilterLeft } from 'react-icons/bs';
 import { GiCancel } from 'react-icons/gi';
 import {
@@ -14,6 +14,7 @@ import {
 } from '../../../redux/catalog/catalogSlice';
 import { useSelector } from 'react-redux';
 import { IProduct } from '../../../@types/types';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hook';
 
 const colorsData = [
   { Blue: 'blue' },
@@ -40,9 +41,9 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
   const [activeJackets, setActiveJackets] = useState<boolean>(false);
   const [activeAccessories, setActiveAccessories] = useState<boolean>(false);
 
-  let filterItemsByColor = useSelector((state: RootState) => state.catalog.filterItemByColor);
-  let filterItemsByPrice = useSelector((state: RootState) => state.catalog.filterItemByPrice);
-  let filterItemsBySize = useSelector((state: RootState) => state.catalog.filterItemBySize);
+  let filterItemsByColor = useAppSelector((state) => state.catalog.filterItemByColor);
+  let filterItemsByPrice = useAppSelector((state) => state.catalog.filterItemByPrice);
+  let filterItemsBySize = useAppSelector((state) => state.catalog.filterItemBySize);
 
   const dispatch = useAppDispatch();
 
@@ -88,13 +89,13 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
   }, [activeAccessories, activeJackets]);
 
   useEffect(() => {
-    let filterItemsByColor = items.filter((item) => activeColors.includes(item.color));
+    let filterItemsByColor = items.filter((item) => activeColors.includes(item.color || ''));
     dispatch(setFilterItemsByColor(filterItemsByColor));
   }, [activeColors]);
 
   useEffect(() => {
-    let filterItemBySize = items.filter((item) => {
-      let newArr = item.size.filter((el) => activeSize.includes(el));
+    let filterItemBySize = items.filter((item: IProduct) => {
+      let newArr = item.size ? item.size.filter((el) => activeSize.includes(el)) : '';
       return newArr.length !== 0;
     });
     dispatch(setFilterItemsBySize(filterItemBySize));

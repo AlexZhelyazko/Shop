@@ -3,21 +3,22 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getItem } from '../../redux/catalog/asyncActions';
-import { RootState, useAppDispatch } from '../../redux/store';
+import { RootState } from '../../redux/store';
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
 import { ImCancelCircle } from 'react-icons/im';
 import ImageMagnifier from '../../components/ImageMagnify/ImageMagnify';
-import { authApi } from '../../redux/auth/asyncActions';
 import { Warning } from '../../Icons/Warning/Warning';
 import { Modal } from '../../components/ModalWindow/Modal';
 import { Spinner } from '../../components/Preloader/Spinner/Spinner';
+import { useAppDispatch } from '../../hooks/hook';
+import { queryApi } from '../../redux/query';
 
 function SingleProduct() {
   const [warningVisible, setWarningVisible] = useState(false);
-  const [addProduct, {}] = authApi.useAddProductForAuthUserMutation();
+  const [addProduct, {}] = queryApi.useAddProductForAuthUserMutation();
   const isAuth = useSelector((state: RootState) => state.auth.isAuth);
   const authUserID = useSelector((state: RootState) => state.auth.currentUser);
-  let { data, isLoading, isFetching } = authApi.useGetUserQuery(authUserID.id);
+  let { data, isLoading, isFetching } = queryApi.useGetUserQuery(authUserID.id);
   const [selectValue, setSelectValue] = useState<string>('');
   const [currentImage, setCurrentImage] = useState<boolean>(false);
   const [largeImgEnabled, setLargeImgEnabled] = useState<boolean>(false);
@@ -77,7 +78,9 @@ function SingleProduct() {
             <div className="catalogItem__image-wrapper">
               <AiOutlineArrowLeft onClick={() => setCurrentImage(!currentImage)} />
               <div onClick={() => setLargeImgEnabled(true)}>
-                <ImageMagnifier src={currentImage ? item?.backImageUrl : item?.frontImageUrl} />
+                <ImageMagnifier
+                  src={currentImage ? item?.backImageUrl || '' : item?.frontImageUrl || ''}
+                />
               </div>
               <AiOutlineArrowRight onClick={() => setCurrentImage(!currentImage)} />
             </div>
@@ -95,7 +98,7 @@ function SingleProduct() {
             <div className="catalogItem__info-size">
               <div>Size:</div>
               <select value={selectValue} onChange={(e) => setSelectValue(e.target.value)}>
-                {item?.size.map((el: any) => (
+                {(item?.size || []).map((el: any) => (
                   <option value={el} key={el}>
                     {el}
                   </option>

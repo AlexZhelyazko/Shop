@@ -11,7 +11,7 @@ export const HeaderUser = () => {
   };
   const onExitClick = () => {
     dispatch(setIsAuth(false));
-    dispatch(setCurrentUser([]));
+    // dispatch(setCurrentUser({}));
   };
   return (
     <div className="header__user" onClick={(e) => handleClick(e)}>

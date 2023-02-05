@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, current, AnyAction } from '@reduxjs/toolkit';
 import { ICatalog, IProduct } from '../../@types/types';
 import { intersect } from '../../utils/intersects';
 import { fetchCatalogItems, getItem } from './asyncActions';
@@ -15,7 +15,8 @@ const initialState: ICatalog = {
     filterItem: [],
     startPrice: 0,
     finalPrice: 1500,
-    notFoundItems: false
+    notFoundItems: false,
+    error: null,
 };
 
 const catalogSlice = createSlice({
@@ -62,10 +63,6 @@ const catalogSlice = createSlice({
         builder.addCase(getItem.pending, (state) => {
             state.status = 'pending'
         })
-        builder.addCase(getItem.rejected, (state) => {
-            state.status = 'rejected'
-            state.currentItem = {}
-        })
         builder.addCase(fetchCatalogItems.fulfilled, (state, action) => {
             state.status = 'fulfilled'
             state.items = action.payload
@@ -73,9 +70,9 @@ const catalogSlice = createSlice({
         builder.addCase(fetchCatalogItems.pending, (state) => {
             state.status = 'pending'
         })
-        builder.addCase(fetchCatalogItems.rejected, (state) => {
+        builder.addMatcher((action: AnyAction) => action.type.endsWith('rejected'), (state, action:PayloadAction<string>) => {
+            state.error = action.payload;
             state.status = 'rejected'
-            state.items = []
         })
     }
 })

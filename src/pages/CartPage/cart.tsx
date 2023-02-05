@@ -1,25 +1,21 @@
 import './cart.scss';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { deleteItemfromCart, addItem, minusItem, setCartItems } from '../../redux/cart/cartSlice';
-import { RootState, useAppDispatch } from '../../redux/store';
+import { RootState } from '../../redux/store';
 import { EmptyCart } from '../../components/EmptyCart/EmptyCart';
 import PaymentForm from '../../components/Payment/PaymentForm';
+import { Modal } from '../../components/ModalWindow/Modal';
+import { queryApi } from '../../redux/query';
 import { Success } from '../../Icons/Success/Success';
 import { Error } from '../../Icons/Error/Error';
-import { Modal } from '../../components/ModalWindow/Modal';
-import { authApi } from '../../redux/auth/asyncActions';
 
 export default function Cart() {
   const [totalPrice, setTotalPrice] = useState(null);
   const [paymentVisible, setPaymentVisible] = useState(false);
-  const [updateCart, {}] = authApi.useAddProductForAuthUserMutation();
+  const [updateCart, {}] = queryApi.useAddProductForAuthUserMutation();
   const currentUser = useSelector((state: RootState) => state.auth.currentUser);
-  const { data, isLoading } = authApi.useGetUserQuery(currentUser.id);
+  const { data, isLoading } = queryApi.useGetUserQuery(currentUser.id);
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
-  //  const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
-
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     setTotalPrice(
@@ -29,9 +25,7 @@ export default function Cart() {
       ),
     );
   }, [data]);
-  // let findItem = state.cartItems.find(obj => obj.id === action.payload.id)
-  // state.totalPrice += +action.payload.price.slice(1, -2).replace(/[\s.,%]/g, '')
-  // findItem!.count++
+
   const onAddItemClick = async (params: any[]) => {
     let id = params[0];
     let price = params[1];
@@ -46,13 +40,6 @@ export default function Cart() {
     await updateCart({ userId: currentUser.id, data: newList });
   };
 
-  // let findItem = state.cartItems.find(obj => obj.id === action.payload.id)
-  //           state.totalPrice -= +action.payload.price.slice(1, -2).replace(/[\s.,%]/g, '')
-  //           if (findItem!.count === 1) {
-  //               state.cartItems = state.cartItems.filter((el) => el.id !== action.payload.id)
-  //           } else {
-  //               findItem!.count--
-  //           }
   const onMinusItemClick = async (params: any[]) => {
     let id = params[0];
     let price = params[1];
@@ -86,7 +73,6 @@ export default function Cart() {
       newList = [...data[0].basket];
       newList.splice(index, 1);
     }
-    //price = +price.slice(1, -2).replace(/[\s.,%]/g, '') * count;
     await updateCart({ userId: currentUser.id, data: newList });
   };
 

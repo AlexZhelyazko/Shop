@@ -3,12 +3,20 @@ import { IUser } from './../../@types/types';
 import { createSlice } from '@reduxjs/toolkit';
 interface IAuth {
     isAuth: boolean,
-    currentUser: IUser | []
+    currentUser: any
 }
 
 const initialState: IAuth = {
     isAuth: false,
-    currentUser: [],
+    currentUser: {
+        // id: null,
+        // email: '',
+        // name: '',
+        // role: '',
+        // avatar:'',
+        // basket: [],
+        // history: [],
+    },
 }
 
 const auhtSlice = createSlice({

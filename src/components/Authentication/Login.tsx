@@ -1,10 +1,10 @@
 import './auth.scss';
 import React, { useState } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
-import { authApi } from '../../redux/auth/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setCurrentUser, setIsAuth } from '../../redux/auth/authSlice';
+import { queryApi } from '../../redux/query';
 
 interface LoginProps {
   setLoginVisible: (value: boolean | ((prevVar: boolean) => boolean)) => void;
@@ -12,7 +12,7 @@ interface LoginProps {
 }
 
 export const Login: React.FC<LoginProps> = ({ setLoginVisible, setRegisterVisible }) => {
-  const { data = [], isLoading } = authApi.useGetUsersQuery('');
+  const { data = [], isLoading } = queryApi.useGetUsersQuery('');
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const isAuth = useSelector((state: RootState) => state.auth.isAuth);
   const currentUser = useSelector((state: RootState) => state.auth.currentUser);

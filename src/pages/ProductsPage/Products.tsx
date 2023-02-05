@@ -36,26 +36,6 @@ const Products: React.FC = () => {
           <Register setLoginVisible={setLoginVisible} setRegisterVisible={setRegisterVisible} />
         </Modal>
       )}
-      {/* {loginVisible && !registerVisible ? (
-        <Modal visible={loginVisible} setVisible={setLoginVisible}>
-          <Login setRegisterVisible={setRegisterVisible} setLoginVisible={setLoginVisible} />
-        </Modal>
-      ) : (
-        <Modal visible={registerVisible} setVisible={setRegisterVisible}>
-          <Register setLoginVisible={setLoginVisible} setRegisterVisible={setRegisterVisible} />
-        </Modal>
-      )} */}
-      {/* {authVisible !== AuthVisible.disabled ? (
-        <Modal authenticationVisible={authVisible} setVisible={setAuthVisible}>
-          {authVisible === AuthVisible.register ? (
-            <Register setAuthVisible={setAuthVisible} />
-          ) : (
-            <Login setAuthVisible={setAuthVisible} />
-          )}
-        </Modal>
-      ) : (
-        ''
-      )} */}
       <div style={{ height: '90%' }}>
         <Outlet />
       </div>

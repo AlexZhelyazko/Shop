@@ -9,10 +9,11 @@ export type IProduct = {
   description: string;
   size: string[];
 };
+
 export type ICatalog = {
   status: string;
   filters: boolean;
-  currentItem: IProduct | {};
+  currentItem: any;
   items: IProduct[];
   filterItemByPrice: IProduct[];
   filterItemByColor: IProduct[];
@@ -22,6 +23,7 @@ export type ICatalog = {
   startPrice: number;
   finalPrice: number;
   notFoundItems: boolean;
+  error: string | null;
 };
 
 export type CartProduct = {
@@ -46,5 +48,5 @@ export type IUser = {
   avatar: string;
   basket: any;
   history: any;
-  id: number;
+  id: number | null;
 };

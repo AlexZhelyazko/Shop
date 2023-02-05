@@ -2,9 +2,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import { useAppDispatch } from '../../redux/store';
 import { setFilterItemsByPrice } from '../../redux/catalog/catalogSlice';
 import { useEffect } from 'react';
+import { useAppDispatch } from '../../hooks/hook';
 
 function valuetext(value: number) {
   return `${value}$`;

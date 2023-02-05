@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
 import PhoneInput from 'react-phone-number-input';
 import { useDispatch } from 'react-redux';
-import { authApi } from '../../redux/auth/asyncActions';
 import { setCurrentUser, setIsAuth } from '../../redux/auth/authSlice';
+import { queryApi } from '../../redux/query';
 
 interface RegisterProps {
   setRegisterVisible: (value: boolean | ((prevVar: boolean) => boolean)) => void;
@@ -12,7 +12,7 @@ interface RegisterProps {
 }
 
 export const Register: React.FC<RegisterProps> = ({ setRegisterVisible, setLoginVisible }) => {
-  const { data = [], isLoading } = authApi.useGetUsersQuery('');
+  const { data = [], isLoading } = queryApi.useGetUsersQuery('');
 
   const [value, setValue] = useState();
 
@@ -20,7 +20,7 @@ export const Register: React.FC<RegisterProps> = ({ setRegisterVisible, setLogin
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [addUser, {}] = authApi.useAddUserMutation();
+  const [addUser, {}] = queryApi.useAddUserMutation();
   const dispatch = useDispatch();
   const haveAccountClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -37,7 +37,7 @@ export const Register: React.FC<RegisterProps> = ({ setRegisterVisible, setLogin
       role: 'user',
       avatar: 'default',
     });
-    dispatch(setCurrentUser(firstName));
+    // dispatch(setCurrentUser(firstName));
   };
   return (
     <div className="auth__wrapper">
