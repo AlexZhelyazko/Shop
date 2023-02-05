@@ -266,7 +266,7 @@
   ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "email": "john@mail.com",
       "password": "changeme",
       "name": "Jhon",
@@ -275,12 +275,12 @@
       "basket": []
     },
     {
-      "id": 2,
+      "id": "2",
       "email": "testUser@gmail.com",
       "password": "12345",
       "name": "testuser",
       "role": "user",
-      "avatar": "default",
+      "avatar": "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png",
       "basket": [
         {
           "title": "SET YOUR SOUL ON FIRE JACKET",
@@ -293,6 +293,16 @@
         }
       ],
       "history": {}
+    },
+    {
+      "email": "ric@mail.ru",
+      "password": "ric",
+      "name": "RicardoMilos",
+      "role": "user",
+      "avatar": "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png",
+      "basket": [],
+      "history": {},
+      "id": "9rby8Sz"
     }
   ]
 }

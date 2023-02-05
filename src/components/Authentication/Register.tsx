@@ -1,10 +1,11 @@
 import './auth.scss';
 import React, { useState } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
-import PhoneInput from 'react-phone-number-input';
-import { useDispatch } from 'react-redux';
-import { setCurrentUser, setIsAuth } from '../../redux/auth/authSlice';
+import { setIsAuth, setCurrentUser } from '../../redux/auth/authSlice';
 import { queryApi } from '../../redux/query';
+import { useAppDispatch } from '../../hooks/hook';
+import { emailValidation, isFieldEmptyValidation } from '../../utils/validation';
+import { nanoid } from '@reduxjs/toolkit';
 
 interface RegisterProps {
   setRegisterVisible: (value: boolean | ((prevVar: boolean) => boolean)) => void;
@@ -12,33 +13,51 @@ interface RegisterProps {
 }
 
 export const Register: React.FC<RegisterProps> = ({ setRegisterVisible, setLoginVisible }) => {
-  const { data = [], isLoading } = queryApi.useGetUsersQuery('');
-
-  const [value, setValue] = useState();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [addUser, {}] = queryApi.useAddUserMutation();
-  const dispatch = useDispatch();
+  const [fullName, setFullName] = useState('');
+  const [avatar, setAvatar] = useState('');
+  const [emailError, setEmailError] = useState<null | string>(null);
+  const [passwordError, setPasswordError] = useState<null | string>(null);
+  const [fullNameError, setFulltNameError] = useState<null | string>(null);
+
+  const dispatch = useAppDispatch();
+
+  const [addUser, { isError }] = queryApi.useAddUserMutation();
+
   const haveAccountClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setRegisterVisible(false);
     setLoginVisible(true);
   };
+
   const signUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    dispatch(setIsAuth(true));
-    await addUser({
-      email: email,
-      password: password,
-      name: firstName + lastName,
-      role: 'user',
-      avatar: 'default',
-    });
-    // dispatch(setCurrentUser(firstName));
+    let validEmail = emailValidation(email, setEmailError);
+    let validPassword = isFieldEmptyValidation(password, setPasswordError);
+    let validFulltName = isFieldEmptyValidation(fullName, setFulltNameError);
+    if (validEmail && validPassword && validFulltName) {
+      let newUser = {
+        id: nanoid(),
+        email,
+        password,
+        name: fullName,
+        role: 'user',
+        avatar: avatar || 'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png',
+        basket: [],
+        history: [],
+      };
+      await addUser(newUser);
+      console.log(isError);
+      if (isError) {
+        console.log('Error');
+      } else {
+        dispatch(setIsAuth(true));
+        dispatch(setCurrentUser(newUser));
+      }
+    }
   };
+
   return (
     <div className="auth__wrapper">
       <div className="auth__top">
@@ -49,25 +68,25 @@ export const Register: React.FC<RegisterProps> = ({ setRegisterVisible, setLogin
       </div>
       <div className="auth__form-wrapper">
         <h4>Register</h4>
-        <form className="auth__form" action="">
+        <form className="auth__form">
           <div>
-            <label htmlFor="firstName">First Name</label>
+            <label htmlFor="firstName">Full Name</label>
             <input
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
               type="text"
-              name="firstName"
-              id=""
+              name="fulltName"
             />
+            <div className="auth__form-validation_error">{fullNameError && fullNameError}</div>
           </div>
           <div>
-            <label htmlFor="lastName">Last Name</label>
+            <label htmlFor="avatar">Avatar</label>
             <input
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              placeholder="url"
+              value={avatar}
+              onChange={(e) => setAvatar(e.target.value)}
               type="text"
-              name="lastName"
-              id=""
+              name="avatar"
             />
           </div>
           <div>
@@ -77,8 +96,8 @@ export const Register: React.FC<RegisterProps> = ({ setRegisterVisible, setLogin
               onChange={(e) => setEmail(e.target.value)}
               type="text"
               name="email"
-              id=""
             />
+            <div className="auth__form-validation_error">{emailError && emailError}</div>
           </div>
           <div>
             <label htmlFor="password">Password</label>
@@ -87,19 +106,10 @@ export const Register: React.FC<RegisterProps> = ({ setRegisterVisible, setLogin
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               name="password"
-              id=""
             />
+            <div className="auth__form-validation_error">{passwordError && passwordError}</div>
           </div>
-          <div>
-            <PhoneInput
-              international
-              countryCallingCodeEditable={false}
-              defaultCountry="MX"
-              value={value}
-              onChange={(e) => setValue(value)}
-            />
-          </div>
-          <button className="signBtn" onClick={(e) => signUp(e)}>
+          <button type="submit" className="signBtn" onClick={(e) => signUp(e)}>
             Sign Up
           </button>
         </form>

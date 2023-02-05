@@ -4,7 +4,7 @@ import { ImCancelCircle } from 'react-icons/im';
 import { setCurrentUser, setIsAuth } from '../../redux/auth/authSlice';
 import { queryApi } from '../../redux/query';
 import { useAppDispatch } from '../../hooks/hook';
-import { handleEmailChange, handlePasswordChange } from '../../utils/validation';
+import { emailValidation, isFieldEmptyValidation } from '../../utils/validation';
 
 interface LoginProps {
   setLoginVisible: (value: boolean | ((prevVar: boolean) => boolean)) => void;
@@ -37,8 +37,8 @@ export const Login: React.FC<LoginProps> = ({ setLoginVisible, setRegisterVisibl
 
   const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    let validEmail = handleEmailChange(email, setEmailError);
-    let validPassword = handlePasswordChange(password, setPasswordError);
+    let validEmail = emailValidation(email, setEmailError);
+    let validPassword = isFieldEmptyValidation(password, setPasswordError);
     if (validEmail && validPassword) {
       let user = data.find((item: any) => {
         return item.password === password && item.email === email;

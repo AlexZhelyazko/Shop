@@ -2,7 +2,7 @@ function isValidEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
 }
 
-export const handleEmailChange = (email, setError) => {
+export const emailValidation = (email, setError) => {
     if (!email) {
         setError('Email is required')
         return false
@@ -14,9 +14,9 @@ export const handleEmailChange = (email, setError) => {
     return true
 };
 
-export const handlePasswordChange = (password, setError) => {
-    if (!password) {
-        setError('Password is required')
+export const isFieldEmptyValidation = (fieldValue, setError) => {
+    if (!fieldValue) {
+        setError('This field is required!')
         return false
     }
     setError(null)

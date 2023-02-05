@@ -48,5 +48,5 @@ export type IUser = {
   avatar: string;
   basket: any;
   history: any;
-  id: number | null;
+  id: string | null;
 };
