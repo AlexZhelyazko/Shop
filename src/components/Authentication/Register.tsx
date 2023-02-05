@@ -23,7 +23,7 @@ export const Register: React.FC<RegisterProps> = ({ setRegisterVisible, setLogin
 
   const dispatch = useAppDispatch();
 
-  const [addUser, { isError }] = queryApi.useAddUserMutation();
+  const [addUser, { isError, isLoading }] = queryApi.useAddUserMutation();
 
   const haveAccountClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -109,7 +109,7 @@ export const Register: React.FC<RegisterProps> = ({ setRegisterVisible, setLogin
             />
             <div className="auth__form-validation_error">{passwordError && passwordError}</div>
           </div>
-          <button type="submit" className="signBtn" onClick={(e) => signUp(e)}>
+          <button disabled={isLoading} type="submit" className="signBtn" onClick={(e) => signUp(e)}>
             Sign Up
           </button>
         </form>
