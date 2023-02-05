@@ -1,11 +1,10 @@
 import './auth.scss';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
 import { setCurrentUser, setIsAuth } from '../../redux/auth/authSlice';
 import { queryApi } from '../../redux/query';
-import { useAppDispatch, useAppSelector } from '../../hooks/hook';
-import { getCartItems, getCurrentUser, getIsAuth } from '../../redux/selectors';
-import { isValidEmail } from '../../utils/validation';
+import { useAppDispatch } from '../../hooks/hook';
+import { handleEmailChange, handlePasswordChange } from '../../utils/validation';
 
 interface LoginProps {
   setLoginVisible: (value: boolean | ((prevVar: boolean) => boolean)) => void;
@@ -15,41 +14,44 @@ interface LoginProps {
 export const Login: React.FC<LoginProps> = ({ setLoginVisible, setRegisterVisible }) => {
   const { data = [], isLoading } = queryApi.useGetUsersQuery('');
 
-  const cartItems = useAppSelector(getCartItems);
   const dispatch = useAppDispatch();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState<null | string>(null);
+  const [passwordError, setPasswordError] = useState<null | string>(null);
   const [error, setError] = useState<null | string>(null);
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!isValidEmail(e.target.value)) {
-      setError('Email is invalid');
-    } else {
-      setError(null);
-    }
-    setEmail(e.target.value);
-  };
 
   const registerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setLoginVisible(false);
     setRegisterVisible(true);
   };
-  const handleClick = async (e: any) => {
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, field: string) => {
+    setError(null);
+    setEmailError(null);
+    setPasswordError(null);
+    field === 'email' ? setEmail(e.target.value) : setPassword(e.target.value);
+  };
+
+  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    let user = data.find((item: any) => {
-      return item.password === password && item.email === email;
-    });
-    if (user) {
-      console.log(user);
-      console.log({ ...cartItems });
-      dispatch(setIsAuth(true));
-      dispatch(setCurrentUser(user));
-    } else {
-      console.log('Error');
+    let validEmail = handleEmailChange(email, setEmailError);
+    let validPassword = handlePasswordChange(password, setPasswordError);
+    if (validEmail && validPassword) {
+      let user = data.find((item: any) => {
+        return item.password === password && item.email === email;
+      });
+      if (user) {
+        dispatch(setIsAuth(true));
+        dispatch(setCurrentUser(user));
+      } else {
+        setError('No Such User!');
+      }
     }
   };
+
   return (
     <div className="auth__wrapper">
       <div className="auth__top">
@@ -60,22 +62,29 @@ export const Login: React.FC<LoginProps> = ({ setLoginVisible, setRegisterVisibl
       </div>
       <div className="auth__form-wrapper">
         <h4>I ALREADY HAVE AN ACCOUNT</h4>
-        <form className="auth__form" action="">
+        <form className="auth__form">
           <div>
             <label htmlFor="email">Email</label>
-            <input onChange={(e) => handleEmailChange(e)} type="text" name="email" />
-            <div>{error && error}</div>
+            <input
+              value={email}
+              onChange={(e) => handleChange(e, 'email')}
+              type="text"
+              name="email"
+            />
+            <div className="auth__form-validation_error">{emailError && emailError}</div>
           </div>
           <div>
             <label htmlFor="password">Password</label>
             <input
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => handleChange(e, 'password')}
               type="password"
               name="password"
             />
+            <div className="auth__form-validation_error">{passwordError && passwordError}</div>
           </div>
-          <button onClick={(e) => handleClick(e)} className="signBtn">
+          <div className="auth__form-validation_error">{error && error}</div>
+          <button type="submit" onClick={(e) => handleClick(e)} className="signBtn">
             Sign In
           </button>
         </form>

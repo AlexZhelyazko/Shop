@@ -41,6 +41,9 @@
         .auth__form{
             display: flex;
             flex-direction: column;
+            .auth__form-validation_error{
+                color: red;
+            }
             & > div {
                 display: flex;
                 flex-direction: column;
