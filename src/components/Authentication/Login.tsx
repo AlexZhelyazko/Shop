@@ -1,10 +1,11 @@
 import './auth.scss';
 import React, { useState } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
 import { setCurrentUser, setIsAuth } from '../../redux/auth/authSlice';
 import { queryApi } from '../../redux/query';
+import { useAppDispatch, useAppSelector } from '../../hooks/hook';
+import { getCartItems, getCurrentUser, getIsAuth } from '../../redux/selectors';
+import { isValidEmail } from '../../utils/validation';
 
 interface LoginProps {
   setLoginVisible: (value: boolean | ((prevVar: boolean) => boolean)) => void;
@@ -13,15 +14,23 @@ interface LoginProps {
 
 export const Login: React.FC<LoginProps> = ({ setLoginVisible, setRegisterVisible }) => {
   const { data = [], isLoading } = queryApi.useGetUsersQuery('');
-  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
-  const isAuth = useSelector((state: RootState) => state.auth.isAuth);
-  const currentUser = useSelector((state: RootState) => state.auth.currentUser);
-  const dispatch = useDispatch();
+
+  const cartItems = useAppSelector(getCartItems);
+  const dispatch = useAppDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  console.log(data);
-  console.log(isAuth);
-  console.log(currentUser);
+  const [error, setError] = useState<null | string>(null);
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!isValidEmail(e.target.value)) {
+      setError('Email is invalid');
+    } else {
+      setError(null);
+    }
+    setEmail(e.target.value);
+  };
+
   const registerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setLoginVisible(false);
@@ -54,13 +63,8 @@ export const Login: React.FC<LoginProps> = ({ setLoginVisible, setRegisterVisibl
         <form className="auth__form" action="">
           <div>
             <label htmlFor="email">Email</label>
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="text"
-              name="email"
-              id=""
-            />
+            <input onChange={(e) => handleEmailChange(e)} type="text" name="email" />
+            <div>{error && error}</div>
           </div>
           <div>
             <label htmlFor="password">Password</label>
@@ -69,7 +73,6 @@ export const Login: React.FC<LoginProps> = ({ setLoginVisible, setRegisterVisibl
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               name="password"
-              id=""
             />
           </div>
           <button onClick={(e) => handleClick(e)} className="signBtn">
