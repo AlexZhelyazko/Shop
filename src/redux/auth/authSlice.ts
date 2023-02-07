@@ -26,7 +26,7 @@ const auhtSlice = createSlice({
         setIsAuth(state, action: PayloadAction<boolean>) {
             state.isAuth = action.payload
         },
-        setCurrentUser(state, action: PayloadAction<IUser>) {
+        setCurrentUser(state, action: PayloadAction<IUser | {}>) {
             state.currentUser = action.payload
         }
     }

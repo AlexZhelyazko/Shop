@@ -10,6 +10,7 @@ interface SectionProps {
 }
 
 const Section: React.FC<SectionProps> = ({ items }) => {
+  //TODO
   const filterItems = useAppSelector((state) => state.catalog.filterItem);
   const isFilterActive = useAppSelector((state) => state.catalog.filters);
   const notFoundItems = useAppSelector((state) => state.catalog.notFoundItems);
@@ -51,8 +52,8 @@ const Section: React.FC<SectionProps> = ({ items }) => {
             <div className="catalog__section-product">
               <NavLink className="catalog__section-product catalog__section-link" to={`${item.id}`}>
                 <img
-                  onMouseOver={(event) => handleMouseEnter(event, item?.frontImageUrl || '')}
-                  onMouseOut={(event) => handleMouseOut(event, item?.backImageUrl || '')}
+                  onMouseOver={(event) => handleMouseEnter(event, item?.frontImageUrl)}
+                  onMouseOut={(event) => handleMouseOut(event, item?.backImageUrl)}
                   className="catalog__section-image"
                   width="228px"
                   height="300px"

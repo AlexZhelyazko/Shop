@@ -1,7 +1,6 @@
 import './sidebar.scss';
 import { useEffect, useState } from 'react';
 import RangeSlider from '../../RangeSlider/RangeSlider';
-import { RootState } from '../../../redux/store';
 import { BsFilterLeft } from 'react-icons/bs';
 import { GiCancel } from 'react-icons/gi';
 import {
@@ -12,21 +11,9 @@ import {
   setFilters,
   setNotFound,
 } from '../../../redux/catalog/catalogSlice';
-import { useSelector } from 'react-redux';
 import { IProduct } from '../../../@types/types';
 import { useAppDispatch, useAppSelector } from '../../../hooks/hook';
-
-const colorsData = [
-  { Blue: 'blue' },
-  { Black: 'black' },
-  { Pink: 'pink' },
-  { White: 'white' },
-  { Yellow: 'yellow' },
-  { Red: 'red' },
-  { Green: 'green' },
-];
-
-const sizeData = ['M', 'S', 'L', 'XL'];
+import { colorsData, sizeData } from '../../../data/data';
 
 interface SidebarProps {
   items: IProduct[];
@@ -119,6 +106,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
     dispatch(clearFilters());
   };
 
+  //TODO
   return (
     <>
       <div className="burger">
