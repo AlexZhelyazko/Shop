@@ -33,8 +33,8 @@ const Section: React.FC<SectionProps> = ({ items }) => {
   if (status === 'pending') {
     return (
       <>
-        {fakeArr.map(() => (
-          <div className="catalog__section-product">
+        {fakeArr.map((_, ind) => (
+          <div key={ind} className="catalog__section-product">
             <SkeletonLoader />
           </div>
         ))}
@@ -49,7 +49,7 @@ const Section: React.FC<SectionProps> = ({ items }) => {
       {(filterItems.length === 0 && isFilterActive === false ? items : filterItems).map(
         (item: IProduct) => {
           return (
-            <div className="catalog__section-product">
+            <div key={item.id} className="catalog__section-product">
               <NavLink className="catalog__section-product catalog__section-link" to={`${item.id}`}>
                 <img
                   onMouseOver={(event) => handleMouseEnter(event, item?.frontImageUrl)}

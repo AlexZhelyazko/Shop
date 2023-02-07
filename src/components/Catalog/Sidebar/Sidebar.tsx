@@ -150,9 +150,10 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
             <div className="filter__color">
               <h3>Color:</h3>
               <div className="filter__color-list">
-                {colorsData.map((el) => {
+                {colorsData.map((el, ind) => {
                   return (
                     <div
+                      key={ind}
                       className={`${
                         activeColors.includes(Object.values(el)[0])
                           ? 'filter__color-active'
@@ -168,9 +169,10 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
             <div className="filter__size">
               <h3>Size:</h3>
               <div className="filter__size-list">
-                {sizeData.map((el) => {
+                {sizeData.map((el, ind) => {
                   return (
                     <div
+                      key={ind}
                       className={`${
                         activeSize.includes(el) ? 'filter__size-active' : 'filter__size-notactive'
                       }`}
@@ -240,9 +242,10 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
         <div className="filter__color">
           <h3>Color:</h3>
           <div className="filter__color-list">
-            {colorsData.map((el) => {
+            {colorsData.map((el, ind) => {
               return (
                 <div
+                  key={ind}
                   className={`${
                     activeColors.includes(Object.values(el)[0])
                       ? 'filter__color-active'
@@ -258,9 +261,10 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
         <div className="filter__size">
           <h3>Size:</h3>
           <div className="filter__size-list">
-            {sizeData.map((el) => {
+            {sizeData.map((el, ind) => {
               return (
                 <div
+                  key={ind}
                   className={`${
                     activeSize.includes(el) ? 'filter__size-active' : 'filter__size-notactive'
                   }`}

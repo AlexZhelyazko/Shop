@@ -3,6 +3,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
     .header__user-avatar{
         margin-left: 10px;
         width: 30px;
@@ -14,12 +15,29 @@
     }
     .header__user-popup{
         position: absolute;
-        top: 8%;
-        background: red;
-        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
+        top: 10%;
+        border: solid lightgray 1px;
+        background: #e3dcdc;
+        box-shadow: 1px 11px 15px rgb(0 0 0 / 13%);
         border-radius: 10px;
         overflow: hidden;
-        padding: 10px 0;
-        width: 160px;
+        padding: 12px 0px 12px 20px;
+        width: 15%;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        z-index: 3;
+        span {
+            font-size: 17px;
+            font-family: 'Nunito';
+            letter-spacing: 0.7px;
+            padding-bottom: 3px;
+            margin-bottom: 10px;
+            width: 73%;
+            cursor: pointer;
+            &:hover{
+                border-bottom: solid white 1px;
+            }
+        }
     }
 }

@@ -10,6 +10,8 @@ function valuetext(value: number) {
   return `${value}$`;
 }
 
+//TODO
+
 export default function RangeSlider({ items, location, value, setValue }: any) {
   const dispatch = useAppDispatch();
 
