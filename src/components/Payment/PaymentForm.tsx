@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
+import { IUser } from '../../@types/types';
+import { queryApi } from '../../redux/query';
 
-interface PaymentFormProps {}
+interface PaymentFormProps {
+  userData?: IUser;
+}
 
-const PaymentForm: React.FC<PaymentFormProps> = () => {
+const PaymentForm: React.FC<PaymentFormProps> = ({ userData }) => {
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvc, setCvc] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState('');
+  const [addItemsToHistory, { isLoading, isError }] = queryApi.useConfirmDiliveryBasketMutation();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!cardNumber || !expiryDate || !cvc || !name) {
       setError('All fields are required');
@@ -27,7 +32,17 @@ const PaymentForm: React.FC<PaymentFormProps> = () => {
       setError('Invalid CVC');
       return;
     }
-    // perform payment
+    let date = new Date().toString();
+    console.log(date);
+    let userHistory = JSON.parse(JSON.stringify(userData?.history));
+    console.log(userData);
+    userHistory[date] = { ...userData?.basket };
+    console.log(userHistory[date]);
+    await addItemsToHistory({
+      userId: userData?.id,
+      item: [],
+      history: userHistory,
+    }).unwrap();
   };
 
   return (
@@ -59,7 +74,9 @@ const PaymentForm: React.FC<PaymentFormProps> = () => {
         <label htmlFor="name">Name:</label>
         <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
       </div>
-      <button type="submit">Pay</button>
+      <button onClick={(e) => handleSubmit(e)} type="submit">
+        Pay
+      </button>
     </form>
   );
 };

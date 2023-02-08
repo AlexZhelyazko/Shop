@@ -1,5 +1,6 @@
+import './history.scss';
 import React from 'react';
 
-export const history = () => {
+export const History = () => {
   return <div></div>;
 };

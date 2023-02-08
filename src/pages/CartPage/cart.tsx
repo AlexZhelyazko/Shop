@@ -1,29 +1,31 @@
 import './cart.scss';
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
 import { EmptyCart } from '../../components/EmptyCart/EmptyCart';
 import PaymentForm from '../../components/Payment/PaymentForm';
 import { Modal } from '../../components/ModalWindow/Modal';
 import { queryApi } from '../../redux/query';
 import { Success } from '../../Icons/Success/Success';
 import { Error } from '../../Icons/Error/Error';
+import { useAppSelector } from '../../hooks/hook';
+import { getCurrentUser } from '../../redux/selectors';
+import { Spinner } from '../../components/Preloader/Spinner/Spinner';
 
 export default function Cart() {
   const [totalPrice, setTotalPrice] = useState(null);
   const [paymentVisible, setPaymentVisible] = useState(false);
   const [updateCart, {}] = queryApi.useAddProductForAuthUserMutation();
-  const currentUser = useSelector((state: RootState) => state.auth.currentUser);
+  const currentUser = useAppSelector(getCurrentUser);
   const { data, isLoading } = queryApi.useGetUserQuery(currentUser.id);
-  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
 
   useEffect(() => {
-    setTotalPrice(
-      data[0].basket.reduce(
-        (acc: any, num: any) => acc + +num.price.slice(1, -2).replace(/[\s.,%]/g, '') * num.count,
-        0,
-      ),
-    );
+    if (data !== undefined) {
+      setTotalPrice(
+        data[0].basket.reduce(
+          (acc: any, num: any) => acc + +num.price.slice(1, -2).replace(/[\s.,%]/g, '') * num.count,
+          0,
+        ),
+      );
+    }
   }, [data]);
 
   const onAddItemClick = async (params: any[]) => {
@@ -76,7 +78,11 @@ export default function Cart() {
     await updateCart({ userId: currentUser.id, data: newList });
   };
 
-  if (data[0]?.basket.length === 0) {
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (data[0]?.basket.length === 0 || data[0]?.basket === undefined) {
     return <EmptyCart />;
   }
   return (
@@ -132,7 +138,7 @@ export default function Cart() {
           alignItems="center"
           visible={paymentVisible}
           setVisible={setPaymentVisible}>
-          <PaymentForm />
+          <PaymentForm userData={data[0]} />
         </Modal>
       ) : (
         ''

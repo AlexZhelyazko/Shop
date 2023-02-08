@@ -47,7 +47,20 @@ export const queryApi = createApi({
                 }
             }),
             invalidatesTags: [{ type: 'Products', id: 'LIST' }]
-        })
+        }),
+        confirmDiliveryBasket: build.mutation({
+            query: (body) => ({
+                url: `/users/${body.userId}`,
+                method: 'PATCH',
+                body: {
+                    basket: {
+                        item: body.item,
+                    },
+                    history: body.history,
+                },
+            }),
+            invalidatesTags: [{ type: 'User' }],
+        }),
     })
 })
 

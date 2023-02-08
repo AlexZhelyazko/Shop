@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { setCurrentUser, setIsAuth } from '../../redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hook';
 import { getCurrentUser } from '../../redux/selectors';
+import { NavLink } from 'react-router-dom';
 
 export const HeaderUser = () => {
   const currentUser = useAppSelector(getCurrentUser);
@@ -26,7 +27,7 @@ export const HeaderUser = () => {
       </div>
       {popUpVisible && (
         <div className="header__user-popup">
-          <span>History of Orders</span>
+          <NavLink to="/history">History of Orders</NavLink>
           <span>Account Settings</span>
           <span onClick={onExitClick}>Exit</span>
         </div>
