@@ -61,7 +61,7 @@ export const queryApi = createApi({
                     history: body.history,
                 },
             }),
-            invalidatesTags: [{ type: 'User' }],
+            invalidatesTags: [{ type: 'Products' }],
         }),
     })
 })

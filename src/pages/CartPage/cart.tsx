@@ -10,23 +10,31 @@ import { useAppSelector } from '../../hooks/hook';
 import { getCurrentUser } from '../../redux/selectors';
 import { Spinner } from '../../components/Preloader/Spinner/Spinner';
 
+//TODO first render
 export default function Cart() {
-  const [totalPrice, setTotalPrice] = useState(null);
+  const [totalPrice, setTotalPrice] = useState<null | number>(null);
+  const [count, setCount] = useState(0);
   const [paymentVisible, setPaymentVisible] = useState(false);
   const [updateCart, {}] = queryApi.useAddProductForAuthUserMutation();
   const currentUser = useAppSelector(getCurrentUser);
-  const { data, isLoading } = queryApi.useGetUserQuery(currentUser.id);
+  const { data, isLoading, refetch } = queryApi.useGetUserQuery(currentUser.id);
   console.log(data);
+  // let basketItems = data[0].basket.item || ' ';
   useEffect(() => {
-    if (data !== undefined && data[0] !== undefined && data[0].basket.item.length !== 0) {
-      setTotalPrice(
-        data[0].basket.item.reduce(
-          (acc: any, num: any) => acc + +num.price.slice(1, -2).replace(/[\s.,%]/g, '') * num.count,
-          0,
-        ),
-      );
+    if (data !== undefined) {
+      data[0].basket.item.length === 0
+        ? setTotalPrice(0)
+        : setTotalPrice(
+            data[0].basket.item.reduce(
+              (acc: any, num: any) =>
+                acc + +num.price.slice(1, -2).replace(/[\s.,%]/g, '') * num.count,
+              0,
+            ),
+          );
     }
-  }, [data]);
+  });
+
+  console.log(count);
 
   const onAddItemClick = async (params: any[]) => {
     let id = params[0];
@@ -138,7 +146,12 @@ export default function Cart() {
           alignItems="center"
           visible={paymentVisible}
           setVisible={setPaymentVisible}>
-          <PaymentForm userData={data[0]} />
+          <PaymentForm
+            count={count}
+            setCount={setCount}
+            setVisible={setPaymentVisible}
+            userData={data[0]}
+          />
         </Modal>
       ) : (
         ''

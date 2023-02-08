@@ -4,9 +4,12 @@ import { queryApi } from '../../redux/query';
 
 interface PaymentFormProps {
   userData?: IUser;
+  setVisible: (value: any | boolean) => void;
+  count: number;
+  setCount: any;
 }
 
-const PaymentForm: React.FC<PaymentFormProps> = ({ userData }) => {
+const PaymentForm: React.FC<PaymentFormProps> = ({ count, setCount, setVisible, userData }) => {
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvc, setCvc] = useState('');
@@ -43,6 +46,8 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ userData }) => {
       item: [],
       history: userHistory,
     }).unwrap();
+    setVisible(false);
+    setCount(count + 1);
   };
 
   return (
