@@ -281,17 +281,7 @@
       "name": "testuser",
       "role": "user",
       "avatar": "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png",
-      "basket": [
-        {
-          "title": "SET YOUR SOUL ON FIRE JACKET",
-          "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/DERULO_FRONT_f2c1fea3-fdd7-4fb9-96ee-1d50d76ddd0b_720x.png?v=1599663703",
-          "count": 3,
-          "size": "M",
-          "price": "$1,750.00",
-          "color": "yellow",
-          "id": 1675409144786
-        }
-      ],
+      "basket": [],
       "history": {}
     },
     {
@@ -314,6 +304,28 @@
             "color": "black",
             "id": 1675833324112
           }
+        },
+        "Wed Feb 08 2023 16:13:26 GMT+0400 (Грузия, стандартное время)": {
+          "item": [
+            {
+              "title": "THIS IS NOT VAN GOGH DECONSTRUCTED DENIM JACKET",
+              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872",
+              "count": 2,
+              "size": "M",
+              "price": "$2,500.00",
+              "color": "blue",
+              "id": 1675858108175
+            },
+            {
+              "title": "SET YOUR SOUL ON FIRE JACKET",
+              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/DERULO_FRONT_f2c1fea3-fdd7-4fb9-96ee-1d50d76ddd0b_720x.png?v=1599663703",
+              "count": 2,
+              "size": "M",
+              "price": "$1,750.00",
+              "color": "yellow",
+              "id": 1675858114376
+            }
+          ]
         }
       },
       "id": "9rby8Sz"

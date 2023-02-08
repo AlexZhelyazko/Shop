@@ -16,11 +16,11 @@ export default function Cart() {
   const [updateCart, {}] = queryApi.useAddProductForAuthUserMutation();
   const currentUser = useAppSelector(getCurrentUser);
   const { data, isLoading } = queryApi.useGetUserQuery(currentUser.id);
-
+  console.log(data);
   useEffect(() => {
-    if (data !== undefined) {
+    if (data !== undefined && data[0] !== undefined && data[0].basket.item.length !== 0) {
       setTotalPrice(
-        data[0].basket.reduce(
+        data[0].basket.item.reduce(
           (acc: any, num: any) => acc + +num.price.slice(1, -2).replace(/[\s.,%]/g, '') * num.count,
           0,
         ),
@@ -31,9 +31,9 @@ export default function Cart() {
   const onAddItemClick = async (params: any[]) => {
     let id = params[0];
     let price = params[1];
-    let findItem = { ...data[0].basket.find((obj: any) => obj.id === id) };
+    let findItem = { ...data[0].basket.item.find((obj: any) => obj.id === id) };
     findItem.count++;
-    const newList = data[0].basket.map((o: any) => {
+    const newList = data[0].basket.item.map((o: any) => {
       if (o.id === findItem.id) {
         return findItem;
       }
@@ -46,16 +46,16 @@ export default function Cart() {
     let id = params[0];
     let price = params[1];
     let newList = null;
-    let findItem = { ...data[0].basket.find((obj: any) => obj.id === id) };
+    let findItem = { ...data[0].basket.item.find((obj: any) => obj.id === id) };
     if (findItem.count === 1) {
-      const index = data[0].basket.findIndex((n: any) => n.id === id);
+      const index = data[0].basket.item.findIndex((n: any) => n.id === id);
       if (index !== -1) {
-        newList = [...data[0].basket];
+        newList = [...data[0].basket.item];
         newList.splice(index, 1);
       }
     } else {
       findItem.count--;
-      newList = data[0].basket.map((o: any) => {
+      newList = data[0].basket.item.map((o: any) => {
         if (o.id === findItem.id) {
           return findItem;
         }
@@ -70,9 +70,9 @@ export default function Cart() {
     let price = params[1];
     let count = params[2];
     let newList = null;
-    const index = data[0].basket.findIndex((n: any) => n.id === id);
+    const index = data[0].basket.item.findIndex((n: any) => n.id === id);
     if (index !== -1) {
-      newList = [...data[0].basket];
+      newList = [...data[0].basket.item];
       newList.splice(index, 1);
     }
     await updateCart({ userId: currentUser.id, data: newList });
@@ -82,7 +82,7 @@ export default function Cart() {
     return <Spinner />;
   }
 
-  if (data[0]?.basket.length === 0 || data[0]?.basket === undefined) {
+  if (data[0]?.basket.item.length === 0 || data[0]?.basket.item === undefined) {
     return <EmptyCart />;
   }
   return (
@@ -90,7 +90,7 @@ export default function Cart() {
       <div className="cart__container">
         <h1 style={{ fontFamily: 'initial', fontWeight: 'bold', fontSize: '35px' }}>YOUR CART</h1>
         <div className="cart__items-wrapper">
-          {data[0]?.basket.map((el: any, index: any) => {
+          {data[0]?.basket.item.map((el: any, index: any) => {
             return (
               <div key={el.title + index} className="cart__item">
                 <img src={el.img} alt="" />

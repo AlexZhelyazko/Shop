@@ -43,7 +43,9 @@ export const queryApi = createApi({
                 url: `/users/${body.userId}`,
                 method: 'PATCH',
                 body: {
-                    basket: body.data
+                    basket: {
+                        item: body.data
+                    }
                 }
             }),
             invalidatesTags: [{ type: 'Products', id: 'LIST' }]
