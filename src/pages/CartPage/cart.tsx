@@ -22,7 +22,7 @@ export default function Cart() {
   // let basketItems = data[0].basket.item || ' ';
   useEffect(() => {
     if (data !== undefined) {
-      data[0].basket.item.length === 0
+      data.basket.item.length === 0
         ? setTotalPrice(0)
         : setTotalPrice(
             data[0].basket.item.reduce(

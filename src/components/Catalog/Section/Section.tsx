@@ -32,13 +32,15 @@ const Section: React.FC<SectionProps> = ({ items }) => {
 
   if (status === 'pending') {
     return (
-      <>
+      <div
+        style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}
+        className="catalog__section">
         {fakeArr.map((_, ind) => (
           <div key={ind} className="catalog__section-product">
             <SkeletonLoader />
           </div>
         ))}
-      </>
+      </div>
     );
   }
 
