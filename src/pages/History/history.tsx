@@ -1,6 +1,49 @@
 import './history.scss';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { queryApi } from '../../redux/query';
+import { useAppSelector } from '../../hooks/hook';
+import { getCurrentUser } from '../../redux/selectors';
+import { Spinner } from '../../components/Preloader/Spinner/Spinner';
 
 export const History = () => {
-  return <div></div>;
+  const currentUser = useAppSelector(getCurrentUser);
+  console.log(currentUser);
+  const { data, isLoading, isFetching } = queryApi.useGetUserQuery(currentUser.id);
+
+  // const [trigger] = queryApi.useLazyGetUserQuery(currentUser.id);
+  // const data = useRef<any>();
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     data.current = await trigger(currentUser.id).unwrap();
+  //   };
+  //   fetchData();
+  // }, []);
+  // console.log(data.current);
+
+  if (isLoading || isFetching || data === undefined) {
+    return <Spinner />;
+  }
+
+  if (data) {
+    const { history } = data;
+    console.log(history);
+    const arrHistory = Object.entries(history);
+    console.log(arrHistory.map((el) => el[0]));
+  }
+
+  return (
+    <div>
+      {data &&
+        Object.entries(data.history).map((el: any) => {
+          console.log(el);
+          return (
+            <div>
+              <span>{el[0]}</span>
+              <span>{el[1].item.map((item: any) => item.title)}</span>
+            </div>
+          );
+        })}
+    </div>
+  );
 };

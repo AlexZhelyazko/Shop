@@ -24,7 +24,9 @@ export const queryApi = createApi({
                     name: body.name,
                     role: body.role,
                     avatar: body.avatar,
-                    basket: [],
+                    basket: {
+                        item: []
+                    },
                     history: {}
                 },
             }),
@@ -35,8 +37,8 @@ export const queryApi = createApi({
             providesTags: (result) => providesList(result, 'User')
         }),
         getUser: build.query({
-            query: (id) => `/users?id=${id}`,
-            providesTags: (result) => providesList(result, 'Products')
+            query: (id) => `/users/${id}`,
+            providesTags: (result) => result ? [result, { type: 'Products' }] : [{ type: 'Products' }],
         }),
         addProductForAuthUser: build.mutation({
             query: (body) => ({
