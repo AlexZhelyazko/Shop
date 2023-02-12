@@ -2,7 +2,7 @@ import './App.scss';
 import { Route, Routes } from 'react-router-dom';
 import MainPage from './pages/MainPage/MainPage';
 import Products from './pages/ProductsPage/Products';
-import Cart from './pages/CartPage/cart';
+import Cart from './pages/CartPage/Cart';
 import Catalog from './components/Catalog/Catalog';
 import SingleProduct from './pages/SingleProductPage/SingleProduct';
 import { History } from './pages/History/History';

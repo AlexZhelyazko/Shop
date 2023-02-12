@@ -6,7 +6,6 @@ export const fetchCatalogItems = createAsyncThunk<IProduct[], undefined, {reject
     'catalog/fetchCatalogItems',
     async (_, {rejectWithValue}) => {
         const response = await axios.get(`http://localhost:3001/products`)
-        console.log(response)
         if (response.statusText !== 'OK') {
             return rejectWithValue('Server Error')
         }

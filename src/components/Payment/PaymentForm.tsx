@@ -36,11 +36,9 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ count, setCount, setVisible, 
       return;
     }
     let date = new Date().toString();
-    console.log(date);
-    let userHistory = JSON.parse(JSON.stringify(userData?.history));
     console.log(userData);
+    let userHistory = JSON.parse(JSON.stringify(userData?.history));
     userHistory[date] = { ...userData?.basket };
-    console.log(userHistory[date]);
     await addItemsToHistory({
       userId: userData?.id,
       item: [],

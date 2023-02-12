@@ -18,14 +18,17 @@ export default function Cart() {
   const [updateCart, {}] = queryApi.useAddProductForAuthUserMutation();
   const currentUser = useAppSelector(getCurrentUser);
   const { data, isLoading, refetch } = queryApi.useGetUserQuery(currentUser.id);
-  console.log(data);
-  // let basketItems = data[0].basket.item || ' ';
+
+  useEffect(() => {
+    refetch();
+  }, []);
+
   useEffect(() => {
     if (data !== undefined) {
       data.basket.item.length === 0
         ? setTotalPrice(0)
         : setTotalPrice(
-            data[0].basket.item.reduce(
+            data.basket.item.reduce(
               (acc: any, num: any) =>
                 acc + +num.price.slice(1, -2).replace(/[\s.,%]/g, '') * num.count,
               0,
@@ -33,8 +36,6 @@ export default function Cart() {
           );
     }
   });
-
-  console.log(count);
 
   const onAddItemClick = async (params: any[]) => {
     let id = params[0];
@@ -90,7 +91,7 @@ export default function Cart() {
     return <Spinner />;
   }
 
-  if (data[0]?.basket.item.length === 0 || data[0]?.basket.item === undefined) {
+  if (data?.basket.item.length === 0 || data?.basket.item === undefined) {
     return <EmptyCart />;
   }
   return (
@@ -98,7 +99,7 @@ export default function Cart() {
       <div className="cart__container">
         <h1 style={{ fontFamily: 'initial', fontWeight: 'bold', fontSize: '35px' }}>YOUR CART</h1>
         <div className="cart__items-wrapper">
-          {data[0]?.basket.item.map((el: any, index: any) => {
+          {data?.basket.item.map((el: any, index: any) => {
             return (
               <div key={el.title + index} className="cart__item">
                 <img src={el.img} alt="" />
@@ -150,7 +151,7 @@ export default function Cart() {
             count={count}
             setCount={setCount}
             setVisible={setPaymentVisible}
-            userData={data[0]}
+            userData={data}
           />
         </Modal>
       ) : (

@@ -7,8 +7,8 @@ import { Spinner } from '../../components/Preloader/Spinner/Spinner';
 
 export const History = () => {
   const currentUser = useAppSelector(getCurrentUser);
-  console.log(currentUser);
   const { data, isLoading, isFetching } = queryApi.useGetUserQuery(currentUser.id);
+  console.log(data.history);
 
   // const [trigger] = queryApi.useLazyGetUserQuery(currentUser.id);
   // const data = useRef<any>();
@@ -25,18 +25,16 @@ export const History = () => {
     return <Spinner />;
   }
 
-  if (data) {
-    const { history } = data;
-    console.log(history);
-    const arrHistory = Object.entries(history);
-    console.log(arrHistory.map((el) => el[0]));
-  }
+  // if (data) {
+  //   const { history } = data;
+  //   const arrHistory = Object.entries(history);
+  //   console.log(arrHistory.map((el) => el[0]));
+  // }
 
   return (
     <div>
       {data &&
         Object.entries(data.history).map((el: any) => {
-          console.log(el);
           return (
             <div>
               <span>{el[0]}</span>

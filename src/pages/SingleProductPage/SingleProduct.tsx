@@ -43,8 +43,7 @@ function SingleProduct() {
     if (isAuth) {
       let res = { title, img, count, size, price, color, id };
       let arr = [];
-      console.log(data[0].basket);
-      data[0]?.basket.item.forEach((element: any) => {
+      data.basket.item.forEach((element: any) => {
         arr.push(element);
       });
       arr.push(res);
