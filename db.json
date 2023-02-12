@@ -272,7 +272,9 @@
       "name": "Jhon",
       "role": "customer",
       "avatar": "https://api.lorem.space/image/face?w=640&h=480&r=174",
-      "basket": []
+      "basket": {
+        "item": []
+      }
     },
     {
       "id": "2",
@@ -281,7 +283,9 @@
       "name": "testuser",
       "role": "user",
       "avatar": "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png",
-      "basket": [],
+      "basket": {
+        "item": []
+      },
       "history": {}
     },
     {
@@ -291,194 +295,30 @@
       "role": "user",
       "avatar": "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png",
       "basket": {
-        "item": []
+        "item": [
+          {
+            "title": "THE GREAT WHITE DUSTED TIGER DENIM JACKET",
+            "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/TIGER_YELLOW_JACKET_1_B_V3_720x.jpg?v=1644506843",
+            "count": 3,
+            "size": "XL",
+            "price": "$1,750.00",
+            "color": "pink",
+            "id": "1644506843"
+          },
+          {
+            "title": "F9 JACKET",
+            "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/jacket_1_A_rideordie_720x.png?v=1631724362",
+            "count": 6,
+            "size": "S",
+            "price": "$2,500.00",
+            "color": "gray",
+            "id": "1631724362"
+          }
+        ]
       },
       "history": {
-        "Wed Feb 08 2023 16:13:26 GMT+0400 (Грузия, стандартное время)": {
+        "Sun, 12 Feb 2023 13:15:41 GMT": {
           "item": [
-            {
-              "title": "THIS IS NOT VAN GOGH DECONSTRUCTED DENIM JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872",
-              "count": 2,
-              "size": "M",
-              "price": "$2,500.00",
-              "color": "blue",
-              "id": 1675858108175
-            },
-            {
-              "title": "SET YOUR SOUL ON FIRE JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/DERULO_FRONT_f2c1fea3-fdd7-4fb9-96ee-1d50d76ddd0b_720x.png?v=1599663703",
-              "count": 2,
-              "size": "M",
-              "price": "$1,750.00",
-              "color": "yellow",
-              "id": 1675858114376
-            }
-          ]
-        },
-        "Wed Feb 08 2023 16:17:21 GMT+0400 (Грузия, стандартное время)": {
-          "item": [
-            {
-              "title": "SEX PISTOLS GREEN BANDANA JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/June23_F2_720x.png?v=1592926893",
-              "count": 1,
-              "size": "S",
-              "price": "$2,500.00",
-              "color": "green",
-              "id": 1675858616637
-            }
-          ]
-        },
-        "Wed Feb 08 2023 17:05:28 GMT+0400 (Грузия, стандартное время)": {
-          "item": [
-            {
-              "title": "DUST OF GODS CHAIN LOCK NECKLACE",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/DUSTOFGODS_CHAIN_720x.png?v=1603810127",
-              "count": 1,
-              "price": "$124.00",
-              "color": "white",
-              "id": 1675861490329
-            }
-          ]
-        },
-        "Wed Feb 08 2023 17:08:05 GMT+0400 (Грузия, стандартное время)": {
-          "item": [
-            {
-              "title": "IDENTITY BLACK DENIM JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/BLACKDIOR_720x.png?v=1612979302",
-              "count": 2,
-              "size": "L",
-              "price": "$1,750.00",
-              "color": "black",
-              "id": 1675861656744
-            }
-          ]
-        },
-        "Wed Feb 08 2023 17:11:53 GMT+0400 (Грузия, стандартное время)": {
-          "item": [
-            {
-              "title": "IDENTITY BLACK DENIM JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/BLACKDIOR_720x.png?v=1612979302",
-              "count": 2,
-              "size": "L",
-              "price": "$1,750.00",
-              "color": "black",
-              "id": 1675861656744
-            },
-            {
-              "title": "THIS IS NOT VAN GOGH DECONSTRUCTED DENIM JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872",
-              "count": 1,
-              "size": "M",
-              "price": "$2,500.00",
-              "color": "blue",
-              "id": 1675861895816
-            }
-          ]
-        },
-        "Wed Feb 08 2023 17:15:06 GMT+0400 (Грузия, стандартное время)": {
-          "item": [
-            {
-              "title": "THIS IS NOT MARILYN'S COCO WHITE JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/August11_F4_720x.png?v=1597160266",
-              "count": 1,
-              "size": "M",
-              "price": "$1,750.00",
-              "color": "white",
-              "id": 1675862074727
-            }
-          ]
-        },
-        "Wed Feb 08 2023 17:16:15 GMT+0400 (Грузия, стандартное время)": {
-          "item": [
-            {
-              "title": "THIS IS NOT MARILYN'S COCO WHITE JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/August11_F4_720x.png?v=1597160266",
-              "count": 1,
-              "size": "M",
-              "price": "$1,750.00",
-              "color": "white",
-              "id": 1675862074727
-            },
-            {
-              "title": "FUTURE THOUGHTS DENIM JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/RIRI_2_720x.png?v=1613672192",
-              "count": 1,
-              "size": "S",
-              "price": "$1,750.00",
-              "color": "pink",
-              "id": 1675862158350
-            }
-          ]
-        },
-        "Wed Feb 08 2023 17:19:47 GMT+0400 (Грузия, стандартное время)": {
-          "item": [
-            {
-              "title": "THIS IS NOT MARILYN'S COCO WHITE JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/August11_F4_720x.png?v=1597160266",
-              "count": 1,
-              "size": "M",
-              "price": "$1,750.00",
-              "color": "white",
-              "id": 1675862074727
-            },
-            {
-              "title": "FUTURE THOUGHTS DENIM JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/RIRI_2_720x.png?v=1613672192",
-              "count": 1,
-              "size": "S",
-              "price": "$1,750.00",
-              "color": "pink",
-              "id": 1675862158350
-            },
-            {
-              "title": "SEX PISTOLS GREEN BANDANA JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/June23_F2_720x.png?v=1592926893",
-              "count": 1,
-              "size": "S",
-              "price": "$2,500.00",
-              "color": "green",
-              "id": 1675862360522
-            }
-          ]
-        },
-        "Wed Feb 08 2023 17:21:34 GMT+0400 (Грузия, стандартное время)": {
-          "item": [
-            {
-              "title": "THIS IS NOT VAN GOGH DECONSTRUCTED DENIM JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872",
-              "count": 1,
-              "size": "M",
-              "price": "$2,500.00",
-              "color": "blue",
-              "id": 1675862468918
-            }
-          ]
-        },
-        "Wed Feb 08 2023 17:24:00 GMT+0400 (Грузия, стандартное время)": {
-          "item": [
-            {
-              "title": "ADVISORY DENIM JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/AUG11_2_720x.png?v=1628709446",
-              "count": 1,
-              "size": "S",
-              "price": "$1,750.00",
-              "color": "blue",
-              "id": 1675862621178
-            }
-          ]
-        },
-        "Sun Feb 12 2023 13:21:54 GMT+0400 (Грузия, стандартное время)": {
-          "item": [
-            {
-              "title": "THIS IS NOT VAN GOGH DECONSTRUCTED DENIM JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872",
-              "count": 2,
-              "size": "M",
-              "price": "$2,500.00",
-              "color": "blue",
-              "id": 1676189231867
-            },
             {
               "title": "IDENTITY PINK DENIM JACKET",
               "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/PINKDIOR_720x.png?v=1612979359",
@@ -486,44 +326,10 @@
               "size": "S",
               "price": "$1,750.00",
               "color": "pink",
-              "id": 1676192509785
-            },
-            {
-              "title": "DUST DEALER ELEVATED DUSTER HAT",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/DD-ELEVATED1_720x.jpg?v=1663174871",
-              "count": 1,
-              "price": "$199.00",
-              "color": "black",
-              "id": 1676192627271
-            },
-            {
-              "title": "BRIGITTES ART PURPLE DENIM JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/ATDBRDTJKT01_B_720x.jpg?v=1653590009",
-              "count": 1,
-              "size": "M",
-              "price": "$1,500.00",
-              "color": "purple",
-              "id": 1676193058642
-            },
-            {
-              "title": "YOU ARE GOLD DENIM JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/UNAPLGTC_JACKET_1_B_720x.jpg?v=1656084479",
-              "count": 1,
-              "size": "S",
-              "price": "$2,500.00",
-              "color": "orange",
-              "id": 1676193130014
-            },
-            {
-              "title": "F9 JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/jacket_1_A_rideordie_720x.png?v=1631724362",
-              "count": 2,
-              "size": "S",
-              "price": "$2,500.00",
-              "color": "gray",
-              "id": 1676193146051
+              "id": 1676207658768
             }
-          ]
+          ],
+          "totalPrice": 1750
         }
       },
       "id": "9rby8Sz"

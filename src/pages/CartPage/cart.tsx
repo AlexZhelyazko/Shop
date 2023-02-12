@@ -40,31 +40,32 @@ export default function Cart() {
   const onAddItemClick = async (params: any[]) => {
     let id = params[0];
     let price = params[1];
-    let findItem = { ...data[0].basket.item.find((obj: any) => obj.id === id) };
+    let findItem = { ...data.basket.item.find((obj: any) => obj.id === id) };
     findItem.count++;
-    const newList = data[0].basket.item.map((o: any) => {
+    const newList = data.basket.item.map((o: any) => {
       if (o.id === findItem.id) {
         return findItem;
       }
       return o;
     });
     await updateCart({ userId: currentUser.id, data: newList });
+    refetch();
   };
 
   const onMinusItemClick = async (params: any[]) => {
     let id = params[0];
     let price = params[1];
     let newList = null;
-    let findItem = { ...data[0].basket.item.find((obj: any) => obj.id === id) };
+    let findItem = { ...data.basket.item.find((obj: any) => obj.id === id) };
     if (findItem.count === 1) {
-      const index = data[0].basket.item.findIndex((n: any) => n.id === id);
+      const index = data.basket.item.findIndex((n: any) => n.id === id);
       if (index !== -1) {
-        newList = [...data[0].basket.item];
+        newList = [...data.basket.item];
         newList.splice(index, 1);
       }
     } else {
       findItem.count--;
-      newList = data[0].basket.item.map((o: any) => {
+      newList = data.basket.item.map((o: any) => {
         if (o.id === findItem.id) {
           return findItem;
         }
@@ -72,6 +73,7 @@ export default function Cart() {
       });
     }
     await updateCart({ userId: currentUser.id, data: newList });
+    refetch();
   };
 
   const onDeleteItemClick = async (params: any[]) => {
@@ -79,12 +81,13 @@ export default function Cart() {
     let price = params[1];
     let count = params[2];
     let newList = null;
-    const index = data[0].basket.item.findIndex((n: any) => n.id === id);
+    const index = data.basket.item.findIndex((n: any) => n.id === id);
     if (index !== -1) {
-      newList = [...data[0].basket.item];
+      newList = [...data.basket.item];
       newList.splice(index, 1);
     }
     await updateCart({ userId: currentUser.id, data: newList });
+    refetch();
   };
 
   if (isLoading) {
@@ -152,6 +155,7 @@ export default function Cart() {
             setCount={setCount}
             setVisible={setPaymentVisible}
             userData={data}
+            totalPrice={totalPrice}
           />
         </Modal>
       ) : (

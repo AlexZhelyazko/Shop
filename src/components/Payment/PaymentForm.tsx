@@ -7,9 +7,16 @@ interface PaymentFormProps {
   setVisible: (value: any | boolean) => void;
   count: number;
   setCount: any;
+  totalPrice: number | null;
 }
 
-const PaymentForm: React.FC<PaymentFormProps> = ({ count, setCount, setVisible, userData }) => {
+const PaymentForm: React.FC<PaymentFormProps> = ({
+  count,
+  setCount,
+  setVisible,
+  userData,
+  totalPrice,
+}) => {
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvc, setCvc] = useState('');
@@ -35,10 +42,9 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ count, setCount, setVisible, 
       setError('Invalid CVC');
       return;
     }
-    let date = new Date().toString();
-    console.log(userData);
+    let date = new Date().toUTCString();
     let userHistory = JSON.parse(JSON.stringify(userData?.history));
-    userHistory[date] = { ...userData?.basket };
+    userHistory[date] = { ...userData?.basket, totalPrice };
     await addItemsToHistory({
       userId: userData?.id,
       item: [],

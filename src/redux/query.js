@@ -38,7 +38,9 @@ export const queryApi = createApi({
         }),
         getUser: build.query({
             query: (id) => `/users/${id}`,
-            providesTags: (result) => result ? [result, { type: 'Products' }] : [{ type: 'Products' }],
+            providesTags: ['Products']
+            //invalidatesTags: 'Products'
+            //providesTags: (result) => result ? [result, { type: 'Products' }] : [{ type: 'Products' }],
         }),
         addProductForAuthUser: build.mutation({
             query: (body) => ({
@@ -50,7 +52,7 @@ export const queryApi = createApi({
                     }
                 }
             }),
-            invalidatesTags: [{ type: 'Products', id: 'LIST' }]
+            invalidatesTags: [{ type: ['Products', 'User'], id: 'LIST' }]
         }),
         confirmDiliveryBasket: build.mutation({
             query: (body) => ({

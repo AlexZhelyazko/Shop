@@ -1,24 +1,26 @@
 import './singleProduct.scss';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getItem } from '../../redux/catalog/asyncActions';
-import { RootState } from '../../redux/store';
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai';
 import { ImCancelCircle } from 'react-icons/im';
 import ImageMagnifier from '../../components/ImageMagnify/ImageMagnify';
 import { Warning } from '../../Icons/Warning/Warning';
 import { Modal } from '../../components/ModalWindow/Modal';
 import { Spinner } from '../../components/Preloader/Spinner/Spinner';
-import { useAppDispatch } from '../../hooks/hook';
+import { useAppDispatch, useAppSelector } from '../../hooks/hook';
 import { queryApi } from '../../redux/query';
+import { getCurrentUser, getIsAuth } from '../../redux/selectors';
+import { Error } from '../../Icons/Error/Error';
 
 function SingleProduct() {
   const [warningVisible, setWarningVisible] = useState(false);
   const [addProduct, {}] = queryApi.useAddProductForAuthUserMutation();
-  const isAuth = useSelector((state: RootState) => state.auth.isAuth);
-  const authUserID = useSelector((state: RootState) => state.auth.currentUser);
-  let { data, isLoading, isFetching } = queryApi.useGetUserQuery(authUserID.id);
+  const isAuth = useAppSelector(getIsAuth);
+  const error = useAppSelector((state) => state.catalog.error);
+  const authUserID = useAppSelector(getCurrentUser);
+  const getUserStatus = useAppSelector((state) => state.catalog.status);
+  let { data } = queryApi.useGetUserQuery(authUserID.id);
   const [selectValue, setSelectValue] = useState<string>('');
   const [currentImage, setCurrentImage] = useState<boolean>(false);
   const [largeImgEnabled, setLargeImgEnabled] = useState<boolean>(false);
@@ -28,16 +30,15 @@ function SingleProduct() {
 
   const params = useParams();
 
-  const item = useSelector((state: RootState) => state?.catalog?.currentItem);
-
+  const item = useAppSelector((state) => state.catalog.currentItem);
   useEffect(() => {
+    console.log('effect');
     dispatch(getItem(params.id!));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params.id]);
+  }, []);
 
   const addItemToCart = async (item: any) => {
     let { title, frontImageUrl, price, color } = item;
-    let id = Date.now();
+    let id = item.id;
     let img = frontImageUrl;
     let size = selectValue || item.size[0];
     if (isAuth) {
@@ -56,9 +57,28 @@ function SingleProduct() {
     }
   };
 
-  return Object.keys(item).length === 0 ? (
-    <Spinner />
-  ) : (
+  if (getUserStatus === 'rejected') {
+    <Error />;
+  }
+
+  if (getUserStatus === 'pending' || item === undefined) {
+    if (item === undefined) {
+      return (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+          }}>
+          <Error />
+          {error}
+        </div>
+      );
+    }
+    return <Spinner />;
+  }
+  return (
     <>
       <Modal
         setVisible={setWarningVisible}
