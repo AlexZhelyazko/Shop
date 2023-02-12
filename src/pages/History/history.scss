@@ -1,10 +1,8 @@
 .history__item{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
     margin: 10px 0px;
     border-bottom: 1px solid lightgray;
-    justify-content: space-around;
-    align-items: center;
     .history__item-date{
         letter-spacing: 0.5px;
         font-family: 'Nunito';
