@@ -1,8 +1,8 @@
 import './section.scss';
 import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { NotFound } from '../../NotFound/NotFound';
-import SkeletonLoader from '../../Preloader/SkeletonLoader/Skeleton';
+import { NotFound } from '../../../components/NotFound/NotFound';
+import SkeletonLoader from '../../../components/Preloader/SkeletonLoader/Skeleton';
 import { IProduct } from '../../../@types/types';
 import { useAppSelector } from '../../../hooks/hook';
 import { useInView } from 'react-intersection-observer';

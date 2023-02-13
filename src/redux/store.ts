@@ -11,12 +11,10 @@ import {
     REGISTER, } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import catalog from './catalog/catalogSlice'
-import cart from './cart/cartSlice'
 import auth from './auth/authSlice'
 
 const rootReducer = combineReducers({
     catalog,
-    cart,
     auth,
     [queryApi.reducerPath]: queryApi.reducer,
 })

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import './sidebar.scss';
 import { useEffect, useState } from 'react';
-import RangeSlider from '../../RangeSlider/RangeSlider';
+import RangeSlider from '../../../components/RangeSlider/RangeSlider';
 import { BsFilterLeft } from 'react-icons/bs';
 import { GiCancel } from 'react-icons/gi';
 import {

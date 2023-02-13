@@ -1,7 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { IUser } from './../../@types/types';
 import { createSlice } from '@reduxjs/toolkit';
-import { PURGE } from 'redux-persist';
 interface IAuth {
     isAuth: boolean,
     currentUser: any
@@ -9,15 +8,7 @@ interface IAuth {
 
 const initialState: IAuth = {
     isAuth: false,
-    currentUser: {
-        // id: null,
-        // email: '',
-        // name: '',
-        // role: '',
-        // avatar:'',
-        // basket: [],
-        // history: [],
-    },
+    currentUser: {},
 }
 
 const auhtSlice = createSlice({
@@ -31,11 +22,6 @@ const auhtSlice = createSlice({
             state.currentUser = action.payload
         }
     },
-    // extraReducers: (builder) => {
-    //     builder.addCase(PURGE, (state) => {
-    //         customEntityAdapter.removeAll(state);
-    //     });
-    // }
 })
 
 export const {setIsAuth, setCurrentUser} = auhtSlice.actions
