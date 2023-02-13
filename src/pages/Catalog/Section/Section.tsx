@@ -1,5 +1,4 @@
 import './section.scss';
-import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { NotFound } from '../../../components/NotFound/NotFound';
 import SkeletonLoader from '../../../components/Preloader/SkeletonLoader/Skeleton';
@@ -12,7 +11,7 @@ interface SectionProps {
 }
 
 const Section: React.FC<SectionProps> = ({ items }) => {
-  //TODO
+  //
   const filterItems = useAppSelector((state) => state.catalog.filterItem);
   const isFilterActive = useAppSelector((state) => state.catalog.filters);
   const notFoundItems = useAppSelector((state) => state.catalog.notFoundItems);

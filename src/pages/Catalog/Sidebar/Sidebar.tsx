@@ -107,7 +107,7 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
     dispatch(clearFilters());
   };
 
-  //TODO
+  //
   return (
     <>
       <div className="burger">

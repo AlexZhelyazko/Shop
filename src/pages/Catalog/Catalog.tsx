@@ -1,5 +1,5 @@
 import './catalog.scss';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { fetchCatalogItems } from '../../redux/catalog/asyncActions';
 import { clearFilters } from '../../redux/catalog/catalogSlice';

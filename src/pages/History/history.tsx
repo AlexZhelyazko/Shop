@@ -1,5 +1,4 @@
 import './history.scss';
-import React, { useEffect, useRef } from 'react';
 import { queryApi } from '../../redux/query';
 import { useAppSelector } from '../../hooks/hook';
 import { getCurrentUser } from '../../redux/selectors';
@@ -10,27 +9,10 @@ const History = () => {
   const currentUser = useAppSelector(getCurrentUser);
   const { data, isLoading, isFetching } = queryApi.useGetUserQuery(currentUser.id);
 
-  // const [trigger] = queryApi.useLazyGetUserQuery(currentUser.id);
-  // const data = useRef<any>();
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     data.current = await trigger(currentUser.id).unwrap();
-  //   };
-  //   fetchData();
-  // }, []);
-  // console.log(data.current);
-
   if (isLoading || isFetching || data === undefined) {
     return <Spinner />;
   }
 
-  // if (data) {
-  //   const { history } = data;
-  //   const arrHistory = Object.entries(history);
-  //   console.log(arrHistory.map((el) => el[0]));
-  // }
-  console.log(Object.entries(data.history));
   return (
     <div>
       {data &&
