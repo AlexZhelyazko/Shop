@@ -1,3 +1,4 @@
+import './payment.scss';
 import React, { useState } from 'react';
 import { IUser } from '../../@types/types';
 import { queryApi } from '../../redux/query';
@@ -58,8 +59,11 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
     <form onSubmit={handleSubmit}>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <div>
-        <label htmlFor="cardNumber">Card Number:</label>
+        <label className="payment__label" htmlFor="cardNumber">
+          Card Number:
+        </label>
         <input
+          className="payment__input"
           type="text"
           id="cardNumber"
           value={cardNumber}
@@ -67,8 +71,11 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
         />
       </div>
       <div>
-        <label htmlFor="expiryDate">Expiry Date:</label>
+        <label className="payment__label" htmlFor="expiryDate">
+          Expiry Date:
+        </label>
         <input
+          className="payment__input"
           type="text"
           id="expiryDate"
           value={expiryDate}
@@ -76,14 +83,30 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
         />
       </div>
       <div>
-        <label htmlFor="cvc">CVC:</label>
-        <input type="text" id="cvc" value={cvc} onChange={(e) => setCvc(e.target.value)} />
+        <label className="payment__label" htmlFor="cvc">
+          CVC:
+        </label>
+        <input
+          className="payment__input"
+          type="text"
+          id="cvc"
+          value={cvc}
+          onChange={(e) => setCvc(e.target.value)}
+        />
       </div>
       <div>
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+        <label className="payment__label" htmlFor="name">
+          Name:
+        </label>
+        <input
+          className="payment__input"
+          type="text"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
       </div>
-      <button onClick={(e) => handleSubmit(e)} type="submit">
+      <button className="payment__btn" onClick={(e) => handleSubmit(e)} type="submit">
         Pay
       </button>
     </form>

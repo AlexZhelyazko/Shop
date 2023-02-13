@@ -28,7 +28,7 @@ const Wrapper = styled.div<{
   align-items: ${(props) => props.alignItems};
 `;
 
-const ModalWindow = styled.div<{ width?: string; height?: string }>`
+const ModalWindow = styled.div<{ width?: string; height?: string; alignItems?: string }>`
   position: absolute;
   width: ${(props) => props.width || '25%'};
   height: ${(props) => props.height || '100%'};
@@ -38,7 +38,7 @@ const ModalWindow = styled.div<{ width?: string; height?: string }>`
   opacity: 1;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: ${(props) => props.alignItems};
   @media all and (max-width: 768px) {
     position: relative;
     width: 100%;
@@ -60,7 +60,11 @@ export const Modal: React.FC<ModalProps> = ({
       alignItems={alignItems}
       onClick={() => setVisible(false)}
       visible={visible}>
-      <ModalWindow height={height} width={width} onClick={(e) => e.stopPropagation()}>
+      <ModalWindow
+        alignItems={alignItems}
+        height={height}
+        width={width}
+        onClick={(e) => e.stopPropagation()}>
         {children}
       </ModalWindow>
     </Wrapper>

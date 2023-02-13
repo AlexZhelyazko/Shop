@@ -19,6 +19,7 @@ export const queryApi = createApi({
                 url: `/users`,
                 method: 'POST',
                 body: {
+                    id: body.id,
                     email: body.email,
                     password: body.password,
                     name: body.name,
@@ -39,8 +40,6 @@ export const queryApi = createApi({
         getUser: build.query({
             query: (id) => `/users/${id}`,
             providesTags: ['Products']
-            //invalidatesTags: 'Products'
-            //providesTags: (result) => result ? [result, { type: 'Products' }] : [{ type: 'Products' }],
         }),
         addProductForAuthUser: build.mutation({
             query: (body) => ({

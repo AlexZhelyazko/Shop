@@ -10,7 +10,6 @@ import { useAppSelector } from '../../hooks/hook';
 import { getCurrentUser } from '../../redux/selectors';
 import { Spinner } from '../../components/Preloader/Spinner/Spinner';
 
-//TODO first render
 export default function Cart() {
   const [totalPrice, setTotalPrice] = useState<null | number>(null);
   const [count, setCount] = useState(0);
@@ -163,7 +162,9 @@ export default function Cart() {
       )}
       <div className="cart__footer">
         Total: ${totalPrice}
-        <button onClick={() => setPaymentVisible(true)}>Continue</button>
+        <button className="cart__footer-btn" onClick={() => setPaymentVisible(true)}>
+          Continue
+        </button>
       </div>
     </>
   );

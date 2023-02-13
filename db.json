@@ -289,45 +289,26 @@
       "history": {}
     },
     {
+      "id": "mg2B1ePCVCp1P-r1Alg4j",
       "email": "ric@mail.ru",
       "password": "ric",
-      "name": "RicardoMilos",
+      "name": "ric",
       "role": "user",
-      "avatar": "https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png",
+      "avatar": "https://avatarfiles.alphacoders.com/266/266629.jpg",
       "basket": {
-        "item": []
+        "item": [
+          {
+            "title": "IDENTITY BLACK DENIM JACKET",
+            "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/BLACKDIOR_720x.png?v=1612979302",
+            "count": 1,
+            "size": "L",
+            "price": "$1,750.00",
+            "color": "black",
+            "id": "1612979302"
+          }
+        ]
       },
-      "history": {
-        "Sun, 12 Feb 2023 13:15:41 GMT": {
-          "item": [
-            {
-              "title": "IDENTITY PINK DENIM JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/PINKDIOR_720x.png?v=1612979359",
-              "count": 1,
-              "size": "S",
-              "price": "$1,750.00",
-              "color": "pink",
-              "id": 1676207658768
-            }
-          ],
-          "totalPrice": 1750
-        },
-        "Sun, 12 Feb 2023 13:48:51 GMT": {
-          "item": [
-            {
-              "title": "THE GREAT WHITE DUSTED TIGER DENIM JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/TIGER_YELLOW_JACKET_1_B_V3_720x.jpg?v=1644506843",
-              "count": 3,
-              "size": "XL",
-              "price": "$1,750.00",
-              "color": "pink",
-              "id": "1644506843"
-            }
-          ],
-          "totalPrice": 5250
-        }
-      },
-      "id": "9rby8Sz"
+      "history": {}
     }
   ]
 }

@@ -9,7 +9,13 @@ const History = () => {
   const currentUser = useAppSelector(getCurrentUser);
   const { data, isLoading, isFetching } = queryApi.useGetUserQuery(currentUser.id);
 
-  if (isLoading || isFetching || data === undefined) {
+  if (data?.basket.item.length === 0) {
+    return (
+      <h1 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Empty</h1>
+    );
+  }
+
+  if (isLoading || isFetching) {
     return <Spinner />;
   }
 
