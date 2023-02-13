@@ -5,7 +5,7 @@ import axios from 'axios';
 export const fetchCatalogItems = createAsyncThunk<IProduct[], undefined, {rejectValue: string}>(
     'catalog/fetchCatalogItems',
     async (_, {rejectWithValue}) => {
-        const response = await axios.get(`http://localhost:3001/products`)
+        const response = await axios.get(`http://localhost:3001/products?`)
         if (response.statusText !== 'OK') {
             return rejectWithValue('Something went wrong')
         }

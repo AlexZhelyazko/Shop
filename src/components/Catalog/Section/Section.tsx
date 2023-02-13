@@ -1,9 +1,11 @@
 import './section.scss';
+import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { NotFound } from '../../NotFound/NotFound';
 import SkeletonLoader from '../../Preloader/SkeletonLoader/Skeleton';
 import { IProduct } from '../../../@types/types';
 import { useAppSelector } from '../../../hooks/hook';
+import { useInView } from 'react-intersection-observer';
 
 interface SectionProps {
   items: IProduct[];
@@ -15,6 +17,8 @@ const Section: React.FC<SectionProps> = ({ items }) => {
   const isFilterActive = useAppSelector((state) => state.catalog.filters);
   const notFoundItems = useAppSelector((state) => state.catalog.notFoundItems);
   const status = useAppSelector((state) => state.catalog.status);
+
+  const { ref, inView, entry } = useInView({ threshold: 1, triggerOnce: true });
 
   const handleMouseEnter = (event: React.MouseEvent<HTMLImageElement>, imageSrc: string) => {
     (event.target as HTMLImageElement).src = imageSrc;
@@ -51,9 +55,10 @@ const Section: React.FC<SectionProps> = ({ items }) => {
       {(filterItems.length === 0 && isFilterActive === false ? items : filterItems).map(
         (item: IProduct) => {
           return (
-            <div key={item.id} className="catalog__section-product">
+            <div ref={ref} key={item.id} className="catalog__section-product">
               <NavLink className="catalog__section-product catalog__section-link" to={`${item.id}`}>
                 <img
+                  loading="lazy"
                   onMouseOver={(event) => handleMouseEnter(event, item?.frontImageUrl)}
                   onMouseOut={(event) => handleMouseOut(event, item?.backImageUrl)}
                   className="catalog__section-image"

@@ -6,7 +6,7 @@ import { getCurrentUser } from '../../redux/selectors';
 import { Spinner } from '../../components/Preloader/Spinner/Spinner';
 import { NavLink } from 'react-router-dom';
 
-export const History = () => {
+const History = () => {
   const currentUser = useAppSelector(getCurrentUser);
   const { data, isLoading, isFetching } = queryApi.useGetUserQuery(currentUser.id);
 
@@ -59,3 +59,5 @@ export const History = () => {
     </div>
   );
 };
+
+export default History;
