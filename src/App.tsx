@@ -1,16 +1,9 @@
 import './App.scss';
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-//import MainPage from './pages/MainPage/MainPage';
 import Products from './pages/ProductsPage/Products';
-//import Cart from './pages/CartPage/Cart';
-//import Catalog from './components/Catalog/Catalog';
-//import SingleProduct from './pages/SingleProductPage/SingleProduct';
-//import { History } from './pages/History/History';
 import { Privat } from './hoc/Privat';
-import { Spinner } from './components/Preloader/Spinner/Spinner';
 
-// const LazyProduct = lazy(() => import('./pages/ProductsPage/Products'));
 const LazyMainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const LazyCatalog = lazy(() => import('./components/Catalog/Catalog'));
 const LazySingleProduct = lazy(() => import('./pages/SingleProductPage/SingleProduct'));

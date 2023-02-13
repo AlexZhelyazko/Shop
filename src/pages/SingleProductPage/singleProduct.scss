@@ -128,12 +128,12 @@
         .catalogItem__info{
             margin: 0 auto !important;
         }
-        .catalogItem__large-image {
-            left: 15%;
-        }
     }
     .svg {
         width: 2em;
+    }
+    .catalogItem__large-image {
+        left: 15%;
     }
 }
 
@@ -144,11 +144,14 @@
         .catalogItem__info{
             margin: 0 auto !important;
         }
-        .catalogItem__large-image {
-            left: 15%;
-        }
     }
     .svg {
         width: 2em;
+    }
+    .catalogItem__large-image{
+        left: 0 !important;
+    }
+    .catalogItem__large-image-enabled{
+        width: 95% !important;
     }
 }

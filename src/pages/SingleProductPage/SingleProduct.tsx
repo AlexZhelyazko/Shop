@@ -32,7 +32,6 @@ function SingleProduct() {
 
   const item = useAppSelector((state) => state.catalog.currentItem);
   useEffect(() => {
-    console.log('effect');
     dispatch(getItem(params.id!));
   }, []);
 
@@ -159,6 +158,7 @@ function SingleProduct() {
           <AiOutlineArrowLeft className="svg" onClick={() => setCurrentImage(!currentImage)} />
           <div>
             <img
+              className="catalogItem__large-image-enabled"
               onClick={() => setLargeImgEnabled(false)}
               src={currentImage ? item.backImageUrl : item.frontImageUrl}
               alt=""
