@@ -15,22 +15,25 @@ import { Error } from '../../Icons/Error/Error';
 
 function SingleProduct() {
   const [warningVisible, setWarningVisible] = useState(false);
-  const [addProduct, {}] = queryApi.useAddProductForAuthUserMutation();
-  const isAuth = useAppSelector(getIsAuth);
-  const error = useAppSelector((state) => state.catalog.error);
-  const authUserID = useAppSelector(getCurrentUser);
-  const getUserStatus = useAppSelector((state) => state.catalog.status);
-  let { data } = queryApi.useGetUserQuery(authUserID.id);
   const [selectValue, setSelectValue] = useState<string>('');
   const [currentImage, setCurrentImage] = useState<boolean>(false);
   const [largeImgEnabled, setLargeImgEnabled] = useState<boolean>(false);
   const [count, setCount] = useState<number>(0);
 
+  const [addProduct, {}] = queryApi.useAddProductForAuthUserMutation();
+
+  const isAuth = useAppSelector(getIsAuth);
+  const currentUser = useAppSelector(getCurrentUser);
+  const error = useAppSelector((state) => state.catalog.error);
+  const getUserStatus = useAppSelector((state) => state.catalog.status);
+  const item = useAppSelector((state) => state.catalog.currentItem);
+
+  let { data } = queryApi.useGetUserQuery(currentUser.id);
+
   const dispatch = useAppDispatch();
 
   const params = useParams();
 
-  const item = useAppSelector((state) => state.catalog.currentItem);
   useEffect(() => {
     dispatch(getItem(params.id!));
   }, []);
@@ -48,7 +51,7 @@ function SingleProduct() {
       });
       arr.push(res);
       await addProduct({
-        userId: authUserID.id,
+        userId: currentUser.id,
         data: arr,
       });
     } else {
@@ -77,6 +80,7 @@ function SingleProduct() {
     }
     return <Spinner />;
   }
+
   return (
     <>
       <Modal
@@ -107,7 +111,7 @@ function SingleProduct() {
               <img
                 src={currentImage ? item?.frontImageUrl : item?.backImageUrl}
                 style={{ width: '95px' }}
-                alt=""
+                alt="item"
               />
             </div>
           </div>
@@ -161,7 +165,7 @@ function SingleProduct() {
               className="catalogItem__large-image-enabled"
               onClick={() => setLargeImgEnabled(false)}
               src={currentImage ? item.backImageUrl : item.frontImageUrl}
-              alt=""
+              alt="item"
             />
             <ImCancelCircle
               className="svg"
