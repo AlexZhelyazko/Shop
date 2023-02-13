@@ -25,6 +25,27 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
   const [error, setError] = useState('');
   const [addItemsToHistory, { isLoading, isError }] = queryApi.useConfirmDiliveryBasketMutation();
 
+  const handleCardNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let val = e.target.value;
+    let valArray = val.split(' ').join('').split('');
+    let valSpace = val.split('');
+
+    if (valSpace[valSpace.length - 1] == ' ') {
+      var valSpaceN = valSpace.slice(0, -2);
+      val = valSpaceN.join('');
+      setCardNumber(val);
+      return;
+    }
+
+    if (isNaN(+valArray.join(''))) return;
+    if (valArray.length === 17) return;
+    if (valArray.length % 4 === 0 && valArray.length <= 15) {
+      setCardNumber(e.target.value + '  ');
+    } else {
+      setCardNumber(e.target.value);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!cardNumber || !expiryDate || !cvc || !name) {
@@ -32,15 +53,15 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
       return;
     }
     if (!/^\d{16}$/.test(cardNumber)) {
-      setError('Invalid card number');
+      setError('Invalid data');
       return;
     }
     if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
-      setError('Invalid expiry date');
+      setError('Invalid data');
       return;
     }
     if (!/^\d{3}$/.test(cvc)) {
-      setError('Invalid CVC');
+      setError('Invalid data');
       return;
     }
     let date = new Date().toUTCString();
@@ -67,7 +88,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
           type="text"
           id="cardNumber"
           value={cardNumber}
-          onChange={(e) => setCardNumber(e.target.value)}
+          onChange={(e) => handleCardNumber(e)}
         />
       </div>
       <div>
