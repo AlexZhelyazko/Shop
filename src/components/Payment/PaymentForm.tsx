@@ -46,6 +46,29 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
     }
   };
 
+  const handleCardDate = (e: React.FormEvent<HTMLInputElement>) => {
+    console.log(e);
+
+    let textTemp = e.currentTarget.value;
+    console.log(textTemp);
+    if (textTemp[0] !== '1' && textTemp[0] !== '0') {
+      textTemp = '';
+    }
+    if (textTemp.length > 5) {
+      return;
+    }
+    if (textTemp.length === 2) {
+      if (parseInt(textTemp.substring(0, 2)) > 12 || parseInt(textTemp.substring(0, 2)) == 0) {
+        textTemp = textTemp[0];
+      } else if (textTemp.length === 2) {
+        textTemp += '/';
+      } else {
+        textTemp = textTemp[0];
+      }
+    }
+    setExpiryDate(textTemp);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!cardNumber || !expiryDate || !cvc || !name) {
@@ -100,7 +123,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
           type="text"
           id="expiryDate"
           value={expiryDate}
-          onChange={(e) => setExpiryDate(e.target.value)}
+          onChange={(e) => handleCardDate(e)}
         />
       </div>
       <div>
