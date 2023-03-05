@@ -17,7 +17,14 @@ export const App: React.FC = () => {
         <Route path="" element={<LazyMainPage />} />
         <Route path="shop" element={<LazyCatalog />} />
         <Route path="/shop/:id" element={<LazySingleProduct />} />
-        <Route path="history" element={<LazyHistory />} />
+        <Route
+          path="history"
+          element={
+            <Privat>
+              <LazyHistory />
+            </Privat>
+          }
+        />
         <Route
           path="cart"
           element={
