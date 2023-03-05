@@ -8,8 +8,9 @@ import { NavLink } from 'react-router-dom';
 const History = () => {
   const currentUser = useAppSelector(getCurrentUser);
   const { data, isLoading, isFetching } = queryApi.useGetUserQuery(currentUser.id);
+  console.log(data);
 
-  if (data?.basket.item.length === 0) {
+  if (data?.history.length === 0) {
     return (
       <h1 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Empty</h1>
     );

@@ -75,14 +75,14 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
       setError('All fields are required');
       return;
     }
-    if (!/^\d{16}$/.test(cardNumber)) {
-      setError('Invalid data');
-      return;
-    }
-    if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
-      setError('Invalid data');
-      return;
-    }
+    // if (!/^\d{16}$/.test(cardNumber)) {
+    //   setError('Invalid data');
+    //   return;
+    // }
+    // if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
+    //   setError('Invalid data');
+    //   return;
+    // }
     if (!/^\d{3}$/.test(cvc)) {
       setError('Invalid data');
       return;

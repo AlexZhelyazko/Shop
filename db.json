@@ -296,19 +296,38 @@
       "role": "user",
       "avatar": "https://avatarfiles.alphacoders.com/266/266629.jpg",
       "basket": {
-        "item": [
-          {
-            "title": "IDENTITY BLACK DENIM JACKET",
-            "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/BLACKDIOR_720x.png?v=1612979302",
-            "count": 1,
-            "size": "L",
-            "price": "$1,750.00",
-            "color": "black",
-            "id": "1612979302"
-          }
-        ]
+        "item": []
       },
-      "history": {}
+      "history": {
+        "Sun, 05 Mar 2023 03:17:30 GMT": {
+          "item": [
+            {
+              "title": "IDENTITY PINK DENIM JACKET",
+              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/PINKDIOR_720x.png?v=1612979359",
+              "count": 1,
+              "size": "S",
+              "price": "$1,750.00",
+              "color": "pink",
+              "id": "1612979359"
+            }
+          ],
+          "totalPrice": 1750
+        },
+        "Sun, 05 Mar 2023 03:20:16 GMT": {
+          "item": [
+            {
+              "title": "SET YOUR SOUL ON FIRE JACKET",
+              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/DERULO_FRONT_f2c1fea3-fdd7-4fb9-96ee-1d50d76ddd0b_720x.png?v=1599663703",
+              "count": 2,
+              "size": "M",
+              "price": "$1,750.00",
+              "color": "yellow",
+              "id": "1599663703"
+            }
+          ],
+          "totalPrice": 3500
+        }
+      }
     }
   ]
 }
