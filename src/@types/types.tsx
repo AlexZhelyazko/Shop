@@ -43,10 +43,21 @@ export interface ICartProducts {
 
 export type IUser = {
   email: string;
+  password?: any;
   name: string;
   role: string;
   avatar: string;
   basket: any;
   history: any;
-  id: string | null;
+  id: string;
 };
+
+export interface ICartItem {
+  title: any;
+  img: any;
+  count: number;
+  size: any;
+  price: any;
+  color: any;
+  id: any;
+}

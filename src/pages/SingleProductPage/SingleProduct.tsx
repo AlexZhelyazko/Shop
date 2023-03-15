@@ -43,7 +43,7 @@ function SingleProduct() {
     let id = item.id;
     let img = frontImageUrl;
     let size = selectValue || item.size[0];
-    if (isAuth) {
+    if (isAuth && data) {
       let res = { title, img, count, size, price, color, id };
       let arr = [];
       data.basket.item.forEach((element: any) => {

@@ -12,7 +12,7 @@ interface LoginProps {
 }
 
 export const Login: React.FC<LoginProps> = ({ setLoginVisible, setRegisterVisible }) => {
-  const { data = [], isLoading, isError } = queryApi.useGetUsersQuery('');
+  const { data = [], isLoading, isError } = queryApi.useGetUsersQuery();
 
   const dispatch = useAppDispatch();
 
