@@ -2,7 +2,8 @@ import './App.scss';
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Products from './pages/Outlet/Outlet';
-import { Privat } from './hoc/Privat';
+import { Privat, PrivatAdmin } from './hoc/Privat';
+import { Users } from './components/Users/Users';
 
 const LazyMainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const LazyCatalog = lazy(() => import('./pages/Catalog/Catalog'));
@@ -31,6 +32,14 @@ export const App: React.FC = () => {
             <Privat>
               <LazyCart />
             </Privat>
+          }
+        />
+        <Route
+          path="users"
+          element={
+            <PrivatAdmin>
+              <Users />
+            </PrivatAdmin>
           }
         />
       </Route>

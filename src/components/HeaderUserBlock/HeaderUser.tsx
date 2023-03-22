@@ -28,7 +28,11 @@ export const HeaderUser = () => {
       {popUpVisible && (
         <div className="header__user-popup">
           <NavLink to="/history">History of Orders</NavLink>
-          <span>Account Settings</span>
+          {currentUser.role === 'admin' ? (
+            <NavLink to="/users">Users</NavLink>
+          ) : (
+            <span>Account Settings</span>
+          )}
           <span onClick={onExitClick}>Exit</span>
         </div>
       )}

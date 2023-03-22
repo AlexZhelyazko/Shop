@@ -328,6 +328,17 @@
           "totalPrice": 3500
         }
       }
+    },
+    {
+      "id": "3",
+      "email": "admin@gmail.com",
+      "password": "admin",
+      "name": "admin",
+      "role": "admin",
+      "avatar": "https://api.lorem.space/image/face?w=640&h=480&r=174",
+      "basket": {
+        "item": []
+      }
     }
   ]
 }
