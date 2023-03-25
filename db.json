@@ -324,6 +324,15 @@
               "price": "$1,750.00",
               "color": "yellow",
               "id": "1599663703"
+            },
+            {
+              "title": "IDENTITY PINK DENIM JACKET",
+              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/PINKDIOR_720x.png?v=1612979359",
+              "count": 2,
+              "size": "S",
+              "price": "$1,750.00",
+              "color": "pink",
+              "id": "1612979359"
             }
           ],
           "status": "Order Confirmed",

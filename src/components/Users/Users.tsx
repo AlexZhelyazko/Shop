@@ -22,7 +22,6 @@ export const Users = () => {
               <div>
                 {user.history &&
                   Object.entries(user.history).map((el: any) => {
-                    console.log(el);
                     return (
                       <div className="history__item">
                         <div className="history__item-date">{el[0]}</div>
