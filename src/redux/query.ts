@@ -56,6 +56,16 @@ export const queryApi = createApi({
             //invalidatesTags: [{ type: ['Products', 'User'], id: 'LIST' }]
             invalidatesTags: [{ type: 'Products', id: 'LIST' }]
         }),
+        chagneOrderStatus: build.mutation<void, {userId: number | string, data: any}>({
+            query: (body) => ({
+                url: `/users/${body.userId}`,
+                method: 'PATCH',
+                body: {
+                    history: body.data,   
+                }
+            }),
+            invalidatesTags: [{type: 'Products'}]
+        }),
         confirmDiliveryBasket: build.mutation<void, {userId: number | string, item: IProduct[], history: any}>({
             query: (body) => ({
                 url: `/users/${body.userId}`,

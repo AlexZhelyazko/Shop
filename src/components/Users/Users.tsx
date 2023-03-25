@@ -6,7 +6,7 @@ import './users.scss';
 export const Users = () => {
   const { data = [], isLoading, isError } = queryApi.useGetUsersQuery();
   const users = data.filter((user) => user.role !== 'admin');
-  console.log(users);
+  const onChangeStatusClick = () => {};
   return (
     <div className="users">
       {users &&
@@ -42,7 +42,7 @@ export const Users = () => {
                         <div className="history__item-price">${el[1].totalPrice}</div>
                         <div>
                           <span>Status: {el[1].status}</span>
-                          <button>Change status</button>
+                          <button onClick={onChangeStatusClick}>Change status</button>
                         </div>
                       </div>
                     );
