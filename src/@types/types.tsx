@@ -50,6 +50,7 @@ export type IUser = {
   basket: any;
   history: any;
   id: string;
+  status?: 'string';
 };
 
 export interface ICartItem {

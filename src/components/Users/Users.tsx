@@ -6,6 +6,7 @@ import './users.scss';
 export const Users = () => {
   const { data = [], isLoading, isError } = queryApi.useGetUsersQuery();
   const users = data.filter((user) => user.role !== 'admin');
+  console.log(users);
   return (
     <div className="users">
       {users &&
@@ -21,6 +22,7 @@ export const Users = () => {
               <div>
                 {user.history &&
                   Object.entries(user.history).map((el: any) => {
+                    console.log(el);
                     return (
                       <div className="history__item">
                         <div className="history__item-date">{el[0]}</div>
@@ -39,6 +41,10 @@ export const Users = () => {
                           ))}
                         </div>
                         <div className="history__item-price">${el[1].totalPrice}</div>
+                        <div>
+                          <span>Status: {el[1].status}</span>
+                          <button>Change status</button>
+                        </div>
                       </div>
                     );
                   })}
