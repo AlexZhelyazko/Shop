@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { queryApi } from '../../redux/query';
 import './users.scss';
@@ -6,7 +6,6 @@ import './users.scss';
 export const Users = () => {
   const { data = [], isLoading, isError } = queryApi.useGetUsersQuery();
   const users = data.filter((user) => user.role !== 'admin');
-  const onChangeStatusClick = () => {};
   return (
     <div className="users">
       {users &&
@@ -42,8 +41,8 @@ export const Users = () => {
                         <div className="history__item-price">${el[1].totalPrice}</div>
                         <div>
                           <span>Status: {el[1].status}</span>
-                          <button onClick={onChangeStatusClick}>Change status</button>
                         </div>
+                        <StatusComponent />
                       </div>
                     );
                   })}
@@ -52,5 +51,25 @@ export const Users = () => {
           </div>
         ))}
     </div>
+  );
+};
+
+const StatusComponent = () => {
+  const [visible, setVisible] = useState(false);
+  const onChangeStatusClick = () => {
+    setVisible(!visible);
+  };
+
+  return (
+    <>
+      <button onClick={onChangeStatusClick}>Change status</button>
+      {visible && (
+        <div>
+          <div>Order Confirmed</div>
+          <div>Order Completed</div>
+          <div>Order Canceled</div>
+        </div>
+      )}
+    </>
   );
 };
