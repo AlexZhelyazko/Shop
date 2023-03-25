@@ -42,7 +42,7 @@ export const Users = () => {
                         <div>
                           <span>Status: {el[1].status}</span>
                         </div>
-                        <StatusComponent />
+                        <StatusComponent status={el[1].status} />
                       </div>
                     );
                   })}
@@ -54,10 +54,25 @@ export const Users = () => {
   );
 };
 
-const StatusComponent = () => {
+interface IStatus {
+  status: string;
+}
+
+const StatusComponent: React.FC<IStatus> = (status) => {
   const [visible, setVisible] = useState(false);
+  const [orderStatus, setOrderStatus] = useState<IStatus>(status);
+
   const onChangeStatusClick = () => {
-    setVisible(!visible);
+    if (visible) {
+      //req
+      setVisible(false);
+    } else {
+      setVisible(true);
+    }
+  };
+
+  const func = (e: any) => {
+    setOrderStatus(e);
   };
 
   return (
@@ -65,9 +80,9 @@ const StatusComponent = () => {
       <button onClick={onChangeStatusClick}>Change status</button>
       {visible && (
         <div>
-          <div>Order Confirmed</div>
-          <div>Order Completed</div>
-          <div>Order Canceled</div>
+          <div onClick={(e) => func(e.currentTarget.textContent)}>Order Confirmed</div>
+          <div onClick={(e) => func(e.currentTarget.textContent)}>Order Completed</div>
+          <div onClick={(e) => func(e.currentTarget.textContent)}>Order Canceled</div>
         </div>
       )}
     </>
