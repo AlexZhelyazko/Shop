@@ -4,7 +4,7 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BiLogIn } from 'react-icons/bi';
 import { HeaderUser } from '../HeaderUserBlock/HeaderUser';
 import { useAppSelector } from '../../hooks/hook';
-import { getIsAuth } from '../../redux/selectors';
+import { getCurrentUser, getIsAuth } from '../../redux/selectors';
 
 interface HeaderProps {
   setLoginVisible: (value: boolean | ((prevVar: boolean) => boolean)) => void;

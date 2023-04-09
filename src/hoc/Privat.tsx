@@ -18,6 +18,16 @@ export const Privat = ({ children }: PrivatProps) => {
   return children;
 };
 
+export const PrivatUser = ({ children }: PrivatProps) => {
+  const auth = useSelector((state: RootState) => state.auth.isAuth);
+  const currentUser = useAppSelector(getCurrentUser);
+
+  if (auth === false || currentUser.role !== 'user') {
+    return <Navigate to="/" />;
+  }
+  return children;
+};
+
 export const PrivatAdmin = ({ children }: PrivatProps) => {
   const auth = useSelector((state: RootState) => state.auth.isAuth);
   const currentUser = useAppSelector(getCurrentUser);

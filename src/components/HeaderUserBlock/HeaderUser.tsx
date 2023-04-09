@@ -27,7 +27,7 @@ export const HeaderUser = () => {
       </div>
       {popUpVisible && (
         <div className="header__user-popup">
-          <NavLink to="/history">History of Orders</NavLink>
+          <NavLink to={currentUser.role === 'admin' ? '/orders' : `/history`}>History of Orders</NavLink>
           {currentUser.role === 'admin' ? (
             <NavLink to="/users">Users</NavLink>
           ) : (

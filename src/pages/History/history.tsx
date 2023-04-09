@@ -8,7 +8,10 @@ import { NavLink } from 'react-router-dom';
 const History = () => {
   const currentUser = useAppSelector(getCurrentUser);
   const { data, isLoading, isFetching } = queryApi.useGetUserQuery(currentUser.id);
-  console.log(data);
+
+  if (currentUser.role === 'admin') {
+    return <div>Admin</div>
+  }
 
   if (data?.history.length === 0) {
     return (
