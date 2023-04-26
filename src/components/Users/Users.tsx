@@ -15,7 +15,6 @@ export const Users = () => {
               <img src={user.avatar} alt="useravatar" />
             </div>
             <div className="user-info">
-              <div>{user.id}</div>
               <div>{user.name}</div>
               <div>{user.email}</div>
               <div>
@@ -39,9 +38,6 @@ export const Users = () => {
                           ))}
                         </div>
                         <div className="history__item-price">${el[1].totalPrice}</div>
-                        <div>
-                          <span>Status: {el[1].status}</span>
-                        </div>
                         <StatusComponent status={el[1].status} />
                       </div>
                     );
@@ -58,9 +54,9 @@ interface IStatus {
   status: string;
 }
 
-const StatusComponent: React.FC<IStatus> = (status) => {
+const StatusComponent: React.FC<IStatus> = ({status}) => {
   const [visible, setVisible] = useState(false);
-  const [orderStatus, setOrderStatus] = useState<IStatus>(status);
+  const [orderStatus, setOrderStatus] = useState(status);
 
   const onChangeStatusClick = () => {
     if (visible) {
@@ -78,13 +74,15 @@ const StatusComponent: React.FC<IStatus> = (status) => {
   return (
     <>
       <button onClick={onChangeStatusClick}>Change status</button>
-      {visible && (
+      {visible ? (
         <div>
           <div onClick={(e) => func(e.currentTarget.textContent)}>Order Confirmed</div>
           <div onClick={(e) => func(e.currentTarget.textContent)}>Order Completed</div>
           <div onClick={(e) => func(e.currentTarget.textContent)}>Order Canceled</div>
         </div>
-      )}
+      ) :                         <div>
+      <span>Status: {orderStatus}</span>
+    </div>}
     </>
   );
 };
