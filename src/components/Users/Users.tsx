@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { queryApi } from '../../redux/query';
-import './users.scss';
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { queryApi } from "../../redux/query";
+import "./users.scss";
 
 export const Users = () => {
   const { data = [], isLoading, isError } = queryApi.useGetUsersQuery();
-  const users = data.filter((user) => user.role !== 'admin');
+  const users = data.filter((user) => user.role !== "admin");
   return (
     <div className="users">
       {users &&
@@ -24,7 +24,7 @@ export const Users = () => {
                       <div className="history__item">
                         <div className="history__item-date">{el[0]}</div>
                         <div>
-                          {el[1].item.map((item: any) => (
+                          {el[1]?.item.map((item: any) => (
                             <div className="history__item-info">
                               <NavLink to={`/shop/${item.id}`}>
                                 <img src={item.img} alt="item" />
@@ -37,8 +37,15 @@ export const Users = () => {
                             </div>
                           ))}
                         </div>
-                        <div className="history__item-price">${el[1].totalPrice}</div>
-                        <StatusComponent status={el[1].status} />
+                        <div className="history__item-price">
+                          ${el[1].totalPrice}
+                        </div>
+                        <StatusComponent
+                          date={el[0]}
+                          history={user.history}
+                          id={user.id}
+                          status={el[1].status}
+                        />
                       </div>
                     );
                   })}
@@ -52,11 +59,16 @@ export const Users = () => {
 
 interface IStatus {
   status: string;
+  id: string;
+  history: any;
+  date: any;
 }
 
-const StatusComponent: React.FC<IStatus> = ({status}) => {
+const StatusComponent: React.FC<IStatus> = ({ status, id, history, date }) => {
   const [visible, setVisible] = useState(false);
   const [orderStatus, setOrderStatus] = useState(status);
+
+  const [updateStatus, {}] = queryApi.useChagneOrderStatusMutation();
 
   const showMenu = () => {
     if (visible) {
@@ -67,22 +79,49 @@ const StatusComponent: React.FC<IStatus> = ({status}) => {
     }
   };
 
-  const handleChangeStatus = (e: any) => {
+  const handleChangeStatus = async (e: any, date: any) => {
     setOrderStatus(e);
+    let newHist = { ...history };
+    newHist[date] = { ...history[date] };
+    newHist[date].status = e;
+    await updateStatus({ userId: id, data: newHist });
+    setVisible(false);
   };
 
   return (
     <>
-      <button className='changeStatusBtn' onClick={showMenu}>Change status</button>
+      <button className="changeStatusBtn" onClick={showMenu}>
+        Change status
+      </button>
       {visible ? (
         <div>
-          <div onClick={(e) => handleChangeStatus(e.currentTarget.textContent)}>Order Confirmed</div>
-          <div onClick={(e) => handleChangeStatus(e.currentTarget.textContent)}>Order Completed</div>
-          <div onClick={(e) => handleChangeStatus(e.currentTarget.textContent)}>Order Canceled</div>
+          <div
+            onClick={(e) =>
+              handleChangeStatus(e.currentTarget.textContent, date)
+            }
+          >
+            Order Confirmed
+          </div>
+          <div
+            onClick={(e) =>
+              handleChangeStatus(e.currentTarget.textContent, date)
+            }
+          >
+            Order Completed
+          </div>
+          <div
+            onClick={(e) =>
+              handleChangeStatus(e.currentTarget.textContent, date)
+            }
+          >
+            Order Canceled
+          </div>
         </div>
-      ) :                         <div>
-      <span>Status: {orderStatus}</span>
-    </div>}
+      ) : (
+        <div>
+          <span>Status: {orderStatus}</span>
+        </div>
+      )}
     </>
   );
 };

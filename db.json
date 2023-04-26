@@ -310,7 +310,7 @@
               "id": "1612979359"
             }
           ],
-          "status": "Order Confirmed",
+          "status": "Order Canceled",
           "totalPrice": 1750
         },
         "Sun, 05 Mar 2023 03:20:16 GMT": {
@@ -334,7 +334,7 @@
               "id": "1612979359"
             }
           ],
-          "status": "Order Confirmed",
+          "status": "Order Completed",
           "totalPrice": 3500
         }
       }
