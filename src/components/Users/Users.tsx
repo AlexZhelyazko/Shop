@@ -58,7 +58,7 @@ const StatusComponent: React.FC<IStatus> = ({status}) => {
   const [visible, setVisible] = useState(false);
   const [orderStatus, setOrderStatus] = useState(status);
 
-  const onChangeStatusClick = () => {
+  const showMenu = () => {
     if (visible) {
       //req
       setVisible(false);
@@ -67,18 +67,18 @@ const StatusComponent: React.FC<IStatus> = ({status}) => {
     }
   };
 
-  const func = (e: any) => {
+  const handleChangeStatus = (e: any) => {
     setOrderStatus(e);
   };
 
   return (
     <>
-      <button onClick={onChangeStatusClick}>Change status</button>
+      <button className='changeStatusBtn' onClick={showMenu}>Change status</button>
       {visible ? (
         <div>
-          <div onClick={(e) => func(e.currentTarget.textContent)}>Order Confirmed</div>
-          <div onClick={(e) => func(e.currentTarget.textContent)}>Order Completed</div>
-          <div onClick={(e) => func(e.currentTarget.textContent)}>Order Canceled</div>
+          <div onClick={(e) => handleChangeStatus(e.currentTarget.textContent)}>Order Confirmed</div>
+          <div onClick={(e) => handleChangeStatus(e.currentTarget.textContent)}>Order Completed</div>
+          <div onClick={(e) => handleChangeStatus(e.currentTarget.textContent)}>Order Canceled</div>
         </div>
       ) :                         <div>
       <span>Status: {orderStatus}</span>
