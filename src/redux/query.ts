@@ -95,5 +95,15 @@ export const queryApi = createApi({
       }),
       invalidatesTags: [{ type: "Products" }],
     }),
+    changePrice: build.mutation<void, { price: string; id: string }>({
+      query: (body) => ({
+        url: `/products/${body.id}`,
+        method: "PATCH",
+        body: {
+          price: body.price,
+        },
+      }),
+      invalidatesTags: [{ type: "Products" }],
+    }),
   }),
 });

@@ -1,4 +1,5 @@
 import "./section.scss";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { NotFound } from "../../../components/NotFound/NotFound";
 import SkeletonLoader from "../../../components/Preloader/SkeletonLoader/Skeleton";
@@ -8,6 +9,7 @@ import { useInView } from "react-intersection-observer";
 import { getCurrentUser } from "../../../redux/selectors";
 import { queryApi } from "../../../redux/query";
 import { fetchCatalogItems } from "../../../redux/catalog/asyncActions";
+import { Modal } from "../../../components/ModalWindow/Modal";
 
 interface SectionProps {
   items: IProduct[];
@@ -21,11 +23,29 @@ const Section: React.FC<SectionProps> = ({ items }) => {
   const status = useAppSelector((state) => state.catalog.status);
   const currentUser = useAppSelector(getCurrentUser);
   const [deleteItem, {}] = queryApi.useDeleteItemFromSectionMutation();
+  const [updatePrice, {}] = queryApi.useChangePriceMutation();
+  const [showChangingPrice, setShowChangingPrice] = useState(false);
+  const [price, setPrice] = useState(0);
+  const [currentItemId, setCurrentItemId] = useState<string>("");
 
   const { ref, inView, entry } = useInView({ threshold: 1, triggerOnce: true });
 
   const onDeleteClick = async (id: string) => {
     await deleteItem(id);
+    dispatch(fetchCatalogItems());
+  };
+
+  const onUpdateClick = (id: string) => {
+    setCurrentItemId(id);
+    setShowChangingPrice(true);
+  };
+
+  const onSavePriceClick = async (id: string) => {
+    let priceString = "$" + price;
+    await updatePrice({ price: priceString, id });
+    setPrice(0);
+    setCurrentItemId("");
+    setShowChangingPrice(false);
     dispatch(fetchCatalogItems());
   };
 
@@ -109,7 +129,10 @@ const Section: React.FC<SectionProps> = ({ items }) => {
                 >
                   DELETE
                 </div>
-                <div className="catalog__section-product-change_price">
+                <div
+                  className="catalog__section-product-change_price"
+                  onClick={() => onUpdateClick(item.id)}
+                >
                   CHANGE PRICE
                 </div>
               </div>
@@ -117,6 +140,24 @@ const Section: React.FC<SectionProps> = ({ items }) => {
           </div>
         );
       })}
+      <Modal
+        visible={showChangingPrice}
+        setVisible={setShowChangingPrice}
+        width="140px"
+        height="115px"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <div>
+          <h2>New Price:</h2>
+          <input
+            type="text"
+            placeholder="price"
+            onChange={(e) => setPrice(+e.target.value)}
+          />
+          <div onClick={() => onSavePriceClick(currentItemId)}>Save</div>
+        </div>
+      </Modal>
     </section>
   );
 };
