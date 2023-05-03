@@ -6,10 +6,12 @@ import { clearFilters } from "../../redux/catalog/catalogSlice";
 import Section from "./Section/Section";
 import Sidebar from "./Sidebar/Sidebar";
 import { useAppDispatch, useAppSelector } from "../../hooks/hook";
+import { getCurrentUser } from "../../redux/selectors";
 
 const Catalog = () => {
   const dispatch = useAppDispatch();
 
+  const currentUser = useAppSelector(getCurrentUser);
   const items = useAppSelector((state) => state.catalog.items);
 
   const location = useLocation();
@@ -25,6 +27,9 @@ const Catalog = () => {
     <div className="catalog__wrapper">
       <Sidebar location={location.pathname} items={items} />
       <Section items={items} />
+      {currentUser.role === "admin" && (
+        <div className="catalog__add-btn">Add New Item</div>
+      )}
     </div>
   );
 };
