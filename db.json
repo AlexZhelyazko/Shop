@@ -1,66 +1,6 @@
 {
   "products": [
     {
-      "id": "1612979359",
-      "category": "jacket",
-      "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/PINKDIOR_720x.png?v=1612979359",
-      "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/PINKDIOR_BACK_720x.png?v=1612979359",
-      "title": "IDENTITY PINK DENIM JACKET",
-      "price": "$1,750.00",
-      "color": "pink",
-      "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ]
-    },
-    {
-      "id": "1612979302",
-      "category": "jacket",
-      "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/BLACKDIOR_720x.png?v=1612979302",
-      "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/image_f2b75cc7-4c26-4448-8728-960657fe3f8f_720x.jpg?v=1612979302",
-      "title": "IDENTITY BLACK DENIM JACKET",
-      "price": "$1,750.00",
-      "color": "black",
-      "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "L",
-        "XL"
-      ]
-    },
-    {
-      "id": "1594394873",
-      "category": "jacket",
-      "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/IMG_7386_720x.jpg?v=1594394873",
-      "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/IMG_7387_720x.jpg?v=1594394873",
-      "title": "NOW OR NEVER CLASSIC DENIM JACKET",
-      "price": "$1,750.00",
-      "color": "black",
-      "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "M",
-        "XL"
-      ]
-    },
-    {
-      "id": "1597160266",
-      "category": "jacket",
-      "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/August11_F4_720x.png?v=1597160266",
-      "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/August11_F3_720x.png?v=1597160266",
-      "title": "THIS IS NOT MARILYN'S COCO WHITE JACKET",
-      "price": "$1,750.00",
-      "color": "white",
-      "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "M",
-        "S",
-        "L",
-        "XL"
-      ]
-    },
-    {
       "id": "1647872872",
       "category": "jacket",
       "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872",
@@ -310,7 +250,7 @@
               "id": "1612979359"
             }
           ],
-          "status": "Order Canceled",
+          "status": "Order Confirmed",
           "totalPrice": 1750
         },
         "Sun, 05 Mar 2023 03:20:16 GMT": {
@@ -334,7 +274,7 @@
               "id": "1612979359"
             }
           ],
-          "status": "Order Completed",
+          "status": "Order Confirmed",
           "totalPrice": 3500
         }
       }

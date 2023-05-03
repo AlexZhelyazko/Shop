@@ -1,11 +1,11 @@
-import './catalog.scss';
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { fetchCatalogItems } from '../../redux/catalog/asyncActions';
-import { clearFilters } from '../../redux/catalog/catalogSlice';
-import Section from './Section/Section';
-import Sidebar from './Sidebar/Sidebar';
-import { useAppDispatch, useAppSelector } from '../../hooks/hook';
+import "./catalog.scss";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { fetchCatalogItems } from "../../redux/catalog/asyncActions";
+import { clearFilters } from "../../redux/catalog/catalogSlice";
+import Section from "./Section/Section";
+import Sidebar from "./Sidebar/Sidebar";
+import { useAppDispatch, useAppSelector } from "../../hooks/hook";
 
 const Catalog = () => {
   const dispatch = useAppDispatch();

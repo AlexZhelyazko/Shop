@@ -88,5 +88,12 @@ export const queryApi = createApi({
       }),
       invalidatesTags: [{ type: "Products" }],
     }),
+    deleteItemFromSection: build.mutation({
+      query: (id) => ({
+        url: `/products/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [{ type: "Products" }],
+    }),
   }),
 });

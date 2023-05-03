@@ -4,8 +4,10 @@ import { queryApi } from "../../redux/query";
 import "./users.scss";
 
 export const Users = () => {
+  const [dateFilter, setDateFilter] = useState("From New To Old");
   const { data = [], isLoading, isError } = queryApi.useGetUsersQuery();
   const users = data.filter((user) => user.role !== "admin");
+
   return (
     <div className="users">
       {users &&
@@ -90,12 +92,10 @@ const StatusComponent: React.FC<IStatus> = ({ status, id, history, date }) => {
 
   return (
     <>
-      <button className="changeStatusBtn" onClick={showMenu}>
-        Change status
-      </button>
       {visible ? (
-        <div>
+        <div className="orderStatusList">
           <div
+            className="orderStatus"
             onClick={(e) =>
               handleChangeStatus(e.currentTarget.textContent, date)
             }
@@ -103,6 +103,7 @@ const StatusComponent: React.FC<IStatus> = ({ status, id, history, date }) => {
             Order Confirmed
           </div>
           <div
+            className="orderStatus"
             onClick={(e) =>
               handleChangeStatus(e.currentTarget.textContent, date)
             }
@@ -110,6 +111,7 @@ const StatusComponent: React.FC<IStatus> = ({ status, id, history, date }) => {
             Order Completed
           </div>
           <div
+            className="orderStatus"
             onClick={(e) =>
               handleChangeStatus(e.currentTarget.textContent, date)
             }
@@ -118,9 +120,14 @@ const StatusComponent: React.FC<IStatus> = ({ status, id, history, date }) => {
           </div>
         </div>
       ) : (
-        <div>
-          <span>Status: {orderStatus}</span>
-        </div>
+        <>
+          <button className="changeStatusBtn" onClick={showMenu}>
+            Change status
+          </button>
+          <div>
+            <span>Status: {orderStatus}</span>
+          </div>
+        </>
       )}
     </>
   );
