@@ -49,6 +49,7 @@ const AddItemModal = () => {
         <input type="checkbox" name="XLL" id="XLL" />
         <span>XLL</span>
       </div>
+      <button>Add Item</button>
     </div>
   );
 };
