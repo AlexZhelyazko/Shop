@@ -3,22 +3,30 @@ import React from "react";
 const AddItemModal = () => {
   return (
     <div>
-      <label htmlFor="First Image">Front Image</label>
-      <input
-        id="First Image"
-        name="First Image"
-        type="text"
-        placeholder="First Image"
-        defaultValue="https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872"
-      />
-      <label htmlFor="First Image">Back Image</label>
-      <input
-        id="Back Image"
-        name="Back Image"
-        type="text"
-        placeholder="Back Image"
-        defaultValue="https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_A_720x.jpg?v=1647872872"
-      />
+      <div>
+        <label htmlFor="First Image">Front Image</label>
+        <br />
+        <input
+          id="First Image"
+          name="First Image"
+          type="text"
+          placeholder="First Image"
+          defaultValue="https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="First Image">Back Image</label>
+        <br />
+        <input
+          id="Back Image"
+          name="Back Image"
+          type="text"
+          placeholder="Back Image"
+          defaultValue="https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_A_720x.jpg?v=1647872872"
+        />
+      </div>
+
       <input id="Title" name="Title" type="text" placeholder="Title" />
       <input id="Price" name="Price" type="text" placeholder="Price" />
       <input id="Color" name="Color" type="text" placeholder="Title" />
@@ -29,6 +37,7 @@ const AddItemModal = () => {
         placeholder="Title"
       />
       <div>
+        <div>Available Sizes:</div>
         <input type="checkbox" name="S" id="S" />
         <span>S</span>
         <input type="checkbox" name="M" id="M" />
