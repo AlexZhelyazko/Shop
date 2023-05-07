@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 
 const AddItemModal = () => {
+  const [frontImage, setFrontImage] = useState("");
+  const [backImage, setBackImage] = useState("");
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState("");
+  const [color, setColor] = useState("");
+  const [description, setDescription] = useState("");
+  const [sizes, setSizes] = useState([]);
+
   return (
     <div>
       <div>
@@ -16,7 +24,7 @@ const AddItemModal = () => {
       </div>
 
       <div>
-        <label htmlFor="First Image">Back Image</label>
+        <label htmlFor="Back Image">Back Image</label>
         <br />
         <input
           id="Back Image"

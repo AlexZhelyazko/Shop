@@ -105,5 +105,23 @@ export const queryApi = createApi({
       }),
       invalidatesTags: [{ type: "Products" }],
     }),
+    addNewItemInSection: build.mutation<void, IProduct>({
+      query: (body) => ({
+        url: `/products`,
+        method: "POST",
+        body: {
+          id: body.id,
+          category: body.category,
+          frontImageUrl: body.frontImageUrl,
+          backImageUrl: body.backImageUrl,
+          title: body.title,
+          price: body.price,
+          color: body.color,
+          description: body.description,
+          size: body.size,
+        },
+      }),
+      invalidatesTags: [{ type: "Products" }],
+    }),
   }),
 });
