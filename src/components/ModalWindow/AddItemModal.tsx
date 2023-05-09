@@ -1,13 +1,71 @@
 import React, { useState } from "react";
+import { queryApi } from "../../redux/query";
+import { nanoid } from "@reduxjs/toolkit";
 
 const AddItemModal = () => {
   const [frontImage, setFrontImage] = useState("");
   const [backImage, setBackImage] = useState("");
+  const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [color, setColor] = useState("");
   const [description, setDescription] = useState("");
-  const [sizes, setSizes] = useState([]);
+  const [sizes, setSizes] = useState<string[]>([]);
+
+  const [addItem, {}] = queryApi.useAddNewItemInSectionMutation();
+
+  const handleAddItem = async (e: any) => {
+    e.preventDefault();
+    let newItem = {
+      id: nanoid(),
+      category,
+      frontImageUrl: frontImage,
+      backImageUrl: backImage,
+      title,
+      price,
+      color,
+      description,
+      size: sizes,
+    };
+    await addItem(newItem);
+  };
+
+  // const signUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   e.preventDefault();
+  //   let validEmail = emailValidation(email, setEmailError);
+  //   let validPassword = isFieldEmptyValidation(password, setPasswordError);
+  //   let validFulltName = isFieldEmptyValidation(fullName, setFulltNameError);
+  //   if (validEmail && validPassword && validFulltName) {
+  //     let newUser = {
+  //       id: nanoid(),
+  //       email,
+  //       password,
+  //       name: fullName,
+  //       role: 'user',
+  //       avatar: avatar || 'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png',
+  //       basket: [],
+  //       history: [],
+  //     };
+  //     await addUser(newUser);
+  //     console.log(isError);
+  //     if (isError) {
+  //       console.log('Error');
+  //     } else {
+  //       dispatch(setIsAuth(true));
+  //       dispatch(setCurrentUser(newUser));
+  //     }
+  //   }
+  // };
+
+  const handleSizeChange = (e: any) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setSizes([...sizes, value]);
+    } else {
+      const newSizes = sizes.filter((e) => e !== value);
+      setSizes(newSizes);
+    }
+  };
 
   return (
     <div>
@@ -15,6 +73,7 @@ const AddItemModal = () => {
         <label htmlFor="First Image">Front Image</label>
         <br />
         <input
+          onChange={(e) => setFrontImage(e.target.value)}
           id="First Image"
           name="First Image"
           type="text"
@@ -27,6 +86,7 @@ const AddItemModal = () => {
         <label htmlFor="Back Image">Back Image</label>
         <br />
         <input
+          onChange={(e) => setBackImage(e.target.value)}
           id="Back Image"
           name="Back Image"
           type="text"
@@ -35,29 +95,86 @@ const AddItemModal = () => {
         />
       </div>
 
-      <input id="Title" name="Title" type="text" placeholder="Title" />
-      <input id="Price" name="Price" type="text" placeholder="Price" />
-      <input id="Color" name="Color" type="text" placeholder="Title" />
       <input
-        id="Description"
-        name="Description"
+        onChange={(e) => setCategory(e.target.value)}
+        id="Category"
+        name="Category"
+        type="text"
+        placeholder="Category"
+      />
+
+      <input
+        onChange={(e) => setTitle(e.target.value)}
+        id="Title"
+        name="Title"
         type="text"
         placeholder="Title"
       />
+      <input
+        onChange={(e) => setPrice(e.target.value)}
+        id="Price"
+        name="Price"
+        type="text"
+        placeholder="Price"
+      />
+      <input
+        onChange={(e) => setColor(e.target.value)}
+        id="Color"
+        name="Color"
+        type="text"
+        placeholder="Color"
+      />
+      <input
+        onChange={(e) => setDescription(e.target.value)}
+        id="Description"
+        name="Description"
+        type="text"
+        placeholder="Description"
+      />
       <div>
         <div>Available Sizes:</div>
-        <input type="checkbox" name="S" id="S" />
+        <input
+          onChange={handleSizeChange}
+          value="S"
+          type="checkbox"
+          name="S"
+          id="S"
+        />
         <span>S</span>
-        <input type="checkbox" name="M" id="M" />
+        <input
+          onChange={handleSizeChange}
+          value="M"
+          type="checkbox"
+          name="M"
+          id="M"
+        />
         <span>M</span>
-        <input type="checkbox" name="L" id="L" />
+        <input
+          onChange={handleSizeChange}
+          value="L"
+          type="checkbox"
+          name="L"
+          id="L"
+        />
         <span>L</span>
-        <input type="checkbox" name="XL" id="XL" />
+        <input
+          onChange={handleSizeChange}
+          value="XL"
+          type="checkbox"
+          name="XL"
+          id="XL"
+        />
         <span>XL</span>
-        <input type="checkbox" name="XLL" id="XLL" />
+        <input
+          onChange={handleSizeChange}
+          value="XLL"
+          type="checkbox"
+          name="XLL"
+          id="XLL"
+        />
         <span>XLL</span>
       </div>
-      <button>Add Item</button>
+      <button onClick={handleAddItem}>Add Item</button>
     </div>
   );
 };

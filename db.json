@@ -202,6 +202,19 @@
       "color": "white",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
       "size": []
+    },
+    {
+      "id": "1uEwUtuOeltG9CB0hDJkY",
+      "category": "asd",
+      "frontImageUrl": "",
+      "backImageUrl": "",
+      "title": "asdf",
+      "price": "scas",
+      "color": "asdf",
+      "description": "asdf",
+      "size": [
+        "L"
+      ]
     }
   ],
   "users": [
