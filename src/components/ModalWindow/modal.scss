@@ -1,0 +1,22 @@
+.addItem-modal {
+  input[type="text"] {
+    width: 100%;
+    border: none;
+    border-bottom: solid #7e7a7a 1px;
+    padding-bottom: 3px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    &:focus {
+      outline: none;
+    }
+  }
+  .checkbox-wrapper {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    input {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

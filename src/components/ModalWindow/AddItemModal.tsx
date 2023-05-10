@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { queryApi } from "../../redux/query";
 import { nanoid } from "@reduxjs/toolkit";
+import "./modal.scss";
 
 const AddItemModal = () => {
   const [frontImage, setFrontImage] = useState("");
@@ -30,33 +31,6 @@ const AddItemModal = () => {
     await addItem(newItem);
   };
 
-  // const signUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   e.preventDefault();
-  //   let validEmail = emailValidation(email, setEmailError);
-  //   let validPassword = isFieldEmptyValidation(password, setPasswordError);
-  //   let validFulltName = isFieldEmptyValidation(fullName, setFulltNameError);
-  //   if (validEmail && validPassword && validFulltName) {
-  //     let newUser = {
-  //       id: nanoid(),
-  //       email,
-  //       password,
-  //       name: fullName,
-  //       role: 'user',
-  //       avatar: avatar || 'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png',
-  //       basket: [],
-  //       history: [],
-  //     };
-  //     await addUser(newUser);
-  //     console.log(isError);
-  //     if (isError) {
-  //       console.log('Error');
-  //     } else {
-  //       dispatch(setIsAuth(true));
-  //       dispatch(setCurrentUser(newUser));
-  //     }
-  //   }
-  // };
-
   const handleSizeChange = (e: any) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -68,7 +42,7 @@ const AddItemModal = () => {
   };
 
   return (
-    <div>
+    <div className="addItem-modal">
       <div>
         <label htmlFor="First Image">Front Image</label>
         <br />
@@ -131,7 +105,7 @@ const AddItemModal = () => {
         type="text"
         placeholder="Description"
       />
-      <div>
+      <div className="checkbox-wrapper">
         <div>Available Sizes:</div>
         <input
           onChange={handleSizeChange}
@@ -180,20 +154,3 @@ const AddItemModal = () => {
 };
 
 export default AddItemModal;
-
-// {
-//   "id": "1647872872",
-//   "category": "jacket",
-//   "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872",
-//   "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_A_720x.jpg?v=1647872872",
-//   "title": "THIS IS NOT VAN GOGH DECONSTRUCTED DENIM JACKET",
-//   "price": "$2600",
-//   "color": "blue",
-//   "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-//   "size": [
-//     "M",
-//     "S",
-//     "L",
-//     "XL"
-//   ]
-// },
