@@ -43,7 +43,7 @@ const Catalog = () => {
         visible={showAddItemModal}
         setVisible={setShowAddItemModal}
         width="300px"
-        height="400px"
+        height="435px"
         justifyContent="center"
         alignItems="center"
       >

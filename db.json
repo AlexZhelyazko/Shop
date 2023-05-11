@@ -175,6 +175,38 @@
       "color": "black",
       "description": "This hat is an elevated version of our Dust Dealer hat; distressed, bleached and featured with hardware all around. This hat is made to order. Dust Dealer Hat. Structured, Heavyweight Brushed Cotton Twill, Contrasting Sandwich Peak 6 Section Cap, Adjustable Self Back Strap, Hidden Hook & Loop System, 100% Cotton, Embroidered. Bleached. Distressed. Hardware.",
       "size": []
+    },
+    {
+      "id": "I6-gyKQp_Vhk9QxxMyYsA",
+      "category": "asdf",
+      "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872",
+      "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_A_720x.jpg?v=1647872872",
+      "title": "sdf",
+      "price": "sadf",
+      "color": "2",
+      "description": "sdf",
+      "size": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "7e_87BearsLw0rGkiiKdj",
+      "category": "asdfsdf",
+      "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872",
+      "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_A_720x.jpg?v=1647872872",
+      "title": "sdf",
+      "price": "sadf",
+      "color": "2",
+      "description": "sdf",
+      "size": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
     }
   ],
   "users": [

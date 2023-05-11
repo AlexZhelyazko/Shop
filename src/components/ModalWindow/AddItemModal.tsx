@@ -23,25 +23,51 @@ const AddItemModal: React.FC<IAddItemModal> = ({ setShowAddItemModal }) => {
   const [color, setColor] = useState("");
   const [description, setDescription] = useState("");
   const [sizes, setSizes] = useState<string[]>([]);
+  const [error, setError] = useState(false);
 
   const [addItem, {}] = queryApi.useAddNewItemInSectionMutation();
 
   const handleAddItem = async (e: any) => {
+    setError(false);
     e.preventDefault();
-    let newItem = {
-      id: nanoid(),
-      category,
-      frontImageUrl: frontImage,
-      backImageUrl: backImage,
-      title,
-      price,
-      color,
-      description,
-      size: sizes,
-    };
-    await addItem(newItem);
-    dispatch(fetchCatalogItems());
-    setShowAddItemModal(false);
+    if (
+      color &&
+      description &&
+      price &&
+      title &&
+      category &&
+      backImage &&
+      frontImage &&
+      sizes.length > 0
+    ) {
+      let newItem = {
+        id: nanoid(),
+        category,
+        frontImageUrl: frontImage,
+        backImageUrl: backImage,
+        title,
+        price,
+        color,
+        description,
+        size: sizes,
+      };
+      await addItem(newItem);
+      setFrontImage(
+        "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872"
+      );
+      setBackImage(
+        "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_A_720x.jpg?v=1647872872"
+      );
+      setColor("");
+      setCategory("");
+      setDescription("");
+      setTitle("");
+      setSizes([]);
+      dispatch(fetchCatalogItems());
+      setShowAddItemModal(false);
+    } else {
+      setError(true);
+    }
   };
 
   const handleSizeChange = (e: any) => {
@@ -161,6 +187,11 @@ const AddItemModal: React.FC<IAddItemModal> = ({ setShowAddItemModal }) => {
         />
         <span>XLL</span>
       </div>
+      {error && (
+        <div style={{ color: "red", marginBottom: "10px" }}>
+          All fields required
+        </div>
+      )}
       <button onClick={handleAddItem}>Add Item</button>
     </div>
   );
