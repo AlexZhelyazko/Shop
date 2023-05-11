@@ -2,10 +2,21 @@ import React, { useState } from "react";
 import { queryApi } from "../../redux/query";
 import { nanoid } from "@reduxjs/toolkit";
 import "./modal.scss";
+import { useAppDispatch } from "../../hooks/hook";
+import { fetchCatalogItems } from "../../redux/catalog/asyncActions";
 
-const AddItemModal = () => {
-  const [frontImage, setFrontImage] = useState("");
-  const [backImage, setBackImage] = useState("");
+interface IAddItemModal {
+  setShowAddItemModal: (value: boolean) => void;
+}
+
+const AddItemModal: React.FC<IAddItemModal> = ({ setShowAddItemModal }) => {
+  const dispatch = useAppDispatch();
+  const [frontImage, setFrontImage] = useState(
+    "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872"
+  );
+  const [backImage, setBackImage] = useState(
+    "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_A_720x.jpg?v=1647872872"
+  );
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
@@ -29,6 +40,8 @@ const AddItemModal = () => {
       size: sizes,
     };
     await addItem(newItem);
+    dispatch(fetchCatalogItems());
+    setShowAddItemModal(false);
   };
 
   const handleSizeChange = (e: any) => {

@@ -53,6 +53,24 @@
   cursor: pointer;
 }
 
+.price__modal {
+  h2 {
+    letter-spacing: 1px;
+  }
+  input {
+    border: none;
+    border-bottom: solid lightgray 1px;
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
+  .changePrice-btn {
+    border: solid black 1px;
+    width: 40px;
+    text-align: center;
+    padding: 5px;
+  }
+}
+
 @media all and (min-width: 1281px) and (max-width: 1600px) {
   .catalog__section-product {
     justify-content: flex-start;

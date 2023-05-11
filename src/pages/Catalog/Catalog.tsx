@@ -47,7 +47,7 @@ const Catalog = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <AddItemModal />
+        <AddItemModal setShowAddItemModal={setShowAddItemModal} />
       </Modal>
     </div>
   );

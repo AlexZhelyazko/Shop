@@ -144,18 +144,23 @@ const Section: React.FC<SectionProps> = ({ items }) => {
         visible={showChangingPrice}
         setVisible={setShowChangingPrice}
         width="140px"
-        height="115px"
+        height="180px"
         justifyContent="center"
         alignItems="center"
       >
-        <div>
+        <div className="price__modal">
           <h2>New Price:</h2>
           <input
             type="text"
             placeholder="price"
             onChange={(e) => setPrice(+e.target.value)}
           />
-          <div onClick={() => onSavePriceClick(currentItemId)}>Save</div>
+          <div
+            className="changePrice-btn"
+            onClick={() => onSavePriceClick(currentItemId)}
+          >
+            Save
+          </div>
         </div>
       </Modal>
     </section>
