@@ -4,6 +4,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import "./modal.scss";
 import { useAppDispatch } from "../../hooks/hook";
 import { fetchCatalogItems } from "../../redux/catalog/asyncActions";
+import { colorsData } from "../../data/data";
 
 interface IAddItemModal {
   setShowAddItemModal: (value: boolean) => void;
