@@ -1,21 +1,31 @@
-import './history.scss';
-import { queryApi } from '../../redux/query';
-import { useAppSelector } from '../../hooks/hook';
-import { getCurrentUser } from '../../redux/selectors';
-import { Spinner } from '../../components/Preloader/Spinner/Spinner';
-import { NavLink } from 'react-router-dom';
+import "./history.scss";
+import { queryApi } from "../../redux/query";
+import { useAppSelector } from "../../hooks/hook";
+import { getCurrentUser } from "../../redux/selectors";
+import { Spinner } from "../../components/Preloader/Spinner/Spinner";
+import { NavLink } from "react-router-dom";
 
 const History = () => {
   const currentUser = useAppSelector(getCurrentUser);
-  const { data, isLoading, isFetching } = queryApi.useGetUserQuery(currentUser.id);
+  const { data, isLoading, isFetching } = queryApi.useGetUserQuery(
+    currentUser.id
+  );
 
-  if (currentUser.role === 'admin') {
-    return <div>Admin</div>
+  if (currentUser.role === "admin") {
+    return <div>Admin</div>;
   }
 
   if (data?.history.length === 0) {
     return (
-      <h1 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Empty</h1>
+      <h1
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        Empty
+      </h1>
     );
   }
 
@@ -44,6 +54,7 @@ const History = () => {
                   </div>
                 ))}
               </div>
+              <div>{el[1].status}</div>
               <div className="history__item-price">${el[1].totalPrice}</div>
             </div>
           );

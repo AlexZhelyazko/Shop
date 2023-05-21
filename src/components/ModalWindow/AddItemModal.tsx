@@ -4,7 +4,6 @@ import { nanoid } from "@reduxjs/toolkit";
 import "./modal.scss";
 import { useAppDispatch } from "../../hooks/hook";
 import { fetchCatalogItems } from "../../redux/catalog/asyncActions";
-import { colorsData } from "../../data/data";
 
 interface IAddItemModal {
   setShowAddItemModal: (value: boolean) => void;
@@ -125,7 +124,7 @@ const AddItemModal: React.FC<IAddItemModal> = ({ setShowAddItemModal }) => {
         placeholder="Title"
       />
       <input
-        onChange={(e) => setPrice(e.target.value)}
+        onChange={(e) => setPrice("$" + e.target.value)}
         id="Price"
         name="Price"
         type="text"

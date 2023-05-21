@@ -1,28 +1,28 @@
-.history__item{
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    margin: 10px 0px;
-    border-bottom: 1px solid lightgray;
-    .history__item-date{
-        letter-spacing: 0.5px;
-        font-family: 'Nunito';
-        font-weight: 300;
-        font-size: 19px;
+.history__item {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  margin: 10px 0px;
+  border-bottom: 1px solid lightgray;
+  .history__item-date {
+    letter-spacing: 0.5px;
+    font-family: "Nunito";
+    font-weight: 300;
+    font-size: 19px;
+  }
+  .history__item-info {
+    display: flex;
+    margin-bottom: 10px;
+    div {
+      display: flex;
+      flex-direction: column;
     }
-    .history__item-info{
-        display: flex;
-        margin-bottom: 10px;
-        div{
-            display: flex;
-            flex-direction: column;
-        }
-        img{
-            width: 70px;
-        }
+    img {
+      width: 70px;
     }
-    .history__item-price{
-        font-weight: bold;
-        letter-spacing: 0.6px;
-        font-size: 20px;
-    }
+  }
+  .history__item-price {
+    font-weight: bold;
+    letter-spacing: 0.6px;
+    font-size: 20px;
+  }
 }

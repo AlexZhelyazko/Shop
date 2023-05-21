@@ -1,6 +1,38 @@
 {
   "products": [
     {
+      "id": "1647872872",
+      "category": "jacket",
+      "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872",
+      "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_A_720x.jpg?v=1647872872",
+      "title": "THIS IS NOT VAN GOGH DECONSTRUCTED DENIM JACKET",
+      "price": "$2600",
+      "color": "blue",
+      "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
+      "size": [
+        "M",
+        "S",
+        "L",
+        "XL"
+      ]
+    },
+    {
+      "id": "1599663703",
+      "category": "jacket",
+      "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/DERULO_FRONT_f2c1fea3-fdd7-4fb9-96ee-1d50d76ddd0b_720x.png?v=1599663703",
+      "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/DERULO_BACK_5d14b5a6-3346-4fb4-b818-41351ea6f194_720x.png?v=1599663741",
+      "title": "SET YOUR SOUL ON FIRE JACKET",
+      "price": "$1800",
+      "color": "yellow",
+      "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
+      "size": [
+        "M",
+        "S",
+        "L",
+        "XL"
+      ]
+    },
+    {
       "id": "1617121218",
       "category": "jacket",
       "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/March30_1_720x.png?v=1617121218",
@@ -159,6 +191,30 @@
       "color": "black",
       "description": "This hat is an elevated version of our Dust Dealer hat; distressed, bleached and featured with hardware all around. This hat is made to order. Dust Dealer Hat. Structured, Heavyweight Brushed Cotton Twill, Contrasting Sandwich Peak 6 Section Cap, Adjustable Self Back Strap, Hidden Hook & Loop System, 100% Cotton, Embroidered. Bleached. Distressed. Hardware.",
       "size": []
+    },
+    {
+      "id": "1603810127",
+      "category": "accessories",
+      "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/DUSTOFGODS_CHAIN_720x.png?v=1603810127",
+      "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/DUSTOFGODS_CHAIN_PRODUCT_720x.png?v=1603810127",
+      "title": "DUST OF GODS CHAIN LOCK NECKLACE",
+      "price": "$124.00",
+      "color": "white",
+      "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
+      "size": []
+    },
+    {
+      "id": "1uEwUtuOeltG9CB0hDJkY",
+      "category": "asd",
+      "frontImageUrl": "",
+      "backImageUrl": "",
+      "title": "asdf",
+      "price": "scas",
+      "color": "asdf",
+      "description": "asdf",
+      "size": [
+        "L"
+      ]
     }
   ],
   "users": [
@@ -167,8 +223,8 @@
       "email": "john@mail.com",
       "password": "changeme",
       "name": "Jhon",
-      "role": "customer",
-      "avatar": "https://api.lorem.space/image/face?w=640&h=480&r=174",
+      "role": "user",
+      "avatar": "https://cdn-icons-png.flaticon.com/512/21/21104.png",
       "basket": {
         "item": []
       }
@@ -207,7 +263,7 @@
               "id": "1612979359"
             }
           ],
-          "status": "Order Confirmed",
+          "status": "Order Completed",
           "totalPrice": 1750
         },
         "Sun, 05 Mar 2023 03:20:16 GMT": {
@@ -242,7 +298,7 @@
       "password": "admin",
       "name": "admin",
       "role": "admin",
-      "avatar": "https://api.lorem.space/image/face?w=640&h=480&r=174",
+      "avatar": "https://cdn-icons-png.flaticon.com/512/21/21104.png",
       "basket": {
         "item": []
       }
