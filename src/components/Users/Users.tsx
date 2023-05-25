@@ -9,53 +9,85 @@ export const Users = () => {
   const users = data.filter((user) => user.role !== "admin");
 
   return (
-    <div className="users">
-      {users &&
-        users.map((user) => (
-          <div className="users__wrap">
-            <div className="user-img">
-              <img src={user.avatar} alt="useravatar" />
-            </div>
-            <div className="user-info">
-              <div>{user.name}</div>
-              <div>{user.email}</div>
-              <div>
-                {user.history &&
-                  Object.entries(user.history).map((el: any) => {
-                    return (
-                      <div className="history__item">
-                        <div className="history__item-date">{el[0]}</div>
-                        <div>
-                          {el[1]?.item.map((item: any) => (
-                            <div className="history__item-info">
-                              <NavLink to={`/shop/${item.id}`}>
-                                <img src={item.img} alt="item" />
-                              </NavLink>
-                              <div>
-                                <span>{item.title}</span>
-                                <span>Size: {item.size}</span>
-                                <span>Count: {item.count}</span>
+    <>
+      <div>
+        <div>
+          <label htmlFor="filter_date">Sort by Date</label>
+          <input type="checkbox" name="filter_date" id="filter_date" />
+        </div>
+        <div>
+          <label htmlFor="filter_status">Show only:</label>
+          <input
+            type="checkbox"
+            name="filter_status"
+            id="filter_status"
+            value="Completed"
+          />
+          <span>Completed</span>
+          <input
+            type="checkbox"
+            name="filter_status"
+            id="filter_status"
+            value="Confirmed"
+          />
+          <span>Confirmed</span>
+          <input
+            type="checkbox"
+            name="filter_status"
+            id="filter_status"
+            value="Canceled"
+          />{" "}
+          <span>Canceled</span>
+        </div>
+      </div>
+      <div className="users">
+        {users &&
+          users.map((user) => (
+            <div className="users__wrap">
+              <div className="user-img">
+                <img src={user.avatar} alt="useravatar" />
+              </div>
+              <div className="user-info">
+                <div>{user.name}</div>
+                <div>{user.email}</div>
+                <div>
+                  {user.history &&
+                    Object.entries(user.history).map((el: any) => {
+                      return (
+                        <div className="history__item">
+                          <div className="history__item-date">{el[0]}</div>
+                          <div>
+                            {el[1]?.item.map((item: any) => (
+                              <div className="history__item-info">
+                                <NavLink to={`/shop/${item.id}`}>
+                                  <img src={item.img} alt="item" />
+                                </NavLink>
+                                <div>
+                                  <span>{item.title}</span>
+                                  <span>Size: {item.size}</span>
+                                  <span>Count: {item.count}</span>
+                                </div>
                               </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
+                          <div className="history__item-price">
+                            ${el[1].totalPrice}
+                          </div>
+                          <StatusComponent
+                            date={el[0]}
+                            history={user.history}
+                            id={user.id}
+                            status={el[1].status}
+                          />
                         </div>
-                        <div className="history__item-price">
-                          ${el[1].totalPrice}
-                        </div>
-                        <StatusComponent
-                          date={el[0]}
-                          history={user.history}
-                          id={user.id}
-                          status={el[1].status}
-                        />
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-    </div>
+          ))}
+      </div>
+    </>
   );
 };
 
