@@ -12,12 +12,13 @@ export const Users = () => {
     <>
       <div>
         <div>
-          <label htmlFor="filter_date">Sort by Date</label>
-          <input type="checkbox" name="filter_date" id="filter_date" />
+          <span>Find by order number</span>
+          <input type="search" placeholder="order number" />
         </div>
         <div>
           <label htmlFor="filter_status">Show only:</label>
           <input
+            defaultChecked={true}
             type="checkbox"
             name="filter_status"
             id="filter_status"
@@ -25,6 +26,7 @@ export const Users = () => {
           />
           <span>Completed</span>
           <input
+            defaultChecked={true}
             type="checkbox"
             name="filter_status"
             id="filter_status"
@@ -32,6 +34,7 @@ export const Users = () => {
           />
           <span>Confirmed</span>
           <input
+            defaultChecked={true}
             type="checkbox"
             name="filter_status"
             id="filter_status"
