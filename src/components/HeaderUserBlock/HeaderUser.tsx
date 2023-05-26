@@ -1,9 +1,9 @@
-import './headerUser.scss';
-import React, { useState } from 'react';
-import { setCurrentUser, setIsAuth } from '../../redux/auth/authSlice';
-import { useAppDispatch, useAppSelector } from '../../hooks/hook';
-import { getCurrentUser } from '../../redux/selectors';
-import { NavLink } from 'react-router-dom';
+import "./headerUser.scss";
+import React, { useState } from "react";
+import { setCurrentUser, setIsAuth } from "../../redux/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks/hook";
+import { getCurrentUser } from "../../redux/selectors";
+import { NavLink } from "react-router-dom";
 
 export const HeaderUser = () => {
   const currentUser = useAppSelector(getCurrentUser);
@@ -27,11 +27,10 @@ export const HeaderUser = () => {
       </div>
       {popUpVisible && (
         <div className="header__user-popup">
-          <NavLink to={currentUser.role === 'admin' ? '/orders' : `/history`}>History of Orders</NavLink>
-          {currentUser.role === 'admin' ? (
+          {currentUser.role === "admin" ? (
             <NavLink to="/users">Users</NavLink>
           ) : (
-            <span>Account Settings</span>
+            <NavLink to="/history">History of Orders</NavLink>
           )}
           <span onClick={onExitClick}>Exit</span>
         </div>
