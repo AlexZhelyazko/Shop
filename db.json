@@ -1,20 +1,59 @@
 {
   "products": [
     {
+      "id": "1612979359",
+      "category": "jacket",
+      "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/PINKDIOR_720x.png?v=1612979359",
+      "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/PINKDIOR_BACK_720x.png?v=1612979359",
+      "title": "IDENTITY PINK DENIM JACKET",
+      "price": "$1,750.00",
+      "color": "pink",
+      "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
+      "size": ["S", "M", "L", "XL"]
+    },
+    {
+      "id": "1612979302",
+      "category": "jacket",
+      "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/BLACKDIOR_720x.png?v=1612979302",
+      "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/image_f2b75cc7-4c26-4448-8728-960657fe3f8f_720x.jpg?v=1612979302",
+      "title": "IDENTITY BLACK DENIM JACKET",
+      "price": "$1,750.00",
+      "color": "black",
+      "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
+      "size": ["L", "XL"]
+    },
+    {
+      "id": "1594394873",
+      "category": "jacket",
+      "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/IMG_7386_720x.jpg?v=1594394873",
+      "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/IMG_7387_720x.jpg?v=1594394873",
+      "title": "NOW OR NEVER CLASSIC DENIM JACKET",
+      "price": "$1,750.00",
+      "color": "black",
+      "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
+      "size": ["M", "XL"]
+    },
+    {
+      "id": "1597160266",
+      "category": "jacket",
+      "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/August11_F4_720x.png?v=1597160266",
+      "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/August11_F3_720x.png?v=1597160266",
+      "title": "THIS IS NOT MARILYN'S COCO WHITE JACKET",
+      "price": "$1,750.00",
+      "color": "white",
+      "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
+      "size": ["M", "S", "L", "XL"]
+    },
+    {
       "id": "1647872872",
       "category": "jacket",
       "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872",
       "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_A_720x.jpg?v=1647872872",
       "title": "THIS IS NOT VAN GOGH DECONSTRUCTED DENIM JACKET",
-      "price": "$2600",
+      "price": "$2,500.00",
       "color": "blue",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "M",
-        "S",
-        "L",
-        "XL"
-      ]
+      "size": ["M", "S", "L", "XL"]
     },
     {
       "id": "1599663703",
@@ -22,15 +61,10 @@
       "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/DERULO_FRONT_f2c1fea3-fdd7-4fb9-96ee-1d50d76ddd0b_720x.png?v=1599663703",
       "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/DERULO_BACK_5d14b5a6-3346-4fb4-b818-41351ea6f194_720x.png?v=1599663741",
       "title": "SET YOUR SOUL ON FIRE JACKET",
-      "price": "$1800",
+      "price": "$1,750.00",
       "color": "yellow",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "M",
-        "S",
-        "L",
-        "XL"
-      ]
+      "size": ["M", "S", "L", "XL"]
     },
     {
       "id": "1617121218",
@@ -41,11 +75,7 @@
       "price": "$1,750.00",
       "color": "red",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "M",
-        "S",
-        "L"
-      ]
+      "size": ["M", "S", "L"]
     },
     {
       "id": "1655219285",
@@ -56,11 +86,7 @@
       "price": "$2,500.00",
       "color": "white",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "M",
-        "S",
-        "L"
-      ]
+      "size": ["M", "S", "L"]
     },
     {
       "id": "1653590009",
@@ -71,12 +97,7 @@
       "price": "$1,500.00",
       "color": "purple",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "M",
-        "S",
-        "L",
-        "XL"
-      ]
+      "size": ["M", "S", "L", "XL"]
     },
     {
       "id": "1648761350",
@@ -87,11 +108,7 @@
       "price": "$2,000.00",
       "color": "purple",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "S",
-        "L",
-        "XL"
-      ]
+      "size": ["S", "L", "XL"]
     },
     {
       "id": "1656084479",
@@ -102,10 +119,7 @@
       "price": "$2,500.00",
       "color": "orange",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "S",
-        "L"
-      ]
+      "size": ["S", "L"]
     },
     {
       "id": "1628709446",
@@ -116,10 +130,7 @@
       "price": "$1,750.00",
       "color": "blue",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "S",
-        "M"
-      ]
+      "size": ["S", "M"]
     },
     {
       "id": "1613672192",
@@ -130,11 +141,7 @@
       "price": "$1,750.00",
       "color": "pink",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "S",
-        "M",
-        "L"
-      ]
+      "size": ["S", "M", "L"]
     },
     {
       "id": "1644506843",
@@ -145,12 +152,7 @@
       "price": "$1,750.00",
       "color": "pink",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ]
+      "size": ["S", "M", "L", "XL"]
     },
     {
       "id": "1592926893",
@@ -161,11 +163,7 @@
       "price": "$2,500.00",
       "color": "green",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "S",
-        "M",
-        "L"
-      ]
+      "size": ["S", "M", "L"]
     },
     {
       "id": "1631724362",
@@ -176,10 +174,7 @@
       "price": "$2,500.00",
       "color": "gray",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "S",
-        "L"
-      ]
+      "size": ["S", "L"]
     },
     {
       "id": "1663174871",
@@ -202,19 +197,6 @@
       "color": "white",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
       "size": []
-    },
-    {
-      "id": "1uEwUtuOeltG9CB0hDJkY",
-      "category": "asd",
-      "frontImageUrl": "",
-      "backImageUrl": "",
-      "title": "asdf",
-      "price": "scas",
-      "color": "asdf",
-      "description": "asdf",
-      "size": [
-        "L"
-      ]
     }
   ],
   "users": [
@@ -223,8 +205,8 @@
       "email": "john@mail.com",
       "password": "changeme",
       "name": "Jhon",
-      "role": "user",
-      "avatar": "https://cdn-icons-png.flaticon.com/512/21/21104.png",
+      "role": "customer",
+      "avatar": "https://api.lorem.space/image/face?w=640&h=480&r=174",
       "basket": {
         "item": []
       }
@@ -263,7 +245,7 @@
               "id": "1612979359"
             }
           ],
-          "status": "Order Completed",
+          "status": "Order Confirmed",
           "totalPrice": 1750
         },
         "Sun, 05 Mar 2023 03:20:16 GMT": {
@@ -298,7 +280,7 @@
       "password": "admin",
       "name": "admin",
       "role": "admin",
-      "avatar": "https://cdn-icons-png.flaticon.com/512/21/21104.png",
+      "avatar": "https://api.lorem.space/image/face?w=640&h=480&r=174",
       "basket": {
         "item": []
       }
