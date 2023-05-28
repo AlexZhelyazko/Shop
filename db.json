@@ -9,7 +9,12 @@
       "price": "$1,750.00",
       "color": "pink",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": ["S", "M", "L", "XL"]
+      "size": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
     },
     {
       "id": "1612979302",
@@ -20,7 +25,10 @@
       "price": "$1,750.00",
       "color": "black",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": ["L", "XL"]
+      "size": [
+        "L",
+        "XL"
+      ]
     },
     {
       "id": "1594394873",
@@ -31,7 +39,10 @@
       "price": "$1,750.00",
       "color": "black",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": ["M", "XL"]
+      "size": [
+        "M",
+        "XL"
+      ]
     },
     {
       "id": "1597160266",
@@ -42,7 +53,12 @@
       "price": "$1,750.00",
       "color": "white",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": ["M", "S", "L", "XL"]
+      "size": [
+        "M",
+        "S",
+        "L",
+        "XL"
+      ]
     },
     {
       "id": "1647872872",
@@ -53,7 +69,12 @@
       "price": "$2,500.00",
       "color": "blue",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": ["M", "S", "L", "XL"]
+      "size": [
+        "M",
+        "S",
+        "L",
+        "XL"
+      ]
     },
     {
       "id": "1599663703",
@@ -64,7 +85,12 @@
       "price": "$1,750.00",
       "color": "yellow",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": ["M", "S", "L", "XL"]
+      "size": [
+        "M",
+        "S",
+        "L",
+        "XL"
+      ]
     },
     {
       "id": "1617121218",
@@ -75,7 +101,11 @@
       "price": "$1,750.00",
       "color": "red",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": ["M", "S", "L"]
+      "size": [
+        "M",
+        "S",
+        "L"
+      ]
     },
     {
       "id": "1655219285",
@@ -86,7 +116,11 @@
       "price": "$2,500.00",
       "color": "white",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": ["M", "S", "L"]
+      "size": [
+        "M",
+        "S",
+        "L"
+      ]
     },
     {
       "id": "1653590009",
@@ -97,7 +131,12 @@
       "price": "$1,500.00",
       "color": "purple",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": ["M", "S", "L", "XL"]
+      "size": [
+        "M",
+        "S",
+        "L",
+        "XL"
+      ]
     },
     {
       "id": "1648761350",
@@ -108,7 +147,11 @@
       "price": "$2,000.00",
       "color": "purple",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": ["S", "L", "XL"]
+      "size": [
+        "S",
+        "L",
+        "XL"
+      ]
     },
     {
       "id": "1656084479",
@@ -119,7 +162,10 @@
       "price": "$2,500.00",
       "color": "orange",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": ["S", "L"]
+      "size": [
+        "S",
+        "L"
+      ]
     },
     {
       "id": "1628709446",
@@ -130,7 +176,10 @@
       "price": "$1,750.00",
       "color": "blue",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": ["S", "M"]
+      "size": [
+        "S",
+        "M"
+      ]
     },
     {
       "id": "1613672192",
@@ -141,7 +190,11 @@
       "price": "$1,750.00",
       "color": "pink",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": ["S", "M", "L"]
+      "size": [
+        "S",
+        "M",
+        "L"
+      ]
     },
     {
       "id": "1644506843",
@@ -152,7 +205,12 @@
       "price": "$1,750.00",
       "color": "pink",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": ["S", "M", "L", "XL"]
+      "size": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
     },
     {
       "id": "1592926893",
@@ -163,7 +221,11 @@
       "price": "$2,500.00",
       "color": "green",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": ["S", "M", "L"]
+      "size": [
+        "S",
+        "M",
+        "L"
+      ]
     },
     {
       "id": "1631724362",
@@ -174,7 +236,10 @@
       "price": "$2,500.00",
       "color": "gray",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": ["S", "L"]
+      "size": [
+        "S",
+        "L"
+      ]
     },
     {
       "id": "1663174871",
@@ -271,6 +336,21 @@
           ],
           "status": "Order Confirmed",
           "totalPrice": 3500
+        },
+        "Sun, 28 May 2023 04:42:41 GMT": {
+          "item": [
+            {
+              "title": "NOW OR NEVER CLASSIC DENIM JACKET",
+              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/IMG_7386_720x.jpg?v=1594394873",
+              "count": 2,
+              "size": "XL",
+              "price": "$1,750.00",
+              "color": "black",
+              "id": "1594394873"
+            }
+          ],
+          "totalPrice": 3500,
+          "status": "Order Confirmed"
         }
       }
     },

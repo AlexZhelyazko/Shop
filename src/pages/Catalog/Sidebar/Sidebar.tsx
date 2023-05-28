@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import './sidebar.scss';
-import { useEffect, useState } from 'react';
-import RangeSlider from '../../../components/RangeSlider/RangeSlider';
-import { BsFilterLeft } from 'react-icons/bs';
-import { GiCancel } from 'react-icons/gi';
+import "./sidebar.scss";
+import { useEffect, useState } from "react";
+import RangeSlider from "../../../components/RangeSlider/RangeSlider";
+import { BsFilterLeft } from "react-icons/bs";
+import { GiCancel } from "react-icons/gi";
 import {
   clearFilters,
   setFilterItemsByCategory,
@@ -11,10 +11,10 @@ import {
   setFilterItemsBySize,
   setFilters,
   setNotFound,
-} from '../../../redux/catalog/catalogSlice';
-import { IProduct } from '../../../@types/types';
-import { useAppDispatch, useAppSelector } from '../../../hooks/hook';
-import { colorsData, sizeData } from '../../../data/data';
+} from "../../../redux/catalog/catalogSlice";
+import { IProduct } from "../../../@types/types";
+import { useAppDispatch, useAppSelector } from "../../../hooks/hook";
+import { colorsData, sizeData } from "../../../data/data";
 
 interface SidebarProps {
   items: IProduct[];
@@ -29,9 +29,15 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
   const [activeJackets, setActiveJackets] = useState<boolean>(false);
   const [activeAccessories, setActiveAccessories] = useState<boolean>(false);
 
-  let filterItemsByColor = useAppSelector((state) => state.catalog.filterItemByColor);
-  let filterItemsByPrice = useAppSelector((state) => state.catalog.filterItemByPrice);
-  let filterItemsBySize = useAppSelector((state) => state.catalog.filterItemBySize);
+  let filterItemsByColor = useAppSelector(
+    (state) => state.catalog.filterItemByColor
+  );
+  let filterItemsByPrice = useAppSelector(
+    (state) => state.catalog.filterItemByPrice
+  );
+  let filterItemsBySize = useAppSelector(
+    (state) => state.catalog.filterItemBySize
+  );
 
   const dispatch = useAppDispatch();
 
@@ -49,10 +55,10 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
 
   const handleClickCategory = (category: string) => {
     switch (category) {
-      case 'jackets':
+      case "jackets":
         setActiveJackets(!activeJackets);
         break;
-      case 'accessories':
+      case "accessories":
         setActiveAccessories(!activeAccessories);
         break;
       default:
@@ -66,10 +72,14 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
       filterItemByCategory = items;
       dispatch(setFilterItemsByCategory(filterItemByCategory));
     } else if (activeJackets) {
-      filterItemByCategory = items.filter((item) => item.category === 'jackets');
+      filterItemByCategory = items.filter(
+        (item) => item.category === "jackets"
+      );
       dispatch(setFilterItemsByCategory(filterItemByCategory));
     } else if (activeAccessories) {
-      filterItemByCategory = items.filter((item) => item.category === 'accessories');
+      filterItemByCategory = items.filter(
+        (item) => item.category === "accessories"
+      );
       dispatch(setFilterItemsByCategory(filterItemByCategory));
     } else {
       return;
@@ -77,20 +87,28 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
   }, [activeAccessories, activeJackets]);
 
   useEffect(() => {
-    let filterItemsByColor = items.filter((item) => activeColors.includes(item.color || ''));
+    let filterItemsByColor = items.filter((item) =>
+      activeColors.includes(item.color || "")
+    );
     dispatch(setFilterItemsByColor(filterItemsByColor));
   }, [activeColors]);
 
   useEffect(() => {
     let filterItemBySize = items.filter((item: IProduct) => {
-      let newArr = item.size ? item.size.filter((el) => activeSize.includes(el)) : '';
+      let newArr = item.size
+        ? item.size.filter((el) => activeSize.includes(el))
+        : "";
       return newArr.length !== 0;
     });
     dispatch(setFilterItemsBySize(filterItemBySize));
   }, [activeSize]);
 
   const onSetFiltersClick = () => {
-    if (filterItemsByColor.length || filterItemsByPrice.length || filterItemsBySize.length) {
+    if (
+      filterItemsByColor.length ||
+      filterItemsByPrice.length ||
+      filterItemsBySize.length
+    ) {
       dispatch(setNotFound(false));
       dispatch(setFilters());
     } else {
@@ -107,7 +125,6 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
     dispatch(clearFilters());
   };
 
-  //
   return (
     <>
       <div className="burger">
@@ -146,7 +163,12 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
               </div>
             </div>
             <div className="filter__price">
-              <RangeSlider value={value} setValue={setValue} location={location} items={items} />
+              <RangeSlider
+                value={value}
+                setValue={setValue}
+                location={location}
+                items={items}
+              />
             </div>
             <div className="filter__color">
               <h3>Color:</h3>
@@ -157,10 +179,11 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
                       key={ind}
                       className={`${
                         activeColors.includes(Object.values(el)[0])
-                          ? 'filter__color-active'
-                          : 'filter__color-notactive'
+                          ? "filter__color-active"
+                          : "filter__color-notactive"
                       }`}
-                      onClick={() => handleClickColor(Object.values(el)[0])}>
+                      onClick={() => handleClickColor(Object.values(el)[0])}
+                    >
                       <span>{Object.keys(el)}</span>
                     </div>
                   );
@@ -175,9 +198,12 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
                     <div
                       key={ind}
                       className={`${
-                        activeSize.includes(el) ? 'filter__size-active' : 'filter__size-notactive'
+                        activeSize.includes(el)
+                          ? "filter__size-active"
+                          : "filter__size-notactive"
                       }`}
-                      onClick={() => handleClickSize(el)}>
+                      onClick={() => handleClickSize(el)}
+                    >
                       {el}
                     </div>
                   );
@@ -195,11 +221,12 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
           </div>
         ) : (
           <div
-            style={{ padding: '10px' }}
+            style={{ padding: "10px" }}
             onClick={() => setShowFilter(true)}
-            className="showFilter_btn">
+            className="showFilter_btn"
+          >
             <BsFilterLeft
-              style={{ width: '35px', height: '35px' }}
+              style={{ width: "35px", height: "35px" }}
               onClick={() => setShowFilter(true)}
             />
           </div>
@@ -238,7 +265,12 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
           </div>
         </div>
         <div className="filter__price">
-          <RangeSlider value={value} setValue={setValue} location={location} items={items} />
+          <RangeSlider
+            value={value}
+            setValue={setValue}
+            location={location}
+            items={items}
+          />
         </div>
         <div className="filter__color">
           <h3>Color:</h3>
@@ -249,10 +281,11 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
                   key={ind}
                   className={`${
                     activeColors.includes(Object.values(el)[0])
-                      ? 'filter__color-active'
-                      : 'filter__color-notactive'
+                      ? "filter__color-active"
+                      : "filter__color-notactive"
                   }`}
-                  onClick={() => handleClickColor(Object.values(el)[0])}>
+                  onClick={() => handleClickColor(Object.values(el)[0])}
+                >
                   <span>{Object.keys(el)}</span>
                 </div>
               );
@@ -267,9 +300,12 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
                 <div
                   key={ind}
                   className={`${
-                    activeSize.includes(el) ? 'filter__size-active' : 'filter__size-notactive'
+                    activeSize.includes(el)
+                      ? "filter__size-active"
+                      : "filter__size-notactive"
                   }`}
-                  onClick={() => handleClickSize(el)}>
+                  onClick={() => handleClickSize(el)}
+                >
                   {el}
                 </div>
               );

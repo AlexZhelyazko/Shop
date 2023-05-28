@@ -1,7 +1,7 @@
-import './payment.scss';
-import React, { useState } from 'react';
-import { IUser } from '../../@types/types';
-import { queryApi } from '../../redux/query';
+import "./payment.scss";
+import React, { useState } from "react";
+import { IUser } from "../../@types/types";
+import { queryApi } from "../../redux/query";
 
 interface PaymentFormProps {
   userData?: IUser;
@@ -18,61 +18,72 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
   userData,
   totalPrice,
 }) => {
-  const [cardNumber, setCardNumber] = useState('');
-  const [expiryDate, setExpiryDate] = useState('');
-  const [cvc, setCvc] = useState('');
-  const [name, setName] = useState('');
-  const [error, setError] = useState('');
-  const [addItemsToHistory, { isLoading, isError }] = queryApi.useConfirmDiliveryBasketMutation();
+  const [cardNumber, setCardNumber] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
+  const [cvc, setCvc] = useState("");
+  const [name, setName] = useState("");
+  const [error, setError] = useState("");
+  const [addItemsToHistory, { isLoading, isError }] =
+    queryApi.useConfirmDiliveryBasketMutation();
 
   const handleCardNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     let val = e.target.value;
-    let valArray = val.split(' ').join('').split('');
-    let valSpace = val.split('');
+    let valArray = val.split(" ").join("").split("");
+    let valSpace = val.split("");
 
-    if (valSpace[valSpace.length - 1] == ' ') {
+    if (valSpace[valSpace.length - 1] == " ") {
       var valSpaceN = valSpace.slice(0, -2);
-      val = valSpaceN.join('');
+      val = valSpaceN.join("");
       setCardNumber(val);
       return;
     }
 
-    if (isNaN(+valArray.join(''))) return;
+    if (isNaN(+valArray.join(""))) return;
     if (valArray.length === 17) return;
     if (valArray.length % 4 === 0 && valArray.length <= 15) {
-      setCardNumber(e.target.value + '  ');
+      setCardNumber(e.target.value + "  ");
     } else {
       setCardNumber(e.target.value);
     }
   };
 
-  const handleCardDate = (e: React.FormEvent<HTMLInputElement>) => {
-    console.log(e);
+  // const handleCardDate = (e: React.FormEvent<HTMLInputElement>) => {
+  //   let textTemp = e.currentTarget.value;
+  //   if (textTemp[0] !== "1" && textTemp[0] !== "0") {
+  //     textTemp = "";
+  //   }
+  //   if (textTemp.length > 5) {
+  //     return;
+  //   }
+  //   if (textTemp.length === 2) {
+  //     if (
+  //       parseInt(textTemp.substring(0, 2)) > 12 ||
+  //       parseInt(textTemp.substring(0, 2)) == 0
+  //     ) {
+  //       textTemp = textTemp[0];
+  //     } else if (textTemp.length === 2) {
+  //       textTemp += "/";
+  //     } else {
+  //       textTemp = textTemp[0];
+  //     }
+  //   }
+  //   setExpiryDate(textTemp);
+  // };
 
-    let textTemp = e.currentTarget.value;
-    console.log(textTemp);
-    if (textTemp[0] !== '1' && textTemp[0] !== '0') {
-      textTemp = '';
-    }
-    if (textTemp.length > 5) {
-      return;
-    }
-    if (textTemp.length === 2) {
-      if (parseInt(textTemp.substring(0, 2)) > 12 || parseInt(textTemp.substring(0, 2)) == 0) {
-        textTemp = textTemp[0];
-      } else if (textTemp.length === 2) {
-        textTemp += '/';
-      } else {
-        textTemp = textTemp[0];
-      }
-    }
-    setExpiryDate(textTemp);
+  const handleCardDate = (e: React.FormEvent<HTMLInputElement>) => {
+    const expdate = e.currentTarget.value;
+    const expDateFormatter =
+      expdate.replace(/\//g, "").substring(0, 2) +
+      (expdate.length > 2 ? "/" : "") +
+      expdate.replace(/\//g, "").substring(2, 4);
+
+    setExpiryDate(expDateFormatter);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!cardNumber || !expiryDate || !cvc || !name) {
-      setError('All fields are required');
+      setError("All fields are required");
       return;
     }
     // if (!/^\d{16}$/.test(cardNumber)) {
@@ -84,7 +95,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
     //   return;
     // }
     if (!/^\d{3}$/.test(cvc)) {
-      setError('Invalid data');
+      setError("Invalid data");
       return;
     }
     let date = new Date().toUTCString();
@@ -101,7 +112,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit}>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <div>
         <label className="payment__label" htmlFor="cardNumber">
           Card Number:
@@ -150,7 +161,11 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
           onChange={(e) => setName(e.target.value)}
         />
       </div>
-      <button className="payment__btn" onClick={(e) => handleSubmit(e)} type="submit">
+      <button
+        className="payment__btn"
+        onClick={(e) => handleSubmit(e)}
+        type="submit"
+      >
         Pay
       </button>
     </form>

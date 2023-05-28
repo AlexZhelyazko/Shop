@@ -1,15 +1,12 @@
-import './cart.scss';
-import { useState, useEffect } from 'react';
-import { EmptyCart } from '../../components/EmptyCart/EmptyCart';
-import PaymentForm from '../../components/Payment/PaymentForm';
-import { Modal } from '../../components/ModalWindow/Modal';
-import { queryApi } from '../../redux/query';
-import { Success } from '../../Icons/Success/Success';
-import { Error } from '../../Icons/Error/Error';
-import { useAppSelector } from '../../hooks/hook';
-import { getCurrentUser } from '../../redux/selectors';
-import { Spinner } from '../../components/Preloader/Spinner/Spinner';
-import { ICartItem } from '../../@types/types';
+import "./cart.scss";
+import { useState, useEffect } from "react";
+import { EmptyCart } from "../../components/EmptyCart/EmptyCart";
+import PaymentForm from "../../components/Payment/PaymentForm";
+import { Modal } from "../../components/ModalWindow/Modal";
+import { queryApi } from "../../redux/query";
+import { useAppSelector } from "../../hooks/hook";
+import { getCurrentUser } from "../../redux/selectors";
+import { Spinner } from "../../components/Preloader/Spinner/Spinner";
 
 export default function Cart() {
   const [totalPrice, setTotalPrice] = useState<null | number>(null);
@@ -17,7 +14,9 @@ export default function Cart() {
   const [paymentVisible, setPaymentVisible] = useState(false);
   const [updateCart, {}] = queryApi.useAddProductForAuthUserMutation();
   const currentUser = useAppSelector(getCurrentUser);
-  const { data, isLoading, isError, refetch } = queryApi.useGetUserQuery(currentUser.id);
+  const { data, isLoading, isError, refetch } = queryApi.useGetUserQuery(
+    currentUser.id
+  );
 
   useEffect(() => {
     refetch();
@@ -30,9 +29,10 @@ export default function Cart() {
         : setTotalPrice(
             data.basket.item.reduce(
               (acc: any, num: any) =>
-                acc + +num.price.slice(1, -2).replace(/[\s.,%]/g, '') * num.count,
-              0,
-            ),
+                acc +
+                +num.price.slice(1, -2).replace(/[\s.,%]/g, "") * num.count,
+              0
+            )
           );
     }
   });
@@ -110,7 +110,15 @@ export default function Cart() {
   return (
     <>
       <div className="cart__container">
-        <h1 style={{ fontFamily: 'initial', fontWeight: 'bold', fontSize: '35px' }}>YOUR CART</h1>
+        <h1
+          style={{
+            fontFamily: "initial",
+            fontWeight: "bold",
+            fontSize: "35px",
+          }}
+        >
+          YOUR CART
+        </h1>
         <div className="cart__items-wrapper">
           {data?.basket.item.map((el: any, index: any) => {
             return (
@@ -119,30 +127,37 @@ export default function Cart() {
                 <div className="cart__item-info">
                   <h2 className="cart__item-title">{el.title}</h2>
                   <div>
-                    <div style={{ letterSpacing: '0.5px' }}>Price: {el.price}</div>
+                    <div style={{ letterSpacing: "0.5px" }}>
+                      Price: {el.price}
+                    </div>
                     <div className="cart__item-info_size-color">
-                      {el.size ? <span>{el.size}</span> : ''}
+                      {el.size ? <span>{el.size}</span> : ""}
                       <span> | </span>
-                      {el.color ? <span>{el.color}</span> : ''}
+                      {el.color ? <span>{el.color}</span> : ""}
                     </div>
                   </div>
                   <div className="cart__item-buttons">
                     <div>
                       <button
                         className="countBtn"
-                        onClick={() => onMinusItemClick([el.id, el.price])}>
+                        onClick={() => onMinusItemClick([el.id, el.price])}
+                      >
                         -
                       </button>
                       <span>{el.count}</span>
                       <button
                         className="countBtn"
-                        onClick={() => onAddItemClick([el.id, el.price])}>
+                        onClick={() => onAddItemClick([el.id, el.price])}
+                      >
                         +
                       </button>
                     </div>
                     <button
                       className="deleteBtn"
-                      onClick={() => onDeleteItemClick([el.id, el.price, el.count])}>
+                      onClick={() =>
+                        onDeleteItemClick([el.id, el.price, el.count])
+                      }
+                    >
                       Delete
                     </button>
                   </div>
@@ -159,7 +174,8 @@ export default function Cart() {
           justifyContent="center"
           alignItems="center"
           visible={paymentVisible}
-          setVisible={setPaymentVisible}>
+          setVisible={setPaymentVisible}
+        >
           <PaymentForm
             count={count}
             setCount={setCount}
@@ -169,11 +185,14 @@ export default function Cart() {
           />
         </Modal>
       ) : (
-        ''
+        ""
       )}
       <div className="cart__footer">
         Total: ${totalPrice}
-        <button className="cart__footer-btn" onClick={() => setPaymentVisible(true)}>
+        <button
+          className="cart__footer-btn"
+          onClick={() => setPaymentVisible(true)}
+        >
           Continue
         </button>
       </div>
