@@ -100,7 +100,11 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
     }
     let date = new Date().toUTCString();
     let userHistory = JSON.parse(JSON.stringify(userData?.history));
-    userHistory[date] = { ...userData?.basket, totalPrice };
+    userHistory[date] = {
+      ...userData?.basket,
+      totalPrice,
+      status: "Order Confirmed",
+    };
     await addItemsToHistory({
       userId: userData!.id,
       item: [],
