@@ -27,27 +27,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
   const [addItemsToHistory, { isLoading, isError }] =
     queryApi.useConfirmDiliveryBasketMutation();
 
-  // const handleCardNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   let val = e.target.value;
-  //   let valArray = val.split(" ").join("").split("");
-  //   let valSpace = val.split("");
-
-  //   if (valSpace[valSpace.length - 1] == " ") {
-  //     var valSpaceN = valSpace.slice(0, -2);
-  //     val = valSpaceN.join("");
-  //     setCardNumber(val);
-  //     return;
-  //   }
-
-  //   if (isNaN(+valArray.join(""))) return;
-  //   if (valArray.length === 17) return;
-  //   if (valArray.length % 4 === 0 && valArray.length <= 15) {
-  //     setCardNumber(e.target.value + "  ");
-  //   } else {
-  //     setCardNumber(e.target.value);
-  //   }
-  // };
-
   const handleCardNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     var matches = e.currentTarget.value.match(/(\d+)/);
     var cardno = "";
@@ -76,29 +55,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
     setCardNumber(cardno);
     setCardType(cardtype1);
   };
-
-  // const handleCardDate = (e: React.FormEvent<HTMLInputElement>) => {
-  //   let textTemp = e.currentTarget.value;
-  //   if (textTemp[0] !== "1" && textTemp[0] !== "0") {
-  //     textTemp = "";
-  //   }
-  //   if (textTemp.length > 5) {
-  //     return;
-  //   }
-  //   if (textTemp.length === 2) {
-  //     if (
-  //       parseInt(textTemp.substring(0, 2)) > 12 ||
-  //       parseInt(textTemp.substring(0, 2)) == 0
-  //     ) {
-  //       textTemp = textTemp[0];
-  //     } else if (textTemp.length === 2) {
-  //       textTemp += "/";
-  //     } else {
-  //       textTemp = textTemp[0];
-  //     }
-  //   }
-  //   setExpiryDate(textTemp);
-  // };
 
   const handleCardDate = (e: React.FormEvent<HTMLInputElement>) => {
     const expdate = e.currentTarget.value;
@@ -177,6 +133,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
           Expiry Date:
         </label>
         <input
+          placeholder="mm/yy"
           className="payment__input"
           type="text"
           id="expiryDate"
@@ -194,6 +151,8 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
           CVC:
         </label>
         <input
+          placeholder="123"
+          maxLength={3}
           className="payment__input"
           type="text"
           id="cvc"
@@ -206,11 +165,12 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
           Name:
         </label>
         <input
+          placeholder="ROBERTO MILOS"
           className="payment__input"
           type="text"
           id="name"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setName(e.target.value.toUpperCase())}
         />
       </div>
       <button
