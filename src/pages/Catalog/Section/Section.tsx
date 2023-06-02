@@ -13,9 +13,15 @@ import { Modal } from "../../../components/ModalWindow/Modal";
 
 interface SectionProps {
   items: IProduct[];
+  showFilter: boolean;
+  setShowFilter: (value: boolean) => void;
 }
 
-const Section: React.FC<SectionProps> = ({ items }) => {
+const Section: React.FC<SectionProps> = ({
+  items,
+  showFilter,
+  setShowFilter,
+}) => {
   const [windowSize, setWindowSize] = useState([
     window.innerWidth,
     window.innerHeight,
@@ -105,7 +111,7 @@ const Section: React.FC<SectionProps> = ({ items }) => {
     <section
       className="catalog__section"
       style={
-        windowSize[0] > 500
+        windowSize[0] > 500 || (!showFilter && windowSize[0] < 500)
           ? { display: "flex", flexDirection: "row", flexWrap: "wrap" }
           : { display: "none" }
       }

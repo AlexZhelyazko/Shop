@@ -19,9 +19,16 @@ import { colorsData, sizeData } from "../../../data/data";
 interface SidebarProps {
   items: IProduct[];
   location: string;
+  showFilter: boolean;
+  setShowFilter: (value: boolean) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
+const Sidebar: React.FC<SidebarProps> = ({
+  items,
+  location,
+  showFilter,
+  setShowFilter,
+}) => {
   const [windowSize, setWindowSize] = useState([
     window.innerWidth,
     window.innerHeight,
@@ -39,7 +46,6 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
     };
   }, []);
 
-  const [showFilter, setShowFilter] = useState<boolean>(true);
   const [value, setValue] = useState<number[]>([0, 4000]);
   const [activeColors, setActiveColors] = useState<string[]>([]);
   const [activeSize, setActiveSize] = useState<string[]>([]);

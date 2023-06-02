@@ -16,6 +16,7 @@ const Catalog = () => {
   const currentUser = useAppSelector(getCurrentUser);
   const items = useAppSelector((state) => state.catalog.items);
   const [showAddItemModal, setShowAddItemModal] = useState(false);
+  const [showFilter, setShowFilter] = useState<boolean>(true);
 
   const location = useLocation();
 
@@ -35,8 +36,17 @@ const Catalog = () => {
 
   return (
     <div className="catalog__wrapper">
-      <Sidebar location={location.pathname} items={items} />
-      <Section items={items} />
+      <Sidebar
+        showFilter={showFilter}
+        setShowFilter={setShowFilter}
+        location={location.pathname}
+        items={items}
+      />
+      <Section
+        showFilter={showFilter}
+        setShowFilter={setShowFilter}
+        items={items}
+      />
       {currentUser.role === "admin" && (
         <div onClick={onAddItemClick} className="catalog__add-btn">
           Add New Item
