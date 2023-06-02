@@ -23,8 +23,11 @@ const Catalog = () => {
     setShowAddItemModal(true);
   };
 
-  useEffect(() => {
+  if (!items.length) {
     dispatch(fetchCatalogItems());
+  }
+
+  useEffect(() => {
     return () => {
       dispatch(clearFilters());
     };

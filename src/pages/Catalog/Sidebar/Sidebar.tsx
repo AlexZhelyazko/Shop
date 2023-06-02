@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./sidebar.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import RangeSlider from "../../../components/RangeSlider/RangeSlider";
 import { BsFilterLeft } from "react-icons/bs";
 import { GiCancel } from "react-icons/gi";
@@ -22,6 +22,25 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
+  const [windowSize, setWindowSize] = useState([
+    window.innerWidth,
+    window.innerHeight,
+  ]);
+
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize([window.innerWidth, window.innerHeight]);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   const [showFilter, setShowFilter] = useState<boolean>(true);
   const [value, setValue] = useState<number[]>([0, 4000]);
   const [activeColors, setActiveColors] = useState<string[]>([]);
@@ -127,7 +146,10 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
 
   return (
     <>
-      <div className="burger">
+      <div
+        className="burger"
+        style={windowSize[0] < 500 ? { width: "100%" } : { width: "auto" }}
+      >
         {showFilter ? (
           <div className="filter__burger-menu filter__menu">
             <GiCancel onClick={() => setShowFilter(false)} />

@@ -1,5 +1,5 @@
 import "./section.scss";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { NotFound } from "../../../components/NotFound/NotFound";
 import SkeletonLoader from "../../../components/Preloader/SkeletonLoader/Skeleton";
@@ -16,6 +16,25 @@ interface SectionProps {
 }
 
 const Section: React.FC<SectionProps> = ({ items }) => {
+  const [windowSize, setWindowSize] = useState([
+    window.innerWidth,
+    window.innerHeight,
+  ]);
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize([window.innerWidth, window.innerHeight]);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
+  const [mobile, setMobile] = useState(false);
+
   const dispatch = useAppDispatch();
   const filterItems = useAppSelector((state) => state.catalog.filterItem);
   const isFilterActive = useAppSelector((state) => state.catalog.filters);
@@ -87,7 +106,11 @@ const Section: React.FC<SectionProps> = ({ items }) => {
   return (
     <section
       className="catalog__section"
-      style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
+      style={
+        windowSize[0] > 500
+          ? { display: "flex", flexDirection: "row", flexWrap: "wrap" }
+          : { display: "none" }
+      }
     >
       {(filterItems.length === 0 && isFilterActive === false
         ? items
