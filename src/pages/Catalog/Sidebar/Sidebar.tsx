@@ -27,8 +27,6 @@ const Sidebar: React.FC<SidebarProps> = ({ items, location }) => {
     window.innerHeight,
   ]);
 
-  const [mobile, setMobile] = useState(false);
-
   useEffect(() => {
     const handleWindowResize = () => {
       setWindowSize([window.innerWidth, window.innerHeight]);

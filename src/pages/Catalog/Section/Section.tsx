@@ -33,8 +33,6 @@ const Section: React.FC<SectionProps> = ({ items }) => {
     };
   }, []);
 
-  const [mobile, setMobile] = useState(false);
-
   const dispatch = useAppDispatch();
   const filterItems = useAppSelector((state) => state.catalog.filterItem);
   const isFilterActive = useAppSelector((state) => state.catalog.filters);
