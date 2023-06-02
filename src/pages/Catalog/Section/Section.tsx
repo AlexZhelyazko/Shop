@@ -14,14 +14,9 @@ import { Modal } from "../../../components/ModalWindow/Modal";
 interface SectionProps {
   items: IProduct[];
   showFilter: boolean;
-  setShowFilter: (value: boolean) => void;
 }
 
-const Section: React.FC<SectionProps> = ({
-  items,
-  showFilter,
-  setShowFilter,
-}) => {
+const Section: React.FC<SectionProps> = ({ items, showFilter }) => {
   const [windowSize, setWindowSize] = useState([
     window.innerWidth,
     window.innerHeight,

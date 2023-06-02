@@ -42,11 +42,7 @@ const Catalog = () => {
         location={location.pathname}
         items={items}
       />
-      <Section
-        showFilter={showFilter}
-        setShowFilter={setShowFilter}
-        items={items}
-      />
+      <Section showFilter={showFilter} items={items} />
       {currentUser.role === "admin" && (
         <div onClick={onAddItemClick} className="catalog__add-btn">
           Add New Item
