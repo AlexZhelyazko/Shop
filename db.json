@@ -66,7 +66,7 @@
       "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872",
       "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_A_720x.jpg?v=1647872872",
       "title": "THIS IS NOT VAN GOGH DECONSTRUCTED DENIM JACKET",
-      "price": "$2,500.00",
+      "price": "$1234",
       "color": "blue",
       "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
       "size": [
@@ -197,22 +197,6 @@
       ]
     },
     {
-      "id": "1644506843",
-      "category": "jacket",
-      "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/TIGER_YELLOW_JACKET_1_B_V3_720x.jpg?v=1644506843",
-      "backImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/TIGER_YELLOW_JACKET_1_A_V3_720x.jpg?v=1644506842",
-      "title": "THE GREAT WHITE DUSTED TIGER DENIM JACKET",
-      "price": "$1,750.00",
-      "color": "pink",
-      "description": "Every piece is hand-selected and re-imagined through various techniques to provide garments that are unique. All garments are up-cycled: signs of wear and imperfections will vary. If the size is not available, please contact us to arrange for a custom commissioned piece. Each piece is made to order, by hand. ",
-      "size": [
-        "S",
-        "M",
-        "L",
-        "XL"
-      ]
-    },
-    {
       "id": "1592926893",
       "category": "jacket",
       "frontImageUrl": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/June23_F2_720x.png?v=1592926893",
@@ -295,26 +279,7 @@
       "role": "user",
       "avatar": "https://avatarfiles.alphacoders.com/266/266629.jpg",
       "basket": {
-        "item": [
-          {
-            "title": "SET YOUR SOUL ON FIRE JACKET",
-            "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/DERULO_FRONT_f2c1fea3-fdd7-4fb9-96ee-1d50d76ddd0b_720x.png?v=1599663703",
-            "count": 2,
-            "size": "M",
-            "price": "$1,750.00",
-            "color": "yellow",
-            "id": "1599663703"
-          },
-          {
-            "title": "THIS IS NOT VAN GOGH DECONSTRUCTED DENIM JACKET",
-            "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/CDIOR_JKT_2_B_720x.jpg?v=1647872872",
-            "count": 1,
-            "size": "M",
-            "price": "$2,500.00",
-            "color": "blue",
-            "id": "1647872872"
-          }
-        ]
+        "item": []
       },
       "history": {
         "Sun, 05 Mar 2023 03:17:30 GMT": {
@@ -355,36 +320,6 @@
           ],
           "status": "Order Confirmed",
           "totalPrice": 3500
-        },
-        "Sun, 28 May 2023 04:42:41 GMT": {
-          "item": [
-            {
-              "title": "NOW OR NEVER CLASSIC DENIM JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/IMG_7386_720x.jpg?v=1594394873",
-              "count": 2,
-              "size": "XL",
-              "price": "$1,750.00",
-              "color": "black",
-              "id": "1594394873"
-            }
-          ],
-          "totalPrice": 3500,
-          "status": "Order Confirmed"
-        },
-        "Sun, 28 May 2023 04:52:43 GMT": {
-          "item": [
-            {
-              "title": "IDENTITY BLACK DENIM JACKET",
-              "img": "https://cdn.shopify.com/s/files/1/0053/7994/8647/products/BLACKDIOR_720x.png?v=1612979302",
-              "count": 3,
-              "size": "L",
-              "price": "$1,750.00",
-              "color": "black",
-              "id": "1612979302"
-            }
-          ],
-          "totalPrice": 5250,
-          "status": "Order Confirmed"
         }
       }
     },

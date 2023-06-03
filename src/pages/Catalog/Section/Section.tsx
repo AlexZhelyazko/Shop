@@ -1,15 +1,13 @@
 import "./section.scss";
-import { useState, useRef, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { NotFound } from "../../../components/NotFound/NotFound";
 import SkeletonLoader from "../../../components/Preloader/SkeletonLoader/Skeleton";
 import { IProduct } from "../../../@types/types";
 import { useAppDispatch, useAppSelector } from "../../../hooks/hook";
-import { useInView } from "react-intersection-observer";
-import { getCurrentUser } from "../../../redux/selectors";
 import { queryApi } from "../../../redux/query";
 import { fetchCatalogItems } from "../../../redux/catalog/asyncActions";
 import { Modal } from "../../../components/ModalWindow/Modal";
+import { Item } from "./Item";
 
 interface SectionProps {
   items: IProduct[];
@@ -39,14 +37,11 @@ const Section: React.FC<SectionProps> = ({ items, showFilter }) => {
   const isFilterActive = useAppSelector((state) => state.catalog.filters);
   const notFoundItems = useAppSelector((state) => state.catalog.notFoundItems);
   const status = useAppSelector((state) => state.catalog.status);
-  const currentUser = useAppSelector(getCurrentUser);
   const [deleteItem, {}] = queryApi.useDeleteItemFromSectionMutation();
   const [updatePrice, {}] = queryApi.useChangePriceMutation();
   const [showChangingPrice, setShowChangingPrice] = useState(false);
   const [price, setPrice] = useState(0);
   const [currentItemId, setCurrentItemId] = useState<string>("");
-
-  const { ref, inView, entry } = useInView({ threshold: 1, triggerOnce: true });
 
   const onDeleteClick = async (id: string) => {
     await deleteItem(id);
@@ -65,20 +60,6 @@ const Section: React.FC<SectionProps> = ({ items, showFilter }) => {
     setCurrentItemId("");
     setShowChangingPrice(false);
     dispatch(fetchCatalogItems());
-  };
-
-  const handleMouseEnter = (
-    event: React.MouseEvent<HTMLImageElement>,
-    imageSrc: string
-  ) => {
-    (event.target as HTMLImageElement).src = imageSrc;
-  };
-
-  const handleMouseOut = (
-    event: React.MouseEvent<HTMLImageElement>,
-    imageSrc: string
-  ) => {
-    (event.target as HTMLImageElement).src = imageSrc;
   };
 
   const fakeArr = [...new Array(8)];
@@ -116,50 +97,11 @@ const Section: React.FC<SectionProps> = ({ items, showFilter }) => {
         : filterItems
       ).map((item: IProduct) => {
         return (
-          <div ref={ref} key={item.id} className="catalog__section-product">
-            <NavLink
-              className="catalog__section-product catalog__section-link"
-              to={`${item.id}`}
-            >
-              <img
-                loading="lazy"
-                onMouseOver={(event) =>
-                  handleMouseEnter(event, item?.frontImageUrl)
-                }
-                onMouseOut={(event) =>
-                  handleMouseOut(event, item?.backImageUrl)
-                }
-                className="catalog__section-image"
-                width="228px"
-                height="300px"
-                src={item.backImageUrl}
-                alt={item.title}
-              />
-              <div className="catalog__section-product-info">
-                <span className="catalog__section-product-title">
-                  {item.title}
-                </span>
-                <span>{item.size + " "}</span>
-                <span>{item.price} </span>
-              </div>
-            </NavLink>
-            {currentUser.role === "admin" && (
-              <div>
-                <div
-                  onClick={() => onDeleteClick(item.id)}
-                  className="catalog__section-product-delete"
-                >
-                  DELETE
-                </div>
-                <div
-                  className="catalog__section-product-change_price"
-                  onClick={() => onUpdateClick(item.id)}
-                >
-                  CHANGE PRICE
-                </div>
-              </div>
-            )}
-          </div>
+          <Item
+            onUpdateClick={onUpdateClick}
+            onDeleteClick={onDeleteClick}
+            item={item}
+          />
         );
       })}
       <Modal
