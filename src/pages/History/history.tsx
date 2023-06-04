@@ -15,7 +15,7 @@ const History = () => {
     return <div>Admin</div>;
   }
 
-  if (data?.history.length === 0) {
+  if (data && !Object.keys(data?.history).length) {
     return (
       <h1
         style={{
