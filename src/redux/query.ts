@@ -14,7 +14,7 @@ function providesList(resultsWithIds: any, tagType: string) {
 export const queryApi = createApi({
   reducerPath: "queryApi",
   tagTypes: ["User", "Products"],
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001" }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.PORT }),
   endpoints: (build) => ({
     addUser: build.mutation<void, IUser>({
       query: (body) => ({
