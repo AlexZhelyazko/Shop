@@ -59,5 +59,8 @@
   "devDependencies": {
     "concurrently": "^7.6.0",
     "json-server": "^0.17.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
