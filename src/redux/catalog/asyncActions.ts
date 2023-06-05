@@ -7,7 +7,9 @@ export const fetchCatalogItems = createAsyncThunk<
   undefined,
   { rejectValue: string }
 >("catalog/fetchCatalogItems", async (_, { rejectWithValue }) => {
-  const response = await axios.get(`${process.env.PORT}/products?`);
+  const response = await axios.get(
+    `https://robertostore.herokuapp.com/products?`
+  );
   if (response.statusText !== "OK") {
     return rejectWithValue("Something went wrong");
   }
@@ -19,7 +21,9 @@ export const getItem = createAsyncThunk<
   string,
   { rejectValue: string }
 >("catalog/getItem", async (id, { rejectWithValue }) => {
-  const response = await axios.get(`${process.env.PORT}/products?id=${id}`);
+  const response = await axios.get(
+    `https://robertostore.herokuapp.com/products?id=${id}`
+  );
   if (response.statusText !== "OK" || response.data.length === 0) {
     return rejectWithValue("Something went wrong");
   }
