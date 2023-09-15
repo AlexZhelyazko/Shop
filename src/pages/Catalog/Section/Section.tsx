@@ -98,6 +98,7 @@ const Section: React.FC<SectionProps> = ({ items, showFilter }) => {
       ).map((item: IProduct) => {
         return (
           <Item
+            key={item.id}
             onUpdateClick={onUpdateClick}
             onDeleteClick={onDeleteClick}
             item={item}

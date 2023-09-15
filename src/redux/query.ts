@@ -14,7 +14,7 @@ function providesList(resultsWithIds: any, tagType: string) {
 export const queryApi = createApi({
   reducerPath: "queryApi",
   tagTypes: ["User", "Products"],
-  baseQuery: fetchBaseQuery({ baseUrl: "https://robertostore.herokuapp.com/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001/" }),
   endpoints: (build) => ({
     addUser: build.mutation<void, IUser>({
       query: (body) => ({

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./sidebar.scss";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import RangeSlider from "../../../components/RangeSlider/RangeSlider";
 import { BsFilterLeft } from "react-icons/bs";
 import { GiCancel } from "react-icons/gi";
@@ -64,30 +64,39 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   const dispatch = useAppDispatch();
 
-  const handleClickColor = (color: string) => {
-    activeColors.includes(color)
-      ? setActiveColors([...activeColors.filter((el) => el !== color)])
-      : setActiveColors([...activeColors, color]);
-  };
+  const handleClickColor = useCallback(
+    (color: string) => {
+      activeColors.includes(color)
+        ? setActiveColors([...activeColors.filter((el) => el !== color)])
+        : setActiveColors([...activeColors, color]);
+    },
+    [activeColors]
+  );
 
-  const handleClickSize = (size: string) => {
-    activeSize.includes(size)
-      ? setActiveSize([...activeSize.filter((el) => el !== size)])
-      : setActiveSize([...activeSize, size]);
-  };
+  const handleClickSize = useCallback(
+    (size: string) => {
+      activeSize.includes(size)
+        ? setActiveSize([...activeSize.filter((el) => el !== size)])
+        : setActiveSize([...activeSize, size]);
+    },
+    [activeSize]
+  );
 
-  const handleClickCategory = (category: string) => {
-    switch (category) {
-      case "jackets":
-        setActiveJackets(!activeJackets);
-        break;
-      case "accessories":
-        setActiveAccessories(!activeAccessories);
-        break;
-      default:
-        return;
-    }
-  };
+  const handleClickCategory = useCallback(
+    (category: string) => {
+      switch (category) {
+        case "jackets":
+          setActiveJackets(!activeJackets);
+          break;
+        case "accessories":
+          setActiveAccessories(!activeAccessories);
+          break;
+        default:
+          return;
+      }
+    },
+    [activeAccessories, activeJackets]
+  );
 
   useEffect(() => {
     let filterItemByCategory;

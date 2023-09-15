@@ -30,20 +30,16 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
   const handleCardNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     var matches = e.currentTarget.value.match(/(\d+)/);
     var cardno = "";
-    console.log(matches);
     if (matches) {
       cardno = e.currentTarget.value.split(" - ").join("");
     }
-    console.log(cardno);
     var cardtype1 = cardType;
     //var visa = /^(?:4[0-9]{16}(?:[0-9]{3})?)$/;
     var visa = /^(?:4[0-9]{2}?)$/;
     var mastercardRegEx = /^(?:5[1-5][0-9]{3})$/;
     var amexpRegEx = /^(?:3[47][0-9]{3})$/;
     var discovRegEx = /^(?:6(?:011|5[0-9][0-9])[0-9]{5})$/;
-    console.log(visa.test(cardno));
     if (visa.test(cardno) === true) {
-      //eg:4651970022334445
       cardtype1 = "far fa fa-3x fa-cc-visa  carddetail-cardtype";
     } else if (mastercardRegEx.test(cardno) === true) {
       cardtype1 = "far fa fa-3x fa-cc-mastercard carddetail-cardtype";
@@ -72,14 +68,6 @@ const PaymentForm: React.FC<PaymentFormProps> = ({
       setError("All fields are required");
       return;
     }
-    // if (!/^\d{16}$/.test(cardNumber)) {
-    //   setError('Invalid data');
-    //   return;
-    // }
-    // if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
-    //   setError('Invalid data');
-    //   return;
-    // }
     if (!/^\d{3}$/.test(cvc)) {
       setError("Invalid data");
       return;

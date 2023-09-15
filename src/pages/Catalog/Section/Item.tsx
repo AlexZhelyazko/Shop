@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import { useAppSelector } from "../../../hooks/hook";
 import { getCurrentUser } from "../../../redux/selectors";
+import SkeletonLoader from "../../../components/Preloader/SkeletonLoader/Skeleton";
 
 interface ItemProps {
   item: any;
@@ -53,7 +54,9 @@ export const Item: React.FC<ItemProps> = ({
             alt={item.title}
           />
         ) : (
-          <div>Load</div>
+          <div>
+            <SkeletonLoader></SkeletonLoader>
+          </div>
         )}
         <div className="catalog__section-product-info">
           <span className="catalog__section-product-title">{item.title}</span>
